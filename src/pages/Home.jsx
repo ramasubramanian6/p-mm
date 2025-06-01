@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Menu, Search } from "lucide-react"; // install lucide-react: npm install lucide-react
+import logo from "../../src/assets/logo.png";
+import { IoMdMail } from "react-icons/io";
+import { FaMapLocationDot } from "react-icons/fa6";
+import Locations from "../../src/pages/Locations.jsx";
+import { useNavigate } from "react-router";
+import { BsMenuButtonFill } from "react-icons/bs";
+import { FaSearch } from "react-icons/fa";
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0); // State to manage the current slide index
+  const navigate = useNavigate();
 
   // Array of image sources for the slider
   const slides = [
@@ -29,21 +37,23 @@ function Home() {
     <div className="min-h-screen bg-white font-['Inter']">
       <header className="w-full bg-neutral-50 py-4 px-4 md:px-8 shadow-md">
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between">
-          {/* Left Section: Logo + Info */}
           <div className="w-full md:w-auto flex items-center justify-between mb-4 md:mb-0">
             <div className="flex items-center">
-              <div className="w-10 h-8 bg-zinc-800 mr-2" />
+              <IoMdMail className="w-10 h-8 mr-2" />
               <span className="text-zinc-800 text-base md:text-xl font-medium font-['Poppins']">
                 info@movemystuffs@gmail.com
               </span>
-              <span className="ml-2 md:ml-4 text-black text-base md:text-xl font-medium font-['Poppins'] hidden md:inline">
-                India
-              </span>
+              <div className="flex" onClick={() => navigate("/locations")}>
+                <FaMapLocationDot className="w-10 h-8 ml-8 pr-2 " />
+                <div className="font-bold text-xl mt-1">
+                  Our Services Locaions
+                </div>
+              </div>
             </div>
 
             {/* Mobile Menu Icon */}
             <button className="md:hidden ml-4">
-              <Menu className="h-6 w-6 text-zinc-800" />
+              <Menu className="h-6 w-6 text-zinc-800" onClick={()=>{navigate("/menu")}}/>
             </button>
           </div>
 
@@ -66,7 +76,7 @@ function Home() {
         <div className="flex items-center mb-4 md:mb-0">
           <img
             className="w-16 h-16 md:w-20 md:h-20 mr-2"
-            src="https://placehold.co/76x73"
+            src={logo}
             alt="Logo"
           />
           <div className="flex flex-col">
@@ -89,13 +99,13 @@ function Home() {
         </div>
         <div className="hidden md:flex items-center space-x-2">
           {/* Hamburger icon placeholder - typically handled with JS for mobile menu */}
-          <div className="w-11 h-1 bg-zinc-800 outline outline-4 outline-offset-[-2px] outline-zinc-800" />
-          <div className="w-11 h-1 bg-zinc-800 outline outline-4 outline-offset-[-2px] outline-zinc-800" />
-          <div className="w-11 h-1 bg-zinc-800 outline outline-4 outline-offset-[-2px] outline-zinc-800" />
+
+          <FaSearch className="w-11 h-9 pr-4" />
+          <BsMenuButtonFill className="w-11 h-9 " onClick={()=>navigate("/menu")}/>
         </div>
       </nav>
       {/* Main Content Area - Slider & Why Choose Us */}
-      <main className="max-w-screen-xl mx-auto px-4 py-8">
+      <main className="max-w-screen-xl mx-auto px-4 py-8" >
         {/* Image Slider Section */}
         <section
           className="relative w-full overflow-hidden rounded-xl shadow-lg mb-12"

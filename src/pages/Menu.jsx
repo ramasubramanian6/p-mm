@@ -1,60 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Import this
+import { FaTimes, FaFacebookF, FaInstagram, FaYoutube, FaUserCircle } from "react-icons/fa";
 
 function Menu() {
+  const [showMenu, setShowMenu] = useState(true);
+  const navigate = useNavigate(); // ✅ Hook to navigate
+
+  useEffect(() => {
+    if (!showMenu) {
+      navigate("/"); // ✅ Navigate to home
+    }
+  }, [showMenu, navigate]);
+
   return (
-    <div className="w-[1440px] h-[1024px] relative">
-      <div className="w-[1440px] h-[1024px] left-0 top-0 absolute rounded-[10px] overflow-hidden">
-        <div className="w-[1308px] h-[894px] left-[66px] top-[65px] absolute bg-white/50 rounded-2xl border border-white/30 backdrop-blur-[4.80px]" />
-        <div className="left-[446px] top-[214px] absolute justify-start text-black text-4xl font-medium font-['Fira_Sans'] leading-normal">
-          <br />
-          <br />
+    <div className="w-full h-screen bg-gradient-to-br from-red-100 to-white flex items-center justify-center p-4 relative font-['Fira_Sans']">
+      <div className="w-full max-w-[1200px] bg-white/40 backdrop-blur-md border border-white/30 rounded-xl p-8 md:p-12 shadow-lg relative transition-all duration-500">
+
+        {/* Close Button & Avatar */}
+        <div className="absolute top-4 right-4 flex items-center gap-4">
+          <button
+            onClick={() => setShowMenu(false)}
+            className="text-3xl text-red-600 hover:text-red-800 transition-transform transform hover:scale-110"
+            aria-label="Close menu"
+          >
+            <FaTimes />
+          </button>
         </div>
-        <div className="left-[108px] top-[356px] absolute justify-start text-black text-5xl font-medium font-['Fira_Sans'] leading-normal">
-          Contact Us
+
+        {/* Logo */}
+        <div className="text-center mb-12">
+          <h1 className="text-5xl md:text-6xl font-bold font-['Poppins'] text-red-700">
+            Move <span className="text-black">My Stuffs</span>
+          </h1>
         </div>
-        <div className="left-[108px] top-[278px] absolute justify-start text-black text-5xl font-medium font-['Fira_Sans'] leading-normal">
-          Branch Locations
+
+        {/* Navigation Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-black text-center text-2xl md:text-3xl font-medium mb-16">
+          <div className="space-y-6">
+            <p className="hover:text-red-600 cursor-pointer">Home</p>
+            <p className="hover:text-red-600 cursor-pointer">Branch Locations</p>
+            <p className="hover:text-red-600 cursor-pointer">Contact Us</p>
+          </div>
+          <div className="space-y-6">
+            <p className="hover:text-red-600 cursor-pointer">About Us</p>
+            <p className="hover:text-red-600 cursor-pointer">Why Choose Us</p>
+            <p className="hover:text-red-600 cursor-pointer">Our Services</p>
+          </div>
         </div>
-        <div className="w-36 h-5 left-[102px] top-[194px] absolute justify-start text-black text-5xl font-medium font-['Fira_Sans'] leading-normal">
-          Home
+
+        {/* Social Icons */}
+        <div className="text-center">
+          <h2 className="text-3xl font-semibold mb-4 text-zinc-800">Follow Us</h2>
+          <div className="flex justify-center gap-6">
+            <a href="#" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
+              <FaFacebookF size={20} />
+            </a>
+            <a href="#" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
+              <FaInstagram size={20} />
+            </a>
+            <a href="#" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
+              <FaYoutube size={20} />
+            </a>
+          </div>
         </div>
-        <div className="left-[540px] top-[150px] absolute justify-start">
-          <span class="text-red-700 text-6xl font-bold font-['Poppins'] underline leading-normal">
-            Move
-          </span>
-          <span class="text-black text-6xl font-bold font-['Poppins'] underline leading-normal">
-            {" "}
-          </span>
-          <span class="text-zinc-800 text-6xl font-bold font-['Poppins'] underline leading-normal">
-            My Stuffs
-          </span>
-        </div>
-        <div className="left-[540px] top-[490px] absolute justify-start text-black text-4xl font-normal font-['Fira_Sans'] leading-normal">
-          Our Services
-          <br />
-        </div>
-        <div className="left-[540px] top-[384px] absolute justify-start text-black text-4xl font-normal font-['Fira_Sans'] leading-normal">
-          Why Choose Us
-        </div>
-        <div className="left-[540px] top-[278px] absolute justify-start text-black text-4xl font-normal font-['Fira_Sans'] leading-normal">
-          About Us
-        </div>
-        <div className="left-[102px] top-[860px] absolute justify-start text-black text-5xl font-medium font-['Fira_Sans'] leading-normal">
-          Follow Us:
-        </div>
-        <div className="w-16 h-16 left-[420px] top-[834px] absolute">
-          <div className="w-16 h-16 left-0 top-0 absolute bg-black" />
-        </div>
-        <div className="w-12 h-12 left-[421px] top-[888px] absolute" />
-        <div className="w-12 h-12 left-[490px] top-[888px] absolute" />
-        <div className="w-[2.93px] h-0.5 left-[645.83px] top-[907.65px] absolute" />
-        <div className="w-16 h-16 left-[614px] top-[837px] absolute bg-black" />
-        <div className="w-16 h-16 left-[515px] top-[834px] absolute bg-black" />
-        <div className="w-20 h-20 left-[1271px] top-[86px] absolute bg-zinc-300 rounded-full border border-black" />
-        <div className="w-8 h-10 left-[1287px] top-[103px] absolute bg-black" />
-      </div>
-      <div className="w-20 h-20 left-[326px] top-[830px] absolute">
-        <div className="w-16 h-16 left-[6.25px] top-[6.25px] absolute bg-black" />
+
       </div>
     </div>
   );

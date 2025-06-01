@@ -223,6 +223,14 @@ export default function Locations() {
     <div className="flex flex-col min-h-screen">
       <header className="bg-red-600 text-white p-4 font-bold text-xl text-center">
         Packers & Movers - Locations
+        <div className="flex justify-end gap-2 mb-2">
+          <button
+            onClick={() => (window.location.href = "/")} // Update to your route if using React Router
+            className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+          >
+            Back to Home
+          </button>
+        </div>
       </header>
       <main className="flex flex-col-reverse md:flex-row flex-1">
         {/* Sidebar below map on mobile, left on desktop */}
