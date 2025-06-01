@@ -258,9 +258,7 @@ export default function Locations() {
             </label>
             <select
               value={selectedCity || ""}
-              onChange={(e) =>
-                setSelectedCity(e.target.value === "" ? null : e.target.value)
-              }
+              onChange={(e) => setSelectedCity(e.target.value || null)}
               className="w-full p-2 border rounded"
             >
               <option value="">All Cities</option>
@@ -273,33 +271,27 @@ export default function Locations() {
           </div>
         </aside>
 
-        {/* Map Section */}
-        <div className="w-full md:w-2/3 h-[400px] md:h-auto">
+        {/* Map section */}
+        <section className="flex-1">
           <MapContainer
-            center={[22.9734, 78.6569]}
+            center={coords["OurBranch"]}
             zoom={5}
-            scrollWheelZoom={true}
-            style={{ height: "100%", width: "100%" }}
+            scrollWheelZoom={false}
+            style={{ height: "100%", minHeight: "500px", width: "100%" }}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            {cityToShow.map(
-              (city) =>
-                coords[city] && (
-                  <Marker key={city} position={coords[city]}>
-                    <Popup>{city}</Popup>
-                  </Marker>
-                )
-            )}
             <FitBounds cityList={cityToShow} />
+            {cityToShow.map((city) => (
+              <Marker key={city} position={coords[city]}>
+                <Popup>{city}</Popup>
+              </Marker>
+            ))}
           </MapContainer>
-        </div>
+        </section>
       </main>
-      <footer className="bg-red-600 text-white p-4 text-center">
-        &copy; {new Date().getFullYear()} Packers & Movers
-      </footer>
     </div>
   );
 }
