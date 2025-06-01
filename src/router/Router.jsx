@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
-import Contactus from "../pages/ContactUs";
+import Contactus from "../pages/Contactus";
 import Form from "../pages/Form";
 import Whychoose from "../pages/Whychoose";
 import Menu from "../pages/Menu";
