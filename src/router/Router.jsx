@@ -9,6 +9,10 @@ import OurServices from "../pages/OurServices";
 import WorkProcess from "../pages/WorkProcess";
 import Locations from "../pages/Locations";
 import BranchLocations from "../pages/Branch";
+import AboutUs from "../pages/Aboutus"; // Add this import
+
+
+
 // import Layout, Blogs, Contact, NoPage if needed
 
 function Router() {
@@ -18,6 +22,7 @@ function Router() {
       <Route path="/contactus" element={<Contactus />} />
       <Route path="/form" element={<Form />} />
       <Route path="/whychoose" element={<Whychoose />} />
+      <Route path="/about" element={<AboutUs />} />
       <Route path="/menu" element={<Menu />} />
       <Route path="/ourservices" element={<OurServices />} />
       <Route path="/workprocess" element={<WorkProcess />} />

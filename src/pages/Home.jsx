@@ -53,15 +53,17 @@ function Home() {
 
             {/* Mobile Menu Icon */}
             <button className="md:hidden ml-4">
-              <Menu className="h-6 w-6 text-zinc-800" onClick={()=>{navigate("/menu")}}/>
+              <Menu
+                className="h-6 w-6 text-zinc-800"
+                onClick={() => {
+                  navigate("/menu");
+                }}
+              />
             </button>
           </div>
 
           {/* Right Section: Search + Quote Button */}
           <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full hover:bg-gray-100 transition">
-              <Search className="h-6 w-6 text-zinc-800" />
-            </button>
             <a
               href="#"
               className="bg-red-700 text-white text-base md:text-2xl font-medium font-['Poppins'] py-2 px-5 md:px-6 rounded-full shadow-lg transition-all duration-300 hover:bg-red-800"
@@ -99,13 +101,14 @@ function Home() {
         </div>
         <div className="hidden md:flex items-center space-x-2">
           {/* Hamburger icon placeholder - typically handled with JS for mobile menu */}
-
-          <FaSearch className="w-11 h-9 pr-4" />
-          <BsMenuButtonFill className="w-11 h-9 " onClick={()=>navigate("/menu")}/>
+          <BsMenuButtonFill
+            className="w-11 h-9 "
+            onClick={() => navigate("/menu")}
+          />
         </div>
       </nav>
       {/* Main Content Area - Slider & Why Choose Us */}
-      <main className="max-w-screen-xl mx-auto px-4 py-8" >
+      <main className="max-w-screen-xl mx-auto px-4 py-8">
         {/* Image Slider Section */}
         <section
           className="relative w-full overflow-hidden rounded-xl shadow-lg mb-12"

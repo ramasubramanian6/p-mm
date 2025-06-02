@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Import this
-import { FaTimes, FaFacebookF, FaInstagram, FaYoutube, FaUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import {
+  FaTimes,
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa";
 
 function Menu() {
   const [showMenu, setShowMenu] = useState(true);
-  const navigate = useNavigate(); // ✅ Hook to navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!showMenu) {
-      navigate("/"); // ✅ Navigate to home
+      navigate("/");
     }
   }, [showMenu, navigate]);
+
+  const handleNavigate = (path) => {
+    navigate(path);
+  };
 
   return (
     <div className="w-full h-screen bg-gradient-to-br from-red-100 to-white flex items-center justify-center p-4 relative font-['Fira_Sans']">
       <div className="w-full max-w-[1200px] bg-white/40 backdrop-blur-md border border-white/30 rounded-xl p-8 md:p-12 shadow-lg relative transition-all duration-500">
 
-        {/* Close Button & Avatar */}
+        {/* Close Button */}
         <div className="absolute top-4 right-4 flex items-center gap-4">
           <button
             onClick={() => setShowMenu(false)}
@@ -37,14 +46,14 @@ function Menu() {
         {/* Navigation Sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-black text-center text-2xl md:text-3xl font-medium mb-16">
           <div className="space-y-6">
-            <p className="hover:text-red-600 cursor-pointer">Home</p>
-            <p className="hover:text-red-600 cursor-pointer">Branch Locations</p>
-            <p className="hover:text-red-600 cursor-pointer">Contact Us</p>
+            <p onClick={() => handleNavigate("/")} className="hover:text-red-600 cursor-pointer">Home</p>
+            <p onClick={() => handleNavigate("/branch")} className="hover:text-red-600 cursor-pointer">Branch Locations</p>
+            <p onClick={() => handleNavigate("/contactus")} className="hover:text-red-600 cursor-pointer">Contact Us</p>
           </div>
           <div className="space-y-6">
-            <p className="hover:text-red-600 cursor-pointer">About Us</p>
-            <p className="hover:text-red-600 cursor-pointer">Why Choose Us</p>
-            <p className="hover:text-red-600 cursor-pointer">Our Services</p>
+            <p onClick={() => handleNavigate("/about")} className="hover:text-red-600 cursor-pointer">About Us</p>
+            <p onClick={() => handleNavigate("/whychoose")} className="hover:text-red-600 cursor-pointer">Why Choose Us</p>
+            <p onClick={() => handleNavigate("/ourservices")} className="hover:text-red-600 cursor-pointer">Our Services</p>
           </div>
         </div>
 
@@ -70,3 +79,4 @@ function Menu() {
 }
 
 export default Menu;
+ 

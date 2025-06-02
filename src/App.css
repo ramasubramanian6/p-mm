@@ -1,2 +1,8 @@
 @import "tailwindcss";
 
+/* Required for leaflet map rendering */
+.leaflet-container {
+  height: 300px;
+  width: 100%;
+  z-index: 0;
+}
