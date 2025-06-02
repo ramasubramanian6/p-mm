@@ -1,105 +1,109 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setFormData } from "../pages/redux/formSlice";
+import { motion } from "framer-motion";
 
 const branches = [
-  "Chennai",
-  "Bangalore",
-  "Mumbai",
-  "Delhi NCR",
-  "Aligarh",
-  "Hyderabad",
-  "Kolkata",
-  "Pune",
-  "Ahmedabad",
-  "Jaipur",
-  "Lucknow",
-  "Kanpur",
-  "Nagpur",
-  "Indore",
-  "Thane",
-  "Bhopal",
-  "Visakhapatnam",
-  "Pimpri-Chinchwad",
-  "Patna",
-  "Vadodara",
-  "Ghaziabad",
-  "Ludhiana",
-  "Coimbatore",
-  "Agra",
-  "Madurai",
-  "Nashik",
-  "Faridabad",
-  "Meerut",
-  "Rajkot",
-  "Kalyan-Dombivli",
-  "Vasai-Virar",
-  "Varanasi",
-  "Srinagar",
-  "Aurangabad",
-  "Dhanbad",
-  "Amritsar",
-  "Navi Mumbai",
-  "Allahabad",
-  "Ranchi",
-  "Howrah",
-  "Jabalpur",
-  "Gwalior",
-  "Jodhpur",
-  "Raipur",
-  "Kota",
-  "Chandigarh",
-  "Guwahati",
-  "Solapur",
-  "Hubli–Dharwad",
-  "Bareilly",
-  "Mysore",
-  "Tiruchirappalli",
+  { name: "Agra", image: "/images/agra.jpg" },
+  { name: "Ahmedabad", image: "/images/ahmedabad.jpg" },
+  { name: "Bangalore", image: "/images/bangalore.jpg" },
+  { name: "Bhopal", image: "/images/bhopal.jpg" },
+  { name: "Bhubaneswar", image: "/images/bhubaneswar.jpg" },
+  { name: "Chandigarh", image: "/images/chandigarh.jpg" },
+  { name: "Chennai", image: "/images/chennai.jpg" },
+  { name: "Coimbatore", image: "/images/coimbatore.jpg" },
+  { name: "Delhi NCR", image: "/images/delhi.jpg" },
+  { name: "Ghaziabad", image: "/images/ghaziabad.jpg" },
+  { name: "Gurgaon", image: "/images/gurgaon.jpg" },
+  { name: "Hyderabad", image: "/images/hyderabad.jpg" },
+  { name: "Indore", image: "/images/indore.jpg" },
+  { name: "Jaipur", image: "/images/jaipur.jpg" },
+  { name: "Kanpur", image: "/images/kanpur.jpg" },
+  { name: "Kolkata", image: "/images/kolkata.jpg" },
+  { name: "Lucknow", image: "/images/lucknow.jpg" },
+  { name: "Ludhiana", image: "/images/ludhiana.jpg" },
+  { name: "Madurai", image: "/images/madurai.jpg" },
+  { name: "Mangalore", image: "/images/mangalore.jpg" },
+  { name: "Mumbai", image: "/images/mumbai.jpg" },
+  { name: "Mysore", image: "/images/mysore.jpg" },
+  { name: "Nagpur", image: "/images/nagpur.jpg" },
+  { name: "Noida", image: "/images/noida.jpg" },
+  { name: "Patna", image: "/images/patna.jpg" },
+  { name: "Pune", image: "/images/pune.jpg" },
+  { name: "Raipur", image: "/images/raipur.jpg" },
+  { name: "Ranchi", image: "/images/ranchi.jpg" },
+  { name: "Surat", image: "/images/surat.jpg" },
+  { name: "Thane", image: "/images/thane.jpg" },
+  { name: "Trichy", image: "/images/trichy.jpg" },
+  { name: "Vadodara", image: "/images/vadodara.jpg" },
+  { name: "Varanasi", image: "/images/varanasi.jpg" },
+  { name: "Vijayawada", image: "/images/vijayawada.jpg" },
+  { name: "Visakhapatnam", image: "/images/visakhapatnam.jpg" },
 ];
 
-export default function BranchLocations() {
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      duration: 0.3,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0 },
+  hover: { scale: 1.05 },
+};
+
+function Branches() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSelect = (branch) => {
+    dispatch(setFormData({ from: branch.name }));
+    navigate("/form");
+  };
+
   return (
-    <div className="max-w-[1440px] mx-auto relative bg-white rounded-[10px] overflow-hidden">
-      {/* Header Section */}
-      <div className="relative h-80 bg-zinc-300 rounded-tl-[10px] rounded-tr-[10px]">
-        <div className="absolute right-0 top-0 w-[468px] h-80 bg-red-700 rounded-tr-[10px]" />
-        <img
-          src="https://placehold.co/1301x371"
-          alt="Header"
-          className="absolute left-0 top-[-35px] w-[1301px] h-96 object-cover"
-        />
-      </div>
+    <div className="py-10 px-4 sm:px-8 bg-gray-50 min-h-screen">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-10">
+        Branches We Serve
+      </h2>
 
-      {/* Title and Breadcrumb */}
-      <div className="px-20 pt-10 text-black">
-        <h1 className="text-6xl font-bold font-poppins text-center mb-2">
-          Branch locations
-        </h1>
-        <p className="text-4xl font-normal font-fira_sans text-center mb-10">
-          Home &gt; Branch Location
-        </p>
-      </div>
-
-      {/* Overlay Bar */}
-      <div className="absolute left-0 top-[314px] w-full h-20 bg-stone-700/50"></div>
-
-      {/* Select Branch Section */}
-      <div className="px-20 pt-28">
-        <h2 className="text-6xl font-bold font-poppins underline mb-16">
-          Select Your Nearest Branch
-        </h2>
-
-        <div className="grid grid-cols-2 gap-x-14 gap-y-8">
-          {branches.map((branch, index) => (
-            <div
-              key={index}
-              className="bg-red-700 rounded-[10px] border-3 border-white h-24 flex items-center justify-center"
-            >
-              <span className="text-white text-5xl font-semibold font-fira_sans">
-                {branch}
-              </span>
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+        variants={containerVariants}
+        initial="hidden"
+        animate="show"
+      >
+        {branches.map((branch) => (
+          <motion.div
+            key={branch.name}
+            className="cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-xl overflow-hidden transition-all duration-300"
+            variants={cardVariants}
+            whileHover="hover"
+            onClick={() => handleSelect(branch)}
+          >
+            <motion.img
+              src={branch.image}
+              alt={branch.name}
+              loading="lazy"
+              className="w-full h-48 object-cover"
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+            />
+            <div className="p-4 text-center font-semibold text-lg text-gray-700">
+              {branch.name}
             </div>
-          ))}
-        </div>
-      </div>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 }
+
+export default Branches;
