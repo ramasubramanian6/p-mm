@@ -120,19 +120,27 @@ function Home() {
           </button>
         </section>
 
-        {/* Why Choose Us Section */}
         <section className="py-12 bg-white rounded-xl shadow-lg px-4">
           <h2 className="text-center text-3xl md:text-6xl font-bold font-['Poppins'] text-red-700 mb-8 [text-shadow:7px_4px_4px_rgb(0_0_0/_0.25)]">
             WHY CHOOSE MOVE MY STUFFS
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Experience */}
             <div className="bg-stone-300 rounded-xl shadow-md p-6 text-center flex flex-col items-center">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">
-                {/* Icon Placeholder 1 */}
-                <div className="w-8 h-8 relative">
-                  <div className="w-3.5 h-3 absolute bg-blue-500" />
-                  <div className="w-4 h-4 absolute bg-blue-500 top-2" />
-                </div>
+                <svg
+                  className="w-8 h-8 text-blue-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z"
+                  />
+                </svg>
               </div>
               <h3 className="text-slate-800 text-lg font-normal font-['Inter'] mb-2">
                 10+ Years Experience
@@ -142,13 +150,22 @@ function Home() {
               </p>
             </div>
 
+            {/* GST & IBA */}
             <div className="bg-stone-300 rounded-xl shadow-md p-6 text-center flex flex-col items-center">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">
-                {/* Icon Placeholder 2 */}
-                <div className="w-8 h-8 relative">
-                  <div className="w-5 h-7 absolute bg-green-500" />
-                  <div className="w-2 h-1.5 absolute bg-green-500 top-3 left-3" />
-                </div>
+                <svg
+                  className="w-8 h-8 text-green-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12l2 2 4-4m1-7H8a2 2 0 00-2 2v16l6-3 6 3V5a2 2 0 00-2-2z"
+                  />
+                </svg>
               </div>
               <h3 className="text-slate-800 text-lg font-normal font-['Inter'] mb-2">
                 GST Registered & I.B.A Approved
@@ -158,14 +175,22 @@ function Home() {
               </p>
             </div>
 
+            {/* Pan India */}
             <div className="bg-stone-300 rounded-xl shadow-md p-6 text-center flex flex-col items-center">
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4">
-                {/* Icon Placeholder 3 */}
-                <div className="w-8 h-8 relative">
-                  <div className="w-7 h-7 absolute bg-purple-500" />
-                  <div className="w-2.5 h-7 absolute bg-purple-500 left-4" />
-                  <div className="w-7 h-0 absolute bg-purple-500 top-4" />
-                </div>
+                <svg
+                  className="w-8 h-8 text-purple-500"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 2a10 10 0 00-7.94 16.06L4 22l3.94-1.06A10 10 0 1012 2z"
+                  />
+                </svg>
               </div>
               <h3 className="text-slate-800 text-lg font-normal font-['Inter'] mb-2">
                 Pan India Network
@@ -274,13 +299,13 @@ function Home() {
 
             <div className="flex flex-col items-center text-center p-4">
               {/* Icon placeholder for Registered Trademark */}
-              
-                <img
-                  className="w-40 h-40 object-contain"
-                  src={logo1}
-                  alt="Trademark Logo"
-                />
-              
+
+              <img
+                className="w-40 h-40 object-contain"
+                src={logo1}
+                alt="Trademark Logo"
+              />
+
               <h3 className="text-neutral-800 text-xl font-normal font-['Poppins'] leading-tight mb-2">
                 Registered Trademark
               </h3>
