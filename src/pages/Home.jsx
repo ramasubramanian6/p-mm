@@ -3,6 +3,7 @@ import { Menu, Search } from "lucide-react"; // install lucide-react: npm instal
 import logo from "../../src/assets/logo.png";
 import Footer from '../../src/pages/Footer'
 import { useNavigate } from "react-router";
+import Branch from "../pages/Branch"
 
 
 function Home() {
@@ -202,6 +203,7 @@ function Home() {
                 smooth & safe move within the city.
               </p>
             </div>
+           
 
             {/* Service Card 2: OutStation Shifting */}
             <div className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center">
@@ -238,6 +240,7 @@ function Home() {
             </div>
           </div>
         </section>
+         <Branch/>
 
         {/* Certifications and Trust Section */}
         <section className="py-12 bg-white rounded-xl shadow-lg px-4 mt-12">
