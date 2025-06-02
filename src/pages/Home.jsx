@@ -1,29 +1,25 @@
 import React, { useState } from "react";
 import { Menu, Search } from "lucide-react"; // install lucide-react: npm install lucide-react
 import logo from "../../src/assets/logo.png";
-import Footer from '../../src/pages/Footer'
+import Footer from "../../src/pages/Footer";
 import { useNavigate } from "react-router";
-import Branch from "../pages/Branch"
+import Branch from "../pages/Branch";
 import vehicle from "../../src/assets/home/vehicle.png"; // Placeholder for vehicle icon
 import homeimage from "../../src/assets/home/home.png"; // Placeholder for home icon
 import office from "../../src/assets/home/office.png"; // Placeholder for office icon
 import vehicle2 from "../../src/assets/home/vehicle2.png"; // Placeholder for vehicle icon 2
 import office2shifting from "../../src/assets/home/office-shifting.jpg"; // Placeholder for office shifting icon
-import image2 from "../../src/assets/home/image2.png"; // Placeholder for another image
-import image3 from "../../src/assets/home/image3.png"; // Placeholder for another image
-import iso from "../../src/assets/home/iso.png"; // Placeholder for ISO certification image
-import logo from "../../src/assets/logo.png"; // Placeholder for logo image
-
-
+import img1 from "../../src/assets/icon/img1.png"; // Placeholder for another image
+import img2 from "../../src/assets/icon/img2.png"; // Placeholder for another image
+import iso from "../../src/assets/icon/iso.png"; // Placeholder for ISO certification image
+import logo1 from "../../src/assets/icon/logo1.png"; // Placeholder for logo image
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0); // State to manage the current slide index
   const navigate = useNavigate();
 
   // Array of image sources for the slider
-  const slides = [
-   vehicle,vehicle2,homeimage,office,office2shifting
-  ];
+  const slides = [vehicle, vehicle2, homeimage, office, office2shifting];
 
   // Function to go to the next slide
   const nextSlide = () => {
@@ -39,7 +35,6 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-white font-['Inter']">
-      
       {/* Main Navigation */}
       <nav className="w-full bg-rose-200/40 py-4 px-4 md:px-8 flex items-center justify-between flex-wrap">
         <div className="flex items-center mb-4 md:mb-0">
@@ -66,7 +61,6 @@ function Home() {
         <div className="text-red-700 text-xl md:text-2xl font-medium font-['Poppins']">
           MAKE YOUR MOVE EASY
         </div>
-        
       </nav>
       {/* Main Content Area - Slider & Why Choose Us */}
       <main className="max-w-screen-xl mx-auto px-4 py-8">
@@ -80,7 +74,10 @@ function Home() {
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
             {slides.map((slide, index) => (
-              <div key={index} className="w-full flex-shrink-0 relative h-[565px]">
+              <div
+                key={index}
+                className="w-full flex-shrink-0 relative h-[565px]"
+              >
                 <img
                   src={slide}
                   alt={`Slide ${index + 1}`}
@@ -240,7 +237,7 @@ function Home() {
             </div>
           </div>
         </section>
-         <Branch/>
+        <Branch />
 
         {/* Certifications and Trust Section */}
         <section className="py-12 bg-white rounded-xl shadow-lg px-4 mt-12">
@@ -248,7 +245,7 @@ function Home() {
             <div className="flex flex-col items-center text-center p-4">
               <img
                 className="w-32 h-32 md:w-40 md:h-36 mb-4"
-                src="https://placehold.co/152x149"
+                src={iso}
                 alt="ISO Certified"
               />
               <h3 className="text-neutral-800 text-xl font-normal font-['Poppins'] leading-tight mb-2">
@@ -263,7 +260,7 @@ function Home() {
             <div className="flex flex-col items-center text-center p-4">
               <img
                 className="w-32 h-32 md:w-40 md:h-36 mb-4"
-                src="https://placehold.co/152x150"
+                src={img1}
                 alt="5 Star Ratings"
               />
               <h3 className="text-neutral-800 text-xl font-normal font-['Poppins'] leading-tight mb-2">
@@ -277,13 +274,13 @@ function Home() {
 
             <div className="flex flex-col items-center text-center p-4">
               {/* Icon placeholder for Registered Trademark */}
-              <div className="w-40 h-40 rounded-full border-[10px] border-orange-600 flex items-center justify-center mb-4">
+              
                 <img
-                  className="w-32 h-8"
-                  src="https://placehold.co/154x44"
+                  className="w-40 h-40 object-contain"
+                  src={logo1}
                   alt="Trademark Logo"
                 />
-              </div>
+              
               <h3 className="text-neutral-800 text-xl font-normal font-['Poppins'] leading-tight mb-2">
                 Registered Trademark
               </h3>
@@ -296,7 +293,7 @@ function Home() {
             <div className="flex flex-col items-center text-center p-4">
               <img
                 className="w-32 h-32 md:w-40 md:h-40 mb-4"
-                src="https://placehold.co/152x152"
+                src={img2}
                 alt="10 Years of Trust"
               />
               <h3 className="text-neutral-800 text-xl font-normal font-['Poppins'] leading-tight mb-2">
@@ -310,7 +307,6 @@ function Home() {
           </div>
         </section>
       </main>
-
     </div>
   );
 }
