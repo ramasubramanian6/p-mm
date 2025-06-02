@@ -75,7 +75,7 @@ function Home() {
             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
           >
             {slides.map((slide, index) => (
-              <div key={index} className="w-full flex-shrink-0 relative">
+              <div key={index} className="w-full flex-shrink-0 relative h-[565px]">
                 <img
                   src={slide}
                   alt={`Slide ${index + 1}`}
@@ -189,13 +189,11 @@ function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Service Card 1: Local Shifting */}
             <div className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center">
-              {/* Icon Placeholder */}
-              <div className="w-16 h-16 relative mb-4">
-                {/* Complex icon, simplified for example */}
-                <div className="w-14 h-12 bg-stone-200" />
-                <div className="w-9 h-7 bg-red-500 absolute top-0" />
-                <div className="w-9 h-7 bg-red-500 absolute top-0 right-0" />
-              </div>
+              <img
+                src={homeimage}
+                alt="Local Shifting"
+                className="w-16 h-16 object-cover mb-4 rounded-full"
+              />
               <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
                 Local Shifting
               </h3>
@@ -204,16 +202,13 @@ function Home() {
                 smooth & safe move within the city.
               </p>
             </div>
-           
-
             {/* Service Card 2: OutStation Shifting */}
             <div className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center">
-              {/* Icon Placeholder */}
-              <div className="w-16 h-16 relative mb-4 overflow-hidden">
-                {/* Complex icon, simplified for example */}
-                <div className="w-10 h-8 bg-gray-500 absolute top-4 left-4" />
-                <div className="w-5 h-6 bg-red-500 absolute top-6 left-1" />
-              </div>
+              <img
+                src={office}
+                alt="OutStation Shifting"
+                className="w-16 h-16 object-cover mb-4 rounded-full"
+              />
               <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
                 OutStation Shifting
               </h3>
@@ -223,13 +218,12 @@ function Home() {
                 damage.
               </p>
             </div>
-
             {/* Service Card 3: Transport Service */}
             <div className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center">
               <img
-                className="w-12 h-12 mb-4"
-                src="https://placehold.co/50x50"
-                alt="Transport Icon"
+                src={vehicle}
+                alt="Transport Service"
+                className="w-16 h-16 object-cover mb-4 rounded-full"
               />
               <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
                 Transport Service
