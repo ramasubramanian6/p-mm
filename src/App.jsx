@@ -46,7 +46,7 @@ function Header() {
         <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-4">
           {/* Request a Quote */}
           <a
-             onClick={() => navigate("/form")}
+            onClick={() => navigate("/form")}
             className="bg-red-700 text-white text-sm md:text-base lg:text-xl font-medium py-2 px-4 md:px-6 rounded-full shadow-lg hover:bg-red-800 transition-all duration-300"
           >
             Request a Quote
@@ -79,33 +79,30 @@ function App() {
 
   return (
     <>
-    
-        <Header />
-        {/* Floating WhatsApp Button */}
-        <div className="fixed bottom-6 right-6 z-50">
-          <a
-            href="https://wa.me/91908789300"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-green-500 rounded-full shadow-lg p-4 flex items-center space-x-2 transition-all duration-300 hover:bg-green-600"
-          >
-            <div className="w-7 h-7 relative">
-              {/* WhatsApp icon placeholder */}
-              <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center">
-                <ImWhatsapp className="text-green-500 font-bold" />
-              </div>
+      <Header />
+      {/* Floating WhatsApp Button */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <a
+          href="https://wa.me/919087893000" // <-- Use full number with country code, no spaces
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-500 rounded-full shadow-lg p-4 flex items-center space-x-2 transition-all duration-300 hover:bg-green-600"
+        >
+          <div className="w-7 h-7 relative">
+            <div className="w-7 h-7 bg-white rounded-full flex items-center justify-center">
+              <ImWhatsapp className="text-green-500 font-bold" />
             </div>
-            <span className="text-white text-base font-normal font-['Inter']">
-              Chat on WhatsApp
-            </span>
-          </a>
-        </div>
+          </div>
+          <span className="text-white text-base font-normal font-['Inter']">
+            Chat on WhatsApp
+          </span>
+        </a>
+      </div>
 
-        <Router />
+      <Router />
 
-        {/* Conditionally render Footer only if route is NOT /menu */}
-        {location.pathname !== "/menu" && <Footer />}
-      
+      {/* Conditionally render Footer only if route is NOT /menu */}
+      {location.pathname !== "/menu" && <Footer />}
     </>
   );
 }
