@@ -9,6 +9,11 @@ import homeimage from "../../src/assets/home/home.png"; // Placeholder for home 
 import office from "../../src/assets/home/office.png"; // Placeholder for office icon
 import vehicle2 from "../../src/assets/home/vehicle2.png"; // Placeholder for vehicle icon 2
 import office2shifting from "../../src/assets/home/office-shifting.jpg"; // Placeholder for office shifting icon
+import image2 from "../../src/assets/home/image2.png"; // Placeholder for another image
+import image3 from "../../src/assets/home/image3.png"; // Placeholder for another image
+import iso from "../../src/assets/home/iso.png"; // Placeholder for ISO certification image
+import logo from "../../src/assets/logo.png"; // Placeholder for logo image
+
 
 
 function Home() {
