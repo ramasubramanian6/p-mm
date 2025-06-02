@@ -3,6 +3,11 @@ import { Menu, Search } from "lucide-react"; // install lucide-react: npm instal
 import logo from "../../src/assets/logo.png";
 import Footer from '../../src/pages/Footer'
 import { useNavigate } from "react-router";
+import vehicle from "../../src/assets/home/vehicle.png"; // Placeholder for vehicle icon
+import homeimage from "../../src/assets/home/home.png"; // Placeholder for home icon
+import office from "../../src/assets/home/office.png"; // Placeholder for office icon
+import vehicle2 from "../../src/assets/home/vehicle2.png"; // Placeholder for vehicle icon 2
+import office2shifting from "../../src/assets/home/office-shifting.jpg"; // Placeholder for office shifting icon
 
 
 function Home() {
@@ -11,11 +16,7 @@ function Home() {
 
   // Array of image sources for the slider
   const slides = [
-    "https://placehold.co/812x565", // Active
-    "https://placehold.co/652x485", // Upcoming 1
-    "https://placehold.co/652x485", // Upcoming 2
-    "https://placehold.co/492x405", // Far 1
-    "https://placehold.co/492x405", // Far 2
+   vehicle,vehicle2,homeimage,office,office2shifting
   ];
 
   // Function to go to the next slide
