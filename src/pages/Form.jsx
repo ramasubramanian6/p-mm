@@ -74,7 +74,7 @@ function Form() {
     e.preventDefault();
     const { from, to, phone, time, service, message } = formData;
     const msg = `Pickup: ${from}\nDrop: ${to}\nPhone: ${phone}\nTime: ${time}\nService: ${service}\nMessage: ${message}`;
-    const whatsappNumber = "919384121577";
+    const whatsappNumber = "91908789300";
     window.open(
       `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,
       "_blank"

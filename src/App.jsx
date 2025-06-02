@@ -46,7 +46,7 @@ function Header() {
         <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-4">
           {/* Request a Quote */}
           <a
-            href="/form"
+             onClick={() => navigate("/form")}
             className="bg-red-700 text-white text-sm md:text-base lg:text-xl font-medium py-2 px-4 md:px-6 rounded-full shadow-lg hover:bg-red-800 transition-all duration-300"
           >
             Request a Quote
@@ -84,7 +84,7 @@ function App() {
         {/* Floating WhatsApp Button */}
         <div className="fixed bottom-6 right-6 z-50">
           <a
-            href="https://wa.me/917253055609"
+            href="https://wa.me/91908789300"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-green-500 rounded-full shadow-lg p-4 flex items-center space-x-2 transition-all duration-300 hover:bg-green-600"
