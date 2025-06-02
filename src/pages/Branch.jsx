@@ -36,7 +36,7 @@ import pune from "../assets/pune.png";
 import rajasthan from "../assets/rajasthan.png";
 import salem from "../assets/salem.png";
 import solapur from "../assets/solapur.png";
-import telangana from "../assets/telangana.png";
+import telangana from "../assets/telungana.png";
 import thoothukudi from "../assets/thoothukudi.png";
 import tirunelveli from "../assets/tirunelveli.png";
 import trichy from "../assets/trichy.png";
