@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setFormData } from "../pages/redux/formSlice";
 import { motion } from "framer-motion";
+import chennai from "../assets/chennai.png"
+import 
 
 const branches = [
   { name: "Agra", image: "/images/agra.jpg" },
@@ -11,7 +13,7 @@ const branches = [
   { name: "Bhopal", image: "/images/bhopal.jpg" },
   { name: "Bhubaneswar", image: "/images/bhubaneswar.jpg" },
   { name: "Chandigarh", image: "/images/chandigarh.jpg" },
-  { name: "Chennai", image: "/images/chennai.jpg" },
+  { name: "Chennai", image: chennai },
   { name: "Coimbatore", image: "/images/coimbatore.jpg" },
   { name: "Delhi NCR", image: "/images/delhi.jpg" },
   { name: "Ghaziabad", image: "/images/ghaziabad.jpg" },
