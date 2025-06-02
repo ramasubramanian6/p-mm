@@ -45,7 +45,6 @@ import uttarPradesh from "../assets/uttar pradesh.png";
 import vellore from "../assets/vellore.png";
 import westBengal from "../assets/west bengal.png";
 
-
 const branches = [
   { name: "Ahmedabad", image: ahmedabad },
   { name: "Aligarh", image: aligarh },
@@ -89,7 +88,6 @@ const branches = [
   { name: "West Bengal", image: westBengal },
 ];
 
-
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
@@ -115,7 +113,6 @@ function Branches() {
     dispatch(setFormData({ from: branch.name }));
     navigate("/form");
   };
-
   return (
     <div className="py-10 px-4 sm:px-8 bg-gray-50 min-h-screen">
       <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-10">
@@ -123,7 +120,7 @@ function Branches() {
       </h2>
 
       <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="show"

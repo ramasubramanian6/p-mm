@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
+import Whychooseus from '../../src/assets/whychooseus/whychooseus.png'
 
 function Whychoose() {
   const navigate=useNavigate();
@@ -82,7 +83,7 @@ function Whychoose() {
           whileInView="visible"
           viewport={{ once: true }}
           variants={fadeInUp}
-          src="https://placehold.co/500x600"
+          src={Whychooseus}
           alt="Why Choose Us"
           className="rounded-xl w-full md:w-[500px] h-auto object-cover shadow-lg"
         />
