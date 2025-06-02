@@ -3,46 +3,92 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setFormData } from "../pages/redux/formSlice";
 import { motion } from "framer-motion";
-import chennai from "../assets/chennai.png"
-import 
+import ahmedabad from "../assets/ahmedabad.png";
+import aligarh from "../assets/aligarh.png";
+import amravati from "../assets/amravati.png";
+import andhraPradesh from "../assets/andhra pradesh.png";
+import aurangabad from "../assets/aurangabad.png";
+import bangalore from "../assets/bangalore.png";
+import bihar from "../assets/bihar.png";
+import chennai from "../assets/chennai.png";
+import coimbatore from "../assets/coimbatore.png";
+import delhiNcr from "../assets/delhi ncr.png";
+import erode from "../assets/erode.png";
+import firozabad from "../assets/firozabad.png";
+import gwalior from "../assets/gwalior.png";
+import haldwani from "../assets/haldwani.png";
+import himachalPradesh from "../assets/himachal pradesh.png";
+import hyderabad from "../assets/hyderabad.png";
+import jalgoan from "../assets/jalgoan.png";
+import kasganj from "../assets/kasganj.png";
+import kolhapur from "../assets/kolhapur.png";
+import kolkata from "../assets/kolkata.png";
+import logo from "../assets/logo.png";
+import madhyaPradesh from "../assets/madhya pradesh.png";
+import madurai from "../assets/madurai.png";
+import maharastra from "../assets/maharastra.png";
+import mathura from "../assets/mathura.png";
+import mumbai from "../assets/mumbai.png";
+import nagpur from "../assets/nagpur.png";
+import nashik from "../assets/nashik.png";
+import odisha from "../assets/odisha.png";
+import pune from "../assets/pune.png";
+import rajasthan from "../assets/rajasthan.png";
+import salem from "../assets/salem.png";
+import solapur from "../assets/solapur.png";
+import telangana from "../assets/telangana.png";
+import thoothukudi from "../assets/thoothukudi.png";
+import tirunelveli from "../assets/tirunelveli.png";
+import trichy from "../assets/trichy.png";
+import uttarKhand from "../assets/uttar khand.png";
+import uttarPradesh from "../assets/uttar pradesh.png";
+import vellore from "../assets/vellore.png";
+import westBengal from "../assets/west bengal.png";
+
 
 const branches = [
-  { name: "Agra", image: "/images/agra.jpg" },
-  { name: "Ahmedabad", image: "/images/ahmedabad.jpg" },
-  { name: "Bangalore", image: "/images/bangalore.jpg" },
-  { name: "Bhopal", image: "/images/bhopal.jpg" },
-  { name: "Bhubaneswar", image: "/images/bhubaneswar.jpg" },
-  { name: "Chandigarh", image: "/images/chandigarh.jpg" },
+  { name: "Ahmedabad", image: ahmedabad },
+  { name: "Aligarh", image: aligarh },
+  { name: "Amravati", image: amravati },
+  { name: "Andhra Pradesh", image: andhraPradesh },
+  { name: "Aurangabad", image: aurangabad },
+  { name: "Bangalore", image: bangalore },
+  { name: "Bihar", image: bihar },
   { name: "Chennai", image: chennai },
-  { name: "Coimbatore", image: "/images/coimbatore.jpg" },
-  { name: "Delhi NCR", image: "/images/delhi.jpg" },
-  { name: "Ghaziabad", image: "/images/ghaziabad.jpg" },
-  { name: "Gurgaon", image: "/images/gurgaon.jpg" },
-  { name: "Hyderabad", image: "/images/hyderabad.jpg" },
-  { name: "Indore", image: "/images/indore.jpg" },
-  { name: "Jaipur", image: "/images/jaipur.jpg" },
-  { name: "Kanpur", image: "/images/kanpur.jpg" },
-  { name: "Kolkata", image: "/images/kolkata.jpg" },
-  { name: "Lucknow", image: "/images/lucknow.jpg" },
-  { name: "Ludhiana", image: "/images/ludhiana.jpg" },
-  { name: "Madurai", image: "/images/madurai.jpg" },
-  { name: "Mangalore", image: "/images/mangalore.jpg" },
-  { name: "Mumbai", image: "/images/mumbai.jpg" },
-  { name: "Mysore", image: "/images/mysore.jpg" },
-  { name: "Nagpur", image: "/images/nagpur.jpg" },
-  { name: "Noida", image: "/images/noida.jpg" },
-  { name: "Patna", image: "/images/patna.jpg" },
-  { name: "Pune", image: "/images/pune.jpg" },
-  { name: "Raipur", image: "/images/raipur.jpg" },
-  { name: "Ranchi", image: "/images/ranchi.jpg" },
-  { name: "Surat", image: "/images/surat.jpg" },
-  { name: "Thane", image: "/images/thane.jpg" },
-  { name: "Trichy", image: "/images/trichy.jpg" },
-  { name: "Vadodara", image: "/images/vadodara.jpg" },
-  { name: "Varanasi", image: "/images/varanasi.jpg" },
-  { name: "Vijayawada", image: "/images/vijayawada.jpg" },
-  { name: "Visakhapatnam", image: "/images/visakhapatnam.jpg" },
+  { name: "Coimbatore", image: coimbatore },
+  { name: "Delhi NCR", image: delhiNcr },
+  { name: "Erode", image: erode },
+  { name: "Firozabad", image: firozabad },
+  { name: "Gwalior", image: gwalior },
+  { name: "Haldwani", image: haldwani },
+  { name: "Himachal Pradesh", image: himachalPradesh },
+  { name: "Hyderabad", image: hyderabad },
+  { name: "Jalgoan", image: jalgoan },
+  { name: "Kasganj", image: kasganj },
+  { name: "Kolhapur", image: kolhapur },
+  { name: "Kolkata", image: kolkata },
+  { name: "Madhya Pradesh", image: madhyaPradesh },
+  { name: "Madurai", image: madurai },
+  { name: "Maharastra", image: maharastra },
+  { name: "Mathura", image: mathura },
+  { name: "Mumbai", image: mumbai },
+  { name: "Nagpur", image: nagpur },
+  { name: "Nashik", image: nashik },
+  { name: "Odisha", image: odisha },
+  { name: "Pune", image: pune },
+  { name: "Rajasthan", image: rajasthan },
+  { name: "Salem", image: salem },
+  { name: "Solapur", image: solapur },
+  { name: "Telangana", image: telangana },
+  { name: "Thoothukudi", image: thoothukudi },
+  { name: "Tirunelveli", image: tirunelveli },
+  { name: "Trichy", image: trichy },
+  { name: "Uttar Khand", image: uttarKhand },
+  { name: "Uttar Pradesh", image: uttarPradesh },
+  { name: "Vellore", image: vellore },
+  { name: "West Bengal", image: westBengal },
 ];
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
