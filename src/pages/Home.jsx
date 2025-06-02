@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { Menu, Search } from "lucide-react"; // install lucide-react: npm install lucide-react
 import logo from "../../src/assets/logo.png";
-import { IoMdMail } from "react-icons/io";
-import { FaMapLocationDot } from "react-icons/fa6";
-import Locations from "../../src/pages/Locations.jsx";
+import Footer from '../../src/pages/Footer'
 import { useNavigate } from "react-router";
-import { BsMenuButtonFill } from "react-icons/bs";
-import { FaSearch } from "react-icons/fa";
+
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0); // State to manage the current slide index
@@ -35,44 +32,7 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-white font-['Inter']">
-      <header className="w-full bg-neutral-50 py-4 px-4 md:px-8 shadow-md">
-        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between">
-          <div className="w-full md:w-auto flex items-center justify-between mb-4 md:mb-0">
-            <div className="flex items-center">
-              <IoMdMail className="w-10 h-8 mr-2" />
-              <span className="text-zinc-800 text-base md:text-xl font-medium font-['Poppins']">
-                info@movemystuffs@gmail.com
-              </span>
-              <div className="flex" onClick={() => navigate("/locations")}>
-                <FaMapLocationDot className="w-10 h-8 ml-8 pr-2 " />
-                <div className="font-bold text-xl mt-1">
-                  Our Services Locaions
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Menu Icon */}
-            <button className="md:hidden ml-4">
-              <Menu
-                className="h-6 w-6 text-zinc-800"
-                onClick={() => {
-                  navigate("/menu");
-                }}
-              />
-            </button>
-          </div>
-
-          {/* Right Section: Search + Quote Button */}
-          <div className="flex items-center space-x-4">
-            <a
-              href="#"
-              className="bg-red-700 text-white text-base md:text-2xl font-medium font-['Poppins'] py-2 px-5 md:px-6 rounded-full shadow-lg transition-all duration-300 hover:bg-red-800"
-            >
-              Request a Quote
-            </a>
-          </div>
-        </div>
-      </header>
+      
       {/* Main Navigation */}
       <nav className="w-full bg-rose-200/40 py-4 px-4 md:px-8 flex items-center justify-between flex-wrap">
         <div className="flex items-center mb-4 md:mb-0">
@@ -99,13 +59,7 @@ function Home() {
         <div className="text-red-700 text-xl md:text-2xl font-medium font-['Poppins']">
           MAKE YOUR MOVE EASY
         </div>
-        <div className="hidden md:flex items-center space-x-2">
-          {/* Hamburger icon placeholder - typically handled with JS for mobile menu */}
-          <BsMenuButtonFill
-            className="w-11 h-9 "
-            onClick={() => navigate("/menu")}
-          />
-        </div>
+        
       </nav>
       {/* Main Content Area - Slider & Why Choose Us */}
       <main className="max-w-screen-xl mx-auto px-4 py-8">
@@ -353,60 +307,7 @@ function Home() {
           </div>
         </section>
       </main>
-      {/* Floating WhatsApp Button */}
-      <div className="fixed bottom-6 right-6">
-        <a
-          href="https://wa.me/917253055609" // Example WhatsApp link
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-green-500 rounded-full shadow-lg p-4 flex items-center space-x-2 transition-all duration-300 hover:bg-green-600"
-        >
-          <div className="w-6 h-6 relative">
-            {/* WhatsApp icon placeholder */}
-            <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-              {/* You can replace this with an actual WhatsApp SVG icon */}
-              <span className="text-green-500 font-bold">WA</span>
-            </div>
-          </div>
-          <span className="text-white text-base font-normal font-['Inter']">
-            Chat on WhatsApp
-          </span>
-        </a>
-      </div>
-      {/* Footer */}
-      <footer className="w-full bg-zinc-800 text-gray-400 py-8 px-4 md:px-8 mt-12">
-        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between text-center md:text-left">
-          <div className="mb-4 md:mb-0">
-            <h3 className="text-gray-200 text-xl md:text-3xl font-normal font-['Poppins'] leading-9 mb-2">
-              Registered Address
-            </h3>
-            <p className="text-base md:text-lg">
-              Office No. 123, ABC Tower, XYZ Road, City, State - 123456
-            </p>
-          </div>
-          <div className="flex space-x-4 mb-4 md:mb-0">
-            {/* Social Media Icons (placeholders) */}
-            <a
-              href="#"
-              aria-label="Facebook"
-              className="w-7 h-7 bg-white rounded-full"
-            />
-            <a
-              href="#"
-              aria-label="Twitter"
-              className="w-7 h-7 bg-white rounded-full"
-            />
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="w-7 h-7 bg-white rounded-full"
-            />
-          </div>
-          <p className="text-sm md:text-xl font-normal font-['Poppins']">
-            © 2025 Move My Stuffs. All Rights Reserved.
-          </p>
-        </div>
-      </footer>
+
     </div>
   );
 }

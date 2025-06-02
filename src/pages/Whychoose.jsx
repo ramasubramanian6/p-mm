@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 
 function Whychoose() {
+  const navigate=useNavigate();
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -41,9 +43,9 @@ function Whychoose() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="font-bold">Experience You Can Trust:</span>{" "}
-            With a decade of experience in the moving industry, we understand
-            the unique challenges that come with every move.
+            <span className="font-bold">Experience You Can Trust:</span> With a
+            decade of experience in the moving industry, we understand the
+            unique challenges that come with every move.
           </motion.div>
 
           <motion.div
@@ -113,7 +115,10 @@ function Whychoose() {
         viewport={{ once: true }}
         className="text-center"
       >
-        <button className="bg-zinc-800 text-white text-lg px-8 py-4 rounded-2xl hover:bg-zinc-900 transition">
+        <button
+          onClick={() => navigate("/form")}
+          className="bg-zinc-800 text-white text-lg px-8 py-4 rounded-2xl hover:bg-zinc-900 transition"
+        >
           Book Your Free Consultation Now!
         </button>
       </motion.div>

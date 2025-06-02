@@ -61,13 +61,13 @@ function Menu() {
         <div className="text-center">
           <h2 className="text-3xl font-semibold mb-4 text-zinc-800">Follow Us</h2>
           <div className="flex justify-center gap-6">
-            <a href="#" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
+            <a href="https://www.facebook.com/people/Move-My-Stuffs-Packers-Movers/100076636426701/" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
               <FaFacebookF size={20} />
             </a>
-            <a href="#" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
+            <a href="https://www.instagram.com/move_mystuffs/" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
               <FaInstagram size={20} />
             </a>
-            <a href="#" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
+            <a href="https://www.youtube.com/@movemystuffs" className="bg-black text-white p-3 rounded-full hover:bg-red-600 transition">
               <FaYoutube size={20} />
             </a>
           </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router";
 
 const container = {
   hidden: { opacity: 0 },
@@ -46,6 +47,8 @@ const branches = [
 ];
 
 function AboutUs() {
+
+    const navigate=useNavigate();
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-red-50 to-white px-6 md:px-16 py-12 font-['Fira_Sans']">
       <motion.div
@@ -101,16 +104,10 @@ function AboutUs() {
             <p><strong>Sales & Marketing:</strong> +91 90878 93000</p>
             <p><strong>Help Line:</strong> +91 72530 55609</p>
           </div>
-          <button className="mt-6 px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition">
+          <button onClick={()=>navigate("/form")} className="mt-6 px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 transition">
             Get Free Quote
           </button>
         </motion.div>
-
-        {/* Footer */}
-        <motion.footer variants={item} className="text-center text-sm text-gray-600 mt-16">
-          <p><strong>Registered Address:</strong> No 3A, Mettu Kalazni Street, Adambakkam, Chennai - 600088</p>
-          <p className="mt-2">© 2025 Move My Stuffs. All Rights Reserved.</p>
-        </motion.footer>
       </motion.div>
     </div>
   );
