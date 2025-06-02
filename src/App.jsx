@@ -10,50 +10,61 @@ import { BsMenuButtonFill } from "react-icons/bs";
 import Footer from "../src/pages/Footer"
 import logo from "../src/assets/logo.png"; // Adjust path as needed
 
+
 function Header() {
   const navigate = useNavigate();
 
   return (
-    <header className="w-full bg-neutral-50 py-4 px-4 md:px-8 shadow-md ">
-      <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between">
-        <div className="w-full md:w-auto flex items-center justify-between mb-4 md:mb-0">
-          <div className="flex items-center">
-            <IoMdMail className="w-10 h-8 mr-2" />
-            <span className="text-zinc-800 text-base md:text-xl font-medium font-['Poppins']">
+    <header className="w-full bg-neutral-50 py-4 px-4 md:px-8 shadow-md">
+      <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+        {/* Left Section */}
+        <div className="w-full md:w-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 md:gap-8">
+          {/* Email */}
+          <div className="flex items-center gap-2">
+            <IoMdMail className="w-6 h-6 text-red-700" />
+            <span className="text-sm md:text-base lg:text-lg font-medium text-zinc-800">
               movemystuffs@gmail.com
             </span>
-            <div
-              className="flex cursor-pointer"
-              onClick={() => navigate("/locations")}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === "Enter" && navigate("/locations")}
-            >
-              <FaMapLocationDot className="w-10 h-8 ml-8 pr-2 " />
-              <div className="font-bold text-xl mt-1">
-                Our Services Locations
-              </div>
-            </div>
           </div>
 
-          {/* Mobile Menu Icon */}
-          <button className="md:hidden ml-4" onClick={() => navigate("/menu")}>
-            <Menu className="h-6 w-6 text-zinc-800" />
-          </button>
+          {/* Locations */}
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => navigate("/locations")}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && navigate("/locations")}
+          >
+            <FaMapLocationDot className="w-6 h-6 text-blue-700" />
+            <span className="text-sm md:text-base lg:text-lg font-bold text-gray-800">
+              Our Service Locations
+            </span>
+          </div>
         </div>
 
-        {/* Right Section: Request Quote */}
-        <div className="flex items-center space-x-4">
+        {/* Right Section */}
+        <div className="w-full md:w-auto flex items-center justify-between md:justify-end gap-4">
+          {/* Request a Quote */}
           <a
             href="/form"
-            className="bg-red-700 text-white text-base md:text-2xl font-medium font-['Poppins'] py-2 px-5 md:px-6 rounded-full shadow-lg transition-all duration-300 hover:bg-red-800"
+            className="bg-red-700 text-white text-sm md:text-base lg:text-xl font-medium py-2 px-4 md:px-6 rounded-full shadow-lg hover:bg-red-800 transition-all duration-300"
           >
             Request a Quote
           </a>
-          <div className="hidden md:flex items-center space-x-2">
-            {/* Hamburger icon placeholder - typically handled with JS for mobile menu */}
+
+          {/* Menu Icon (Visible on all screens) */}
+          <button
+            className="md:hidden"
+            onClick={() => navigate("/menu")}
+            aria-label="Open menu"
+          >
+            <Menu className="h-6 w-6 text-zinc-800" />
+          </button>
+
+          {/* Menu Icon for large screens */}
+          <div className="hidden md:flex items-center">
             <BsMenuButtonFill
-              className="w-11 h-9 "
+              className="w-8 h-8 text-zinc-800 cursor-pointer"
               onClick={() => navigate("/menu")}
             />
           </div>
@@ -62,6 +73,8 @@ function Header() {
     </header>
   );
 }
+
+
 
 function Navigation() {
   const navigate = useNavigate();
