@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setFormData } from "../../src/pages/redux/formSlice"; // update path if needed
 
 // Coordinates object
 const coords = {
@@ -188,7 +191,10 @@ const statesWithCities = {
   HimachalPradesh: ["Shimla", "Manali", "Dharamshala", "Mandi"],
 };
 
-// Component to adjust bounds
+
+
+
+// Auto-fit bounds when cities change
 function FitBounds({ cityList }) {
   const map = useMap();
 
@@ -206,18 +212,25 @@ function FitBounds({ cityList }) {
   return null;
 }
 
-// Main component
 export default function Locations() {
-  const [selectedState, setSelectedState] = useState("UttarPradesh");
+  const [selectedState, setSelectedState] = useState("Maharashtra");
   const [selectedCity, setSelectedCity] = useState(null);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const cities = statesWithCities[selectedState] || [];
 
   useEffect(() => {
-    setSelectedCity(null); // Reset city when state changes
+    setSelectedCity(null); // Reset city on state change
   }, [selectedState]);
 
   const cityToShow = selectedCity ? [selectedCity] : cities;
+
+  const handleMarkerClick = (city) => {
+    dispatch(setFormData({ from: city })); // Redux - pass selected city
+    navigate("/form"); // Navigate to form page
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -225,15 +238,16 @@ export default function Locations() {
         Packers & Movers - Locations
         <div className="flex justify-end gap-2 mb-2">
           <button
-            onClick={() => (window.location.href = "/")} // Update to your route if using React Router
+            onClick={() => navigate("/")}
             className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
           >
             Back to Home
           </button>
         </div>
       </header>
+
       <main className="flex flex-col-reverse md:flex-row flex-1">
-        {/* Sidebar below map on mobile, left on desktop */}
+        {/* Sidebar */}
         <aside className="w-full md:w-1/3 p-4 bg-red-50 border-t md:border-t-0 md:border-l border-red-300">
           <div className="mb-4">
             <label className="block text-sm font-medium mb-1 text-red-700">
@@ -271,7 +285,7 @@ export default function Locations() {
           </div>
         </aside>
 
-        {/* Map section */}
+        {/* Map */}
         <section className="flex-1">
           <MapContainer
             center={coords["OurBranch"]}
@@ -285,7 +299,11 @@ export default function Locations() {
             />
             <FitBounds cityList={cityToShow} />
             {cityToShow.map((city) => (
-              <Marker key={city} position={coords[city]}>
+              <Marker
+                key={city}
+                position={coords[city]}
+                eventHandlers={{ click: () => handleMarkerClick(city) }}
+              >
                 <Popup>{city}</Popup>
               </Marker>
             ))}
