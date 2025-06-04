@@ -197,8 +197,8 @@ function OurProcess() {
                 </p>
               </div>
               <div className="md:hidden flex flex-col items-center mr-4 flex-shrink-0"> {/* For mobile alignment */}
-                 <div className="w-12 h-12 flex items-center justify-center bg-[#B02C1A] text-white rounded-full shadow-lg text-2xl font-bold">
-                  {step.icon}
+                   <div className="w-12 h-12 flex items-center justify-center bg-[#B02C1A] text-white rounded-full shadow-lg text-2xl font-bold">
+                   {step.icon}
                 </div>
               </div>
             </animated.div>
@@ -499,8 +499,9 @@ function AboutUs() {
       <OurProcess />
       <ServiceShowcaseCarousel />
       <VerificationSection />
-      {/* Final generous spacing at the bottom of the page */}
-      <div className="pb-20 md:pb-32"></div>
+      
+
+    
     </div>
   );
 }

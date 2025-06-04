@@ -1,6 +1,9 @@
+import React from "react";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { motion } from "framer-motion";
-import React from 'react';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setFormData } from "../pages/redux/formSlice"; // adjust path if needed
 
 const allCities = [
   "Chennai", "Coimbatore", "Madurai", "Trichy", "Salem", "Tirunelveli", "Erode", "Vellore", "Thoothukudi",
@@ -21,6 +24,15 @@ const allCities = [
 ];
 
 function Footer() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+ const handleCityClick = (city) => {
+  dispatch(setFormData({ from: city }));
+  navigate("/form");
+  window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top after navigation
+};
+
   return (
     <motion.footer
       initial={{ opacity: 0, y: 40 }}
@@ -34,7 +46,11 @@ function Footer() {
           <h2 className="text-2xl md:text-3xl font-bold mb-8 underline">Service Cities</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 text-sm">
             {allCities.map((city, idx) => (
-              <div key={idx} className="hover:text-yellow-300 cursor-pointer">
+              <div
+                key={idx}
+                onClick={() => handleCityClick(city)}
+                className="hover:text-yellow-300 cursor-pointer transition duration-200"
+              >
                 Packers & Movers in {city}
               </div>
             ))}
@@ -82,7 +98,7 @@ function Footer() {
               </ul>
             </div>
 
-            {/* Office Address & Social */}
+            {/* Office Address & Social Links */}
             <div>
               <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">Registered Office</h3>
               <p className="text-base md:text-lg leading-relaxed">
@@ -103,6 +119,7 @@ function Footer() {
             </div>
           </div>
 
+          {/* Bottom Copyright */}
           <div className="border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
             © 2025 Move My Stuffs. All rights reserved.
           </div>
