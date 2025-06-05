@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from "react-router-dom";
-// import o1 from '../../assets/office/o1.jpg';
-// import o2 from '../../assets/office/o2.jpg';
-// import o3 from '../../assets/office/o3.jpg';
-// import o4 from '../../assets/office/o4.jpg';
-// import o6 from '../../assets/office/o6.jpg';
-// import o5 from '../../assets/office/o5.jpg';
+import o1 from '../assets/office/1.jpg';
+import o2 from '../assets/office/2.jpg';
+import o3 from '../assets/office/3.jpg';
+import o4 from '../assets/office/4.jpg';
+import o6 from '../assets/office/6.jpg';
+import o5 from '../assets/office/5.jpg';
 
 // Animation variants
 const sectionVariants = {
@@ -87,7 +87,7 @@ const galleryContainerVariants = {
 };
 
 const OfficeService = () => {
-  const off = ['o1',' o2',' o3', 'o4', 'o5', 'o6'];
+  const off = [o1,o2,o3, o4, o5, o6];
   const companyName = 'Your Corporate Movers';
 
   return (

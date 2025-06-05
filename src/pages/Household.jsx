@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from "react-router-dom";
-// import h1 from '../../assets/household/1.jpg';
-// import h2 from '../../assets/household/2.jpg';
-// import h3 from '../../assets/household/3.jpg';
-// import h4 from '../../assets/household/4.jpg';
-// import h5 from '../../assets/household/5.jpg';
-// import h6 from '../../assets/household/6.jpg';
+
+import h1 from '../assets/household/h1.jpg';
+import h2 from '../assets/household/2.jpg';
+ import h3 from '../assets/household/3.png';
+ import h4 from '../assets/household/4.jpg';
+ import h5 from '../assets/household/5.jpg';
+ import h6 from '../assets/household/6.jpg';
 
 // Variants
 const containerVariants = {
@@ -65,7 +66,7 @@ const galleryVariants = {
 };
 
 const HouseholdService = () => {
-  const images = ['h1', 'h2', 'h3', 'h4', 'h5',' h6'];
+  const images = [h1, h2, h3, h4, h5, h6];
   const companyName = "SafeShifting Packers & Movers";
 
   return (
@@ -110,7 +111,7 @@ const HouseholdService = () => {
           {images.map((img, index) => (
             <motion.div
               key={index}
-              className="rounded-xl overflow-hidden border shadow-lg"
+              className="h-[18rem] rounded-xl overflow-hidden border shadow-lg"
               variants={imageBoxVariants}
             >
               <img src={img} alt={`Household ${index + 1}`} className="w-full h-full object-cover" />

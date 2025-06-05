@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-// import v1 from "../../assets/vehicle/v1.jpg";
-// import v2 from "../../assets/vehicle/v2.jpg";
-// import v3 from "../../assets/vehicle/v3.jpg";
-// import v4 from "../../assets/vehicle/v4.jpg";
-// import v5 from "../../assets/vehicle/v5.jpg";
-// import v6 from "../../assets/vehicle/v6.jpg";
+import v1 from "../assets/vehicle/v1.jpg";
+import v2 from "../assets/vehicle/v2.jpg";
+import v3 from "../assets/vehicle/v3.jpg";
+import v4 from "../assets/vehicle/v4.jpg";
+import v5 from "../assets/vehicle/v5.jpg";
+import v6 from "../assets/vehicle/v6.jpg";
 
 // Animation Variants
 const containerVariants = {
@@ -60,7 +60,7 @@ const galleryContainerVariants = {
 };
 
 const VehicleService = () => {
-  const vehicles = ['v6', 'v2', 'v3', 'v4',' v5', 'v1'];
+  const vehicles = [v6, v2, v3, v4,v5, v1];
   const companyName = "Your Trusted Transporters"; // Replace with your actual name
 
   return (

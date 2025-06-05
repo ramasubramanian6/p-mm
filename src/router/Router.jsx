@@ -33,7 +33,7 @@ function Router() {
       <Route path="/branch" element={<BranchLocations />} />
       <Route path="/household" element={<Household/>}/>
       <Route path="/office" element={<OfficeServices/>}/>
-      <Route path="/vechile" element={<VehicleService/>}/>
+      <Route path="/vehicle" element={<VehicleService/>}/>
     
     </Routes>
   );

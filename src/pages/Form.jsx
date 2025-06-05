@@ -132,7 +132,10 @@ function Form() {
   const formData = useSelector((state) => state.form.formData);
   const mapModal = useSelector((state) => state.form.mapModal);
   const selectedLocation = useSelector((state) => state.form.selectedLocation);
-  const debouncedLocation = useDebounce(selectedLocation, 500);
+
+  const debouncedSelectedLocation = useDebounce(selectedLocation, 500); // For map interaction
+  const debouncedFromCity = useDebounce(formData.from, 700); // Debounce typed 'from' city
+  const debouncedToCity = useDebounce(formData.to, 700);     // Debounce typed 'to' city
 
   const [currentCity, setCurrentCity] = useState("Chennai");
   const [unservedCityMessage, setUnservedCityMessage] = useState("");
@@ -146,14 +149,15 @@ function Form() {
     }
   }, [formData.from]);
 
+  // Effect for handling city selected via map
   useEffect(() => {
-    if (!mapModal.open) {
+    if (!mapModal.open || !debouncedSelectedLocation[0]) { // Only run if modal is open and location is set
       setUnservedCityMessage(""); // Clear message when modal closes
       return;
     }
 
     const fetchCity = async () => {
-      const [lat, lon] = debouncedLocation;
+      const [lat, lon] = debouncedSelectedLocation;
       try {
         const res = await fetch(
           `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`
@@ -168,26 +172,56 @@ function Form() {
           "Selected Location";
 
         // Check if the city is in the supported list
-        if (SUPPORTED_CITIES.some(supportedCity => city.toLowerCase().includes(supportedCity.toLowerCase()))) {
+        const isCityServed = SUPPORTED_CITIES.some(supportedCity => city.toLowerCase().includes(supportedCity.toLowerCase()));
+
+        if (isCityServed) {
           dispatch(setFormData({ [mapModal.type]: city }));
           setUnservedCityMessage(""); // Clear any previous unserved message
         } else {
           setUnservedCityMessage(
-            `Currently, service is not available in ${city}. Please select a different location. We hope to serve you soon!`
+            `Currently, service is not available in ${city}. Please select a different location.`
           );
-          // Optionally, revert the form field to its previous valid value
+          // Optionally, revert the form field to its previous valid value if map selection is unserved
+          // This ensures the input doesn't show an unserved city if the map was used.
           dispatch(setFormData({ [mapModal.type]: previousFormData[mapModal.type] || "" }));
         }
       } catch (err) {
         console.error("Reverse geocoding failed:", err);
         setUnservedCityMessage(
-          "Could not determine location. Please try again or select manually."
+          "Could not determine location from map. Please try again or type manually."
         );
       }
     };
 
     fetchCity();
-  }, [debouncedLocation, mapModal.open, mapModal.type, dispatch, previousFormData]);
+  }, [debouncedSelectedLocation, mapModal.open, mapModal.type, dispatch, previousFormData]);
+
+  // New effect for validating typed cities
+  useEffect(() => {
+    const validateCity = (city, fieldName) => {
+      if (city && city.trim() !== "") {
+        const isServed = SUPPORTED_CITIES.some(supportedCity => city.toLowerCase().includes(supportedCity.toLowerCase()));
+        if (!isServed) {
+          setUnservedCityMessage(
+            `Currently, service is not available in "${city}" for '${fieldName}' field. Please enter a different location or select from map.`
+          );
+        } else {
+          setUnservedCityMessage(""); // Clear message if a supported city is typed
+        }
+      } else {
+        setUnservedCityMessage(""); // Clear message if input is empty
+      }
+    };
+
+    if (mapModal.open) return; // Don't validate typed input if map modal is open
+
+    if (debouncedFromCity) {
+      validateCity(debouncedFromCity, "Moving From");
+    } else if (debouncedToCity) {
+      validateCity(debouncedToCity, "Moving To");
+    }
+  }, [debouncedFromCity, debouncedToCity, mapModal.open]);
+
 
   const handleChange = (e) => {
     setPreviousFormData(formData); // Save current form data before potential change
@@ -198,7 +232,7 @@ function Form() {
     e.preventDefault();
     const { from, to, phone, time, service, message } = formData;
 
-    // Optional: Add a final check before submitting if the selected cities are served
+    // Final check before submitting if the selected cities are served
     const fromCityServed = SUPPORTED_CITIES.some(city => formData.from.toLowerCase().includes(city.toLowerCase()));
     const toCityServed = SUPPORTED_CITIES.some(city => formData.to.toLowerCase().includes(city.toLowerCase()));
 
@@ -632,13 +666,13 @@ function LocationField({ label, name, value, onChange, onMapOpen }) {
       </label>
       <div className="flex gap-4">
         <input
-          type="text"
+          type="text" // Allow typing
           name={name}
           value={value}
           onChange={onChange}
           required
-          readOnly
-          className="flex-grow p-3 border border-orange-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-400 transition bg-gray-50 cursor-not-allowed"
+          placeholder={`Enter your ${label.toLowerCase()}`} // Added placeholder
+          className="flex-grow p-3 border border-orange-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
         />
         <button
           type="button"
@@ -662,10 +696,10 @@ function MapModal({ isOpen, onClose, selectedLocation, setSelectedLocation }) {
         setSelectedLocation([latlng.lat, latlng.lng]);
       },
       // You can add a click event listener if you want to update location on map click
-      // click(e) {
-      //   const latlng = e.latlng;
-      //   setSelectedLocation([latlng.lat, latlng.lng]);
-      // },
+      click(e) { // Added click event to update location
+        const latlng = e.latlng;
+        setSelectedLocation([latlng.lat, latlng.lng]);
+      },
     });
     return (
       <Marker
