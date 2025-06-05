@@ -31,11 +31,70 @@ import aurangabad from "../assets/aurangabad.png";
 import kolhapur from "../assets/kolhapur.png";
 import amravati from "../assets/amravati.png";
 import solapur from "../assets/solapur.png";
-import jalgoan from "../assets/jalgoan.png";
-
-// import gurgaon from "../assets/gurgaon.png";
-// import noida from "../assets/noida.png";
-// import faridabad from "../assets/faridabad.png";
+import jalgaon from "../assets/jalgoan.png";
+import warangal from "../assets/warangal.jpg";
+import karimnagar from "../assets/karimnagar.jpg";
+import nizamabad from "../assets/nizamabad.jpg";
+import khammam from "../assets/khammam.jpg";
+import howrah from "../assets/howrah.jpg";
+import durgapur from "../assets/durgapur.jpg";
+import asansol from "../assets/asansol.jpg";
+import siliguri from "../assets/siliguri.jpg";
+import kharagpur from "../assets/kharagpur.jpg";
+import ahmedabad from "../assets/ahmedabad.png";
+import bhopal from "../assets/bhopal.jpg";
+import indore from "../assets/indore.jpg";
+import gwalior from "../assets/gwalior.png";
+import jabalpur from "../assets/jabalpur.jpg";
+import ujjain from "../assets/ujjain.jpg";
+import sagar from "../assets/sagar.jpg";
+import jaipur from "../assets/jaipur.jpg";
+import jodhpur from "../assets/jodhpur.jpg";
+import udaipur from "../assets/udaipur.jpg";
+import kota from "../assets/kota.jpg";
+import bikaner from "../assets/bikaner.jpg";
+import ajmer from "../assets/ajmer.jpg";
+import bharatpur from "../assets/bharatpur.jpg";
+import lucknow from "../assets/lucknow.jpg";
+import kanpur from "../assets/kanpur.jpg";
+import varanasi from "../assets/varanasi.jpg";
+import allahabad from "../assets/allahabad.jpg";
+import agra from "../assets/agra.jpg";
+import meerut from "../assets/meerut.jpg";
+import etah from "../assets/etah.jpg";
+import mainpuri from "../assets/mainpuri.jpg";
+import hathras from "../assets/hathras.jpg";
+import etawah from "../assets/etawah.jpg";
+import dehradun from "../assets/dehradun.jpg";
+import haridwar from "../assets/haridwar.jpg";
+import rudrapur from "../assets/rudrapur.jpg";
+import haldwani from "../assets/haldwani.png";
+import vijayawada from "../assets/vijayawada.jpg";
+import visakhapatnam from "../assets/visakhapatnam.jpg";
+import guntur from "../assets/guntur.jpg";
+import tirupati from "../assets/tirupati.jpg";
+import rajahmundry from "../assets/rajahmundry.jpg";
+import kakinada from "../assets/kakinada.jpg";
+import bhubaneswar from "../assets/bhubaneswar.jpg";
+import cuttack from "../assets/cuttack.jpg";
+import rourkela from "../assets/rourkela.jpg";
+import sambalpur from "../assets/sambalpur.jpg";
+import balasore from "../assets/balasore.jpg";
+import patna from "../assets/patna.jpg";
+import gaya from "../assets/gaya.jpg";
+import bhagalpur from "../assets/bhagalpur.jpg";
+import muzaffarpur from "../assets/muzaffarpur.jpg";
+import purnia from "../assets/purnia.jpg";
+import shimla from "../assets/shimla.jpg";
+import manali from "../assets/manali.jpg";
+import dharamshala from "../assets/dharamshala.jpg";
+import mandi from "../assets/mandi.jpg";
+import noida from "../assets/noida.jpg";
+import gurgaon from "../assets/gurgaon.jpg";
+import ghaziabad from "../assets/ghaziabad.jpg";
+//import noida from "../assets/noida.png";
+import faridabad from "../assets/faridabad.jpg";
+// import jalgoan from "../assets/jalgoan.png";
 
 import aligarh from "../assets/aligarh.png";
 import kasganj from "../assets/kasganj.png";
@@ -68,7 +127,7 @@ const stateDistrictMap = [
       { name: "Aurangabad", image: aurangabad },
       { name: "Solapur", image: solapur },
       { name: "Amravati", image: amravati },
-      { name: "Jalgaon", image: 'jalgaon' },
+      { name: "Jalgaon", image: jalgaon},
       { name: "Kolhapur", image: kolhapur },
     ],
   },
@@ -77,10 +136,10 @@ const stateDistrictMap = [
     image: delhi,
     districts: [
       { name: "Delhi", image: delhi },
-      { name: "Noida", image: 'noida' },
-      { name: "Gurgaon", image: 'gurgaon' },
-      { name: "Faridabad", image: 'faridabad' },
-      { name: "Ghaziabad", image: 'ghaziabad' },
+      { name: "Noida", image: noida },
+      { name: "Gurgaon", image: gurgaon },
+      { name: "Faridabad", image: faridabad },
+      { name: "Ghaziabad", image: ghaziabad },
     ],
   },
   {
