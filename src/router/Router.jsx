@@ -10,6 +10,9 @@ import WorkProcess from "../pages/WorkProcess";
 import Locations from "../pages/Locations";
 import BranchLocations from "../pages/Branch";
 import AboutUs from "../pages/Aboutus"; // Add this import
+import Household from '../pages/Household';
+import OfficeServices from "../pages/OfficeService"
+import VehicleService from "../pages/VehicleService"
 
 
 
@@ -28,7 +31,10 @@ function Router() {
       <Route path="/workprocess" element={<WorkProcess />} />
       <Route path="/locations" element={<Locations />} />
       <Route path="/branch" element={<BranchLocations />} />
-      {/* Add other routes as needed */}
+      <Route path="/household" element={<Household/>}/>
+      <Route path="/office" element={<OfficeServices/>}/>
+      <Route path="/vechile" element={<VehicleService/>}/>
+    
     </Routes>
   );
 }
