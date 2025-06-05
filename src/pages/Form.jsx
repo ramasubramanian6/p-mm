@@ -11,13 +11,18 @@ import {
   closeMapModal,
   setSelectedLocation,
 } from "./redux/formSlice";
+import appov from "../assets/New folder/appov.png"; // Import the IBA approved image
+import year from "../assets/New folder/10.png"; // Import the 10+ years trust image
+import icon from "../assets/New folder/icon.png"; // Import the icon image
 
 // Fix Leaflet icon URLs for proper display.
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
   iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
 Modal.setAppElement("#root");
@@ -31,6 +36,97 @@ function useDebounce(value, delay) {
   return debouncedValue;
 }
 
+// Define your service areas
+const SUPPORTED_CITIES = [
+  "Mumbai",
+  "Pune",
+  "Nagpur",
+  "Nashik",
+  "Aurangabad",
+  "Solapur",
+  "Amravati",
+  "Jalgaon",
+  "Kolhapur",
+  "Chennai",
+  "Coimbatore",
+  "Madurai",
+  "Trichy",
+  "Salem",
+  "Tirunelveli",
+  "Erode",
+  "Vellore",
+  "Thoothukudi",
+  "Bangalore",
+  "Delhi",
+  "Noida",
+  "Gurgaon",
+  "Faridabad",
+  "Ghaziabad",
+  "Hyderabad",
+  "Warangal",
+  "Karimnagar",
+  "Nizamabad",
+  "Khammam",
+  "Kolkata",
+  "Howrah",
+  "Durgapur",
+  "Asansol",
+  "Siliguri",
+  "Kharagpur",
+  "Ahmedabad",
+  "Indore",
+  "Bhopal",
+  "Gwalior",
+  "Jabalpur",
+  "Ujjain",
+  "Sagar",
+  "Jaipur",
+  "Jodhpur",
+  "Udaipur",
+  "Kota",
+  "Bikaner",
+  "Ajmer",
+  "Bharatpur",
+  "Lucknow",
+  "Kanpur",
+  "Varanasi",
+  "Allahabad",
+  "Agra",
+  "Meerut",
+  "Aligarh",
+  "Firozabad",
+  "Mathura",
+  "Etah",
+  "Mainpuri",
+  "Kasganj",
+  "Hathras",
+  "Etawah",
+  "Dehradun",
+  "Haridwar",
+  "Rudrapur",
+  "Haldwani",
+  "Vijayawada",
+  "Visakhapatnam",
+  "Guntur",
+  "Tirupati",
+  "Rajahmundry",
+  "Kakinada",
+  "Bhubaneswar",
+  "Cuttack",
+  "Rourkela",
+  "Sambalpur",
+  "Balasore",
+  "Patna",
+  "Gaya",
+  "Bhagalpur",
+  "Muzaffarpur",
+  "Purnia",
+  "Shimla",
+  "Manali",
+  "Dharamshala",
+  "Mandi",
+];
+
 function Form() {
   const dispatch = useDispatch();
   const formData = useSelector((state) => state.form.formData);
@@ -39,6 +135,8 @@ function Form() {
   const debouncedLocation = useDebounce(selectedLocation, 500);
 
   const [currentCity, setCurrentCity] = useState("Chennai");
+  const [unservedCityMessage, setUnservedCityMessage] = useState("");
+  const [previousFormData, setPreviousFormData] = useState({}); // To revert if city is unserved
 
   useEffect(() => {
     if (formData.from && formData.from.trim() !== "") {
@@ -49,7 +147,10 @@ function Form() {
   }, [formData.from]);
 
   useEffect(() => {
-    if (!mapModal.open) return;
+    if (!mapModal.open) {
+      setUnservedCityMessage(""); // Clear message when modal closes
+      return;
+    }
 
     const fetchCity = async () => {
       const [lat, lon] = debouncedLocation;
@@ -66,22 +167,46 @@ function Form() {
           data.address?.state ||
           "Selected Location";
 
-        dispatch(setFormData({ [mapModal.type]: city }));
+        // Check if the city is in the supported list
+        if (SUPPORTED_CITIES.some(supportedCity => city.toLowerCase().includes(supportedCity.toLowerCase()))) {
+          dispatch(setFormData({ [mapModal.type]: city }));
+          setUnservedCityMessage(""); // Clear any previous unserved message
+        } else {
+          setUnservedCityMessage(
+            `Currently, service is not available in ${city}. Please select a different location. We hope to serve you soon!`
+          );
+          // Optionally, revert the form field to its previous valid value
+          dispatch(setFormData({ [mapModal.type]: previousFormData[mapModal.type] || "" }));
+        }
       } catch (err) {
         console.error("Reverse geocoding failed:", err);
+        setUnservedCityMessage(
+          "Could not determine location. Please try again or select manually."
+        );
       }
     };
 
     fetchCity();
-  }, [debouncedLocation, mapModal.open, mapModal.type, dispatch]);
+  }, [debouncedLocation, mapModal.open, mapModal.type, dispatch, previousFormData]);
 
   const handleChange = (e) => {
+    setPreviousFormData(formData); // Save current form data before potential change
     dispatch(setFormData({ [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { from, to, phone, time, service, message } = formData;
+
+    // Optional: Add a final check before submitting if the selected cities are served
+    const fromCityServed = SUPPORTED_CITIES.some(city => formData.from.toLowerCase().includes(city.toLowerCase()));
+    const toCityServed = SUPPORTED_CITIES.some(city => formData.to.toLowerCase().includes(city.toLowerCase()));
+
+    if (!fromCityServed || !toCityServed) {
+        alert("Please ensure both 'Moving From' and 'Moving To' locations are in our service areas.");
+        return;
+    }
+
     const msg = `Pickup: ${from}\nDrop: ${to}\nPhone: ${phone}\nTime: ${time}\nService: ${service}\nMessage: ${message}`;
     const whatsappNumber = "919087893000";
     window.open(
@@ -100,95 +225,108 @@ function Form() {
         {/* Header Image Section */}
         <div className="w-full mb-8 md:mb-12">
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/wfrsxkto_expires_30_days.png"}
+            src={
+              "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/wfrsxkto_expires_30_days.png"
+            }
             className="w-full h-64 md:h-96 object-cover rounded-b-xl shadow-lg"
             alt="Packers and Movers Banner 1"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/1200x384/cccccc/000000?text=Banner+Image+Unavailable"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/1200x384/cccccc/000000?text=Banner+Image+Unavailable";
+            }}
           />
         </div>
 
         {/* Functional Form Section - now placed directly after the banner */}
-        <div className="flex flex-col shrink-0 items-center bg-gray-100 p-6 sm:p-8 rounded-xl shadow-lg w-full mb-16 mx-4 sm:mx-8 md:mx-12 lg:mx-auto max-w-4xl"> {/* Adjusted max-w to control form width better if needed, or remove for full width */}
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-gray-800">
-              Get Your Free Moving Quote
-            </h2>
+        <div className="flex flex-col shrink-0 items-center bg-gray-100 p-6 sm:p-8 rounded-xl shadow-lg w-full mb-16 mx-4 sm:mx-8 md:mx-12 lg:mx-auto max-w-4xl">
+          {" "}
+          {/* Adjusted max-w to control form width better if needed, or remove for full width */}
+          <h2 className="text-2xl sm:text-3xl font-bold text-center mb-6 text-gray-800">
+            Get Your Free Moving Quote
+          </h2>
+          {unservedCityMessage && (
+            <p className="text-red-500 text-center mb-4 font-semibold">
+              {unservedCityMessage}
+            </p>
+          )}
 
-            <motion.form
-              onSubmit={handleSubmit}
-              className="grid grid-cols-1 gap-6 w-full"
-              initial={{ opacity: 0, y: -50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <LocationField
-                label="Moving From*"
-                name="from"
-                value={formData.from}
+          <motion.form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 gap-6 w-full"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <LocationField
+              label="Moving From*"
+              name="from"
+              value={formData.from}
+              onChange={handleChange}
+              onMapOpen={() => dispatch(openMapModal("from"))}
+            />
+            <LocationField
+              label="Moving To*"
+              name="to"
+              value={formData.to}
+              onChange={handleChange}
+              onMapOpen={() => dispatch(openMapModal("to"))}
+            />
+            <InputField
+              label="Phone*"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              type="tel"
+            />
+            <InputField
+              label="Moving Time*"
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+              type="datetime-local"
+            />
+            <div>
+              <label className="block text-base font-medium text-gray-700 mb-1">
+                Select Service*
+              </label>
+              <select
+                name="service"
+                value={formData.service}
                 onChange={handleChange}
-                onMapOpen={() => dispatch(openMapModal("from"))}
-              />
-              <LocationField
-                label="Moving To*"
-                name="to"
-                value={formData.to}
+                required
+                className="w-full p-3 border border-orange-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+              >
+                <option value="">Choose a service</option>
+                <option value="Home Shifting">Home Shifting</option>
+                <option value="Office Shifting">Office Shifting</option>
+                <option value="Vehicle Shifting">Vehicle Shoption</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-base font-medium text-gray-700 mb-1">
+                Message
+              </label>
+              <textarea
+                name="message"
+                value={formData.message}
                 onChange={handleChange}
-                onMapOpen={() => dispatch(openMapModal("to"))}
+                rows="3"
+                placeholder="Any additional info..."
+                className="w-full p-3 border border-orange-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
               />
-              <InputField
-                label="Phone*"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                type="tel"
-              />
-              <InputField
-                label="Moving Time*"
-                name="time"
-                value={formData.time}
-                onChange={handleChange}
-                type="datetime-local"
-              />
-              <div>
-                <label className="block text-base font-medium text-gray-700 mb-1">
-                  Select Service*
-                </label>
-                <select
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  required
-                  className="w-full p-3 border border-orange-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
-                >
-                  <option value="">Choose a service</option>
-                  <option value="Home Shifting">Home Shifting</option>
-                  <option value="Office Shifting">Office Shifting</option>
-                  <option value="Vehicle Shifting">Vehicle Shifting</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-base font-medium text-gray-700 mb-1">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows="3"
-                  placeholder="Any additional info..."
-                  className="w-full p-3 border border-orange-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
-                />
-              </div>
-              <div className="text-center">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  type="submit"
-                  className="bg-indigo-600 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-indigo-700 transition duration-300 ease-in-out shadow-md"
-                >
-                  Submit Inquiry
-                </motion.button>
-              </div>
-            </motion.form>
+            </div>
+            <div className="text-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                className="bg-indigo-600 text-white px-8 py-3 rounded-xl text-lg font-semibold hover:bg-indigo-700 transition duration-300 ease-in-out shadow-md"
+              >
+                Submit Inquiry
+              </motion.button>
+            </div>
+          </motion.form>
         </div>
 
         {/* Introduction Text - now placed below the form */}
@@ -198,7 +336,9 @@ function Form() {
               {replaceCityInContent("Chennai Packers and Movers")}
             </h1>
             <p className="text-gray-700">
-              {replaceCityInContent("Packers and Movers in Chennai, We aim at providing professional level of service at an affordable cost. We offer the best packers and movers services in Chennai with better convenience for you to shift to your desired destination from or to Chennai. We have rendered our services in Chennai in such a way that comes out high on the expectations of our clients.")}
+              {replaceCityInContent(
+                "Packers and Movers in Chennai, We aim at providing professional level of service at an affordable cost. We offer the best packers and movers services in Chennai with better convenience for you to shift to your desired destination from or to Chennai. We have rendered our services in Chennai in such a way that comes out high on the expectations of our clients."
+              )}
             </p>
           </span>
         </div>
@@ -229,26 +369,43 @@ function Form() {
               Beware of frauds
             </span>
             <p className="text-gray-700 text-center lg:text-left">
-              {replaceCityInContent("ISO Certified, Govt Authorized, 10+ Years of Trust for Packers & Movers, Transportation and Storage of Goods. Get free quote for Chennai.")}
+              {replaceCityInContent(
+                "ISO Certified, Govt Authorized, 10+ Years of Trust for Packers & Movers, Transportation and Storage of Goods. Get free quote for Chennai."
+              )}
             </p>
             <div className="flex items-center justify-center gap-4 mt-4">
               <img
-                src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/posns175_expires_30_days.png"}
+                src={
+                  "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/posns175_expires_30_days.png"
+                }
                 className="w-16 h-16 object-contain"
                 alt="ISO Certified"
-                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/64x64/cccccc/000000?text=ISO"; }}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://placehold.co/64x64/cccccc/000000?text=ISO";
+                }}
               />
               <img
-                src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/jm00gd40_expires_30_days.png"}
+                src={
+                  "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/jm00gd40_expires_30_days.png"
+                }
                 className="w-14 h-14 object-contain"
                 alt="Govt Authorized"
-                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/56x56/cccccc/000000?text=Govt"; }}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://placehold.co/56x56/cccccc/000000?text=Govt";
+                }}
               />
               <img
-                src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/1viehcnw_expires_30_days.png"}
+                src={
+                  "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/1viehcnw_expires_30_days.png"
+                }
                 className="w-16 h-10 object-contain"
                 alt="10+ Years Trust"
-                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/64x40/cccccc/000000?text=10+"; }}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://placehold.co/64x40/cccccc/000000?text=10+";
+                }}
               />
             </div>
           </div>
@@ -257,17 +414,25 @@ function Form() {
         {/* Office Shifting Section */}
         <div className="flex flex-col lg:flex-row items-center mb-16 mx-4 sm:mx-8 md:mx-12 lg:mx-auto gap-8 bg-blue-50 p-6 sm:p-8 rounded-xl shadow-lg max-w-7xl">
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/8wwvhrb7_expires_30_days.png"}
+            src={
+              "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/8wwvhrb7_expires_30_days.png"
+            }
             className="w-full lg:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-md"
             alt="Office Shifting"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x320/cccccc/000000?text=Office+Shifting"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/600x320/cccccc/000000?text=Office+Shifting";
+            }}
           />
           <span className="flex-1 text-gray-800 text-base md:text-lg leading-relaxed mt-4 lg:mt-0">
             <h2 className="text-xl md:text-2xl font-bold text-indigo-700 mb-4">
               {replaceCityInContent("Office Shifting in Chennai")}
             </h2>
             <p className="text-gray-700">
-              {replaceCityInContent("We all understand that time is money. Corporate relocation from best Packers and Movers in Chennai necessitates a well-informed and meticulously trained team. With years of Commercial Packers And Movers experience, Move My Stuffs Packers and Movers in Chennai has the proper Packers And Movers equipment and resources to successfully perform any commercial transfer. For your commercial relocation, we provide the best corporate Packers And Movers solution. Move My Stuffs Packers and Movers, Commercial Movers has the experience and equipment to perform your commercial relocation professionally and with the least downtime. We understand that each company is unique, and understanding the proper questions to ask may make all the difference when it comes to planning and implementing corporate Packers And Movers in Chennai.")}
+              {replaceCityInContent(
+                "We all understand that time is money. Corporate relocation from best Packers and Movers in Chennai necessitates a well-informed and meticulously trained team. With years of Commercial Packers And Movers experience, Move My Stuffs Packers and Movers in Chennai has the proper Packers And Movers equipment and resources to successfully perform any commercial transfer. For your commercial relocation, we provide the best corporate Packers And Movers solution. Move My Stuffs Packers and Movers, Commercial Movers has the experience and equipment to perform your commercial relocation professionally and with the least downtime. We understand that each company is unique, and understanding the proper questions to ask may make all the difference when it comes to planning and implementing corporate Packers And Movers in Chennai."
+              )}
             </p>
           </span>
         </div>
@@ -275,17 +440,25 @@ function Form() {
         {/* Home Shifting Section */}
         <div className="flex flex-col lg:flex-row-reverse items-center mb-16 mx-4 sm:mx-8 md:mx-12 lg:mx-auto gap-8 bg-green-50 p-6 sm:p-8 rounded-xl shadow-lg max-w-7xl">
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/9orqvo9o_expires_30_days.png"}
+            src={
+              "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/9orqvo9o_expires_30_days.png"
+            }
             className="w-full lg:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-md"
             alt="Home Shifting"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x320/cccccc/000000?text=Home+Shifting"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/600x320/cccccc/000000?text=Home+Shifting";
+            }}
           />
           <span className="flex-1 text-gray-800 text-base md:text-lg leading-relaxed mt-4 lg:mt-0">
             <h2 className="text-xl md:text-2xl font-bold text-indigo-700 mb-4">
               {replaceCityInContent("Home Shifting in Chennai")}
             </h2>
             <p className="text-gray-700">
-              {replaceCityInContent("To find best Packers and Movers in Chennai for home shifting, we are at your service in Chennai. Packing and moving out of your Chennai home may be a stressful experience for any family. We have been able to deliver trustworthy and economical International Residential Household Goods Packers And Movers Services in Chennai with the help of our qualified employees. With the help of a large warehouse and packing facility overseen by our professionals, we have been able to provide these services in the most efficient manner possible. We provide all forms of packaging services to our Chennai clients, depending on their needs. We transport their household stuff in Chennai in a timely and damage-free manner. With our experience and professionalism, Move My Stuffs Packers and Movers can help make this relocation as stress-free as possible.")}
+              {replaceCityInContent(
+                "To find best Packers and Movers in Chennai for home shifting, we are at your service in Chennai. Packing and moving out of your Chennai home may be a stressful experience for any family. We have been able to deliver trustworthy and economical International Residential Household Goods Packers And Movers Services in Chennai with the help of our qualified employees. With the help of a large warehouse and packing facility overseen by our professionals, we have been able to provide these services in the most efficient manner possible. We provide all forms of packaging services to our Chennai clients, depending on their needs. We transport their household stuff in Chennai in a timely and damage-free manner. With our experience and professionalism, Move My Stuffs Packers and Movers can help make this relocation as stress-free as possible."
+              )}
             </p>
           </span>
         </div>
@@ -293,17 +466,25 @@ function Form() {
         {/* Transportation Section */}
         <div className="flex flex-col lg:flex-row items-center mb-16 mx-4 sm:mx-8 md:mx-12 lg:mx-auto gap-8 bg-purple-50 p-6 sm:p-8 rounded-xl shadow-lg max-w-7xl">
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/l6tf3zno_expires_30_days.png"}
+            src={
+              "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/l6tf3zno_expires_30_days.png"
+            }
             className="w-full lg:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-md"
             alt="Transportation"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x320/cccccc/000000?text=Transportation"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/600x320/cccccc/000000?text=Transportation";
+            }}
           />
           <span className="flex-1 text-gray-800 text-base md:text-lg leading-relaxed mt-4 lg:mt-0">
             <h2 className="text-xl md:text-2xl font-bold text-indigo-700 mb-4">
               {replaceCityInContent("Transportation in Chennai")}
             </h2>
             <p className="text-gray-700">
-              {replaceCityInContent("You've come to the perfect location if you're looking for safe car transportation in Chennai. Move My Stuffs Packers and Movers is India's best movers and packers in Chennai. We'll connect you to the person who will deliver your vehicle to any location from Chennai. We provide you with an unbiased assessment of every automobile relocation service in Chennai based on our and our customers' experiences, so you can make an informed selection. Move My Stuffs packers and movers is your one-stop shop for everything you need to know about car relocation services in Chennai.")}
+              {replaceCityInContent(
+                "You've come to the perfect location if you're looking for safe car transportation in Chennai. Move My Stuffs Packers and Movers is India's best movers and packers in Chennai. We'll connect you to the person who will deliver your vehicle to any location from Chennai. We provide you with an unbiased assessment of every automobile relocation service in Chennai based on our and our customers' experiences, so you can make an informed selection. Move My Stuffs packers and movers is your one-stop shop for everything you need to know about car relocation services in Chennai."
+              )}
             </p>
           </span>
         </div>
@@ -311,17 +492,25 @@ function Form() {
         {/* Loading & Unloading Section */}
         <div className="flex flex-col lg:flex-row-reverse items-center mb-16 mx-4 sm:mx-8 md:mx-12 lg:mx-auto gap-8 bg-red-50 p-6 sm:p-8 rounded-xl shadow-lg max-w-7xl">
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/d3uqclj0_expires_30_days.png"}
+            src={
+              "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/d3uqclj0_expires_30_days.png"
+            }
             className="w-full lg:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-md"
             alt="Loading & Unloading"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x320/cccccc/000000?text=Loading+Unloading"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/600x320/cccccc/000000?text=Loading+Unloading";
+            }}
           />
           <span className="flex-1 text-gray-800 text-base md:text-lg leading-relaxed mt-4 lg:mt-0">
             <h2 className="text-xl md:text-2xl font-bold text-indigo-700 mb-4">
               {replaceCityInContent("Loading & Unloading in Chennai")}
             </h2>
             <p className="text-gray-700">
-              {replaceCityInContent("In Chennai, Loading and Unloading of goods is a risky job and should only be handled by professionals. We have experience handyman for loading and unloading of goods and assets in Chennai.")}
+              {replaceCityInContent(
+                "In Chennai, Loading and Unloading of goods is a risky job and should only be handled by professionals. We have experience handyman for loading and unloading of goods and assets in Chennai."
+              )}
             </p>
           </span>
         </div>
@@ -335,31 +524,43 @@ function Form() {
               {replaceCityInContent("IBA Approved Packers and Movers in Chennai")}
             </h2>
             <p className="text-gray-700">
-              {replaceCityInContent("Our IBA Approved Packers and Movers in Chennai give the best Packer and Mover service to our valued customers. Many packers and movers work in India, but we are just there to deliver the best and safest packers and movers. Our staff works to help our clients by providing insured services. Move My Stuffs Packers and Movers is an IBA Approved Packers and Movers in Chennai that will make your relocation a breeze. We provide IBA (India Bank Approval) Approved Transporters and Packers Movers Company in Chennai providing IBA Approved Bills and the highest quality packing services.")}
+              {replaceCityInContent(
+                "Our IBA Approved Packers and Movers in Chennai give the best Packer and Mover service to our valued customers. Many packers and movers work in India, but we are just there to deliver the best and safest packers and movers. Our staff works to help our clients by providing insured services. Move My Stuffs Packers and Movers is an IBA Approved Packers and Movers in Chennai that will make your relocation a breeze. We provide IBA (India Bank Approval) Approved Transporters and Packers Movers Company in Chennai providing IBA Approved Bills and the highest quality packing services."
+              )}
             </p>
           </span>
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/7gg4ibaj_expires_30_days.png"}
+            src={appov}
             className="w-full lg:w-1/3 h-48 md:h-64 object-contain rounded-lg shadow-md"
             alt="IBA Approved Certification"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/400x256/cccccc/000000?text=IBA+Approved"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/400x256/cccccc/000000?text=IBA+Approved";
+            }}
           />
         </div>
 
         {/* Reputable Packers and Movers in Chennai Section */}
         <div className="relative flex flex-col lg:flex-row items-center mb-16 mx-4 sm:mx-8 md:mx-12 lg:mx-auto gap-8 bg-blue-100 p-6 sm:p-8 rounded-xl shadow-lg max-w-7xl">
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/ppthkmq6_expires_30_days.png"}
+            src={year}
             className="w-full lg:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-md"
             alt="Reputable Movers"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x320/cccccc/000000?text=Reputable+Movers"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/600x320/cccccc/000000?text=Reputable+Movers";
+            }}
           />
           <span className="text-gray-800 text-base md:text-lg leading-relaxed mt-4 lg:mt-0 lg:w-1/2">
             <h2 className="text-xl md:text-2xl font-bold text-indigo-700 mb-4">
               {replaceCityInContent("Reputable Packers and Movers in Chennai:")}
             </h2>
             <p className="text-gray-700">
-              {replaceCityInContent("Over a Decade of Safe, Dependable, and Stress-Free Relocation Services. With Over a Decade of Local Experience Serving individuals, families, and businesses throughout Chennai, we are among the most reputable packers and movers in the region thanks to our more than ten years of experience in the relocation sector. We guarantee a seamless and stress-free relocation—whether you're moving within Chennai.")}
+              {replaceCityInContent(
+                "Over a Decade of Safe, Dependable, and Stress-Free Relocation Services. With Over a Decade of Local Experience Serving individuals, families, and businesses throughout Chennai, we are among the most reputable packers and movers in the region thanks to our more than ten years of experience in the relocation sector. We guarantee a seamless and stress-free relocation—whether you're moving within Chennai."
+              )}
             </p>
           </span>
         </div>
@@ -368,20 +569,28 @@ function Form() {
         <div className="flex flex-col lg:flex-row items-start self-stretch mx-4 sm:mx-8 md:mx-12 lg:mx-auto gap-8 bg-gray-100 p-6 sm:p-8 rounded-xl shadow-lg max-w-7xl">
           <span className="flex-1 text-gray-800 text-base md:text-lg leading-relaxed mt-4 lg:mt-0">
             <h2 className="text-xl md:text-2xl font-bold text-indigo-700 mb-4">
-              {replaceCityInContent("Customer Support For Complaints and Bills Related Issues in Chennai.")}
+              {replaceCityInContent(
+                "Customer Support For Complaints and Bills Related Issues in Chennai."
+              )}
             </h2>
             <p className="mb-4 text-gray-700">
-              {replaceCityInContent("Move My Stuffs Packers And Movers in Chennai stands out in the relocation services industry, providing safe, reliable, and comprehensive moving solutions throughout India. We are committed to customer satisfaction, treating every move with the highest level of care, whether it's in Chennai local or long-distance. Our expert team ensures that your belongings are transported securely and on time, making your moving experience as smooth as possible. In addition to transportation, we offer strong support, helping clients with billing questions, resolving complaints, and providing personalized guidance every step of the way. With Move My Stuffs Packers And Movers in Chennai, you not only enjoy a hassle-free relocation but also receive dedicated service that focuses on your peace of mind.")}
+              {replaceCityInContent(
+                "Move My Stuffs Packers And Movers in Chennai stands out in the relocation services industry, providing safe, reliable, and comprehensive moving solutions throughout India. We are committed to customer satisfaction, treating every move with the highest level of care, whether it's in Chennai local or long-distance. Our expert team ensures that your belongings are transported securely and on time, making your moving experience as smooth as possible. In addition to transportation, we offer strong support, helping clients with billing questions, resolving complaints, and providing personalized guidance every step of the way. With Move My Stuffs Packers And Movers in Chennai, you not only enjoy a hassle-free relocation but also receive dedicated service that focuses on your peace of mind."
+              )}
             </p>
             <p className="font-bold text-lg md:text-xl text-green-700">
               Contact Us: +91 9087893000
             </p>
           </span>
           <img
-            src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/x2lnzyjl_expires_30_days.png"}
-            className="w-full lg:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-md mt-4 lg:mt-0"
+            src={icon}
+            className="w-full lg:w-1/2 h-64 md:h-80 object-cover rounded-lg shadow-md mt-4 lg:mt-25"
             alt="Customer Support"
-            onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x320/cccccc/000000?text=Customer+Support"; }}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src =
+                "https://placehold.co/600x320/cccccc/000000?text=Customer+Support";
+            }}
           />
         </div>
       </div>
@@ -446,7 +655,17 @@ function LocationField({ label, name, value, onChange, onMapOpen }) {
 function MapModal({ isOpen, onClose, selectedLocation, setSelectedLocation }) {
   function LocationMarker() {
     useMapEvents({
-      dragend() {},
+      // We keep dragend here to update the selectedLocation in the Redux store
+      // The actual city validation happens in the Form component's useEffect
+      dragend(e) {
+        const latlng = e.target.getLatLng();
+        setSelectedLocation([latlng.lat, latlng.lng]);
+      },
+      // You can add a click event listener if you want to update location on map click
+      // click(e) {
+      //   const latlng = e.latlng;
+      //   setSelectedLocation([latlng.lat, latlng.lng]);
+      // },
     });
     return (
       <Marker
