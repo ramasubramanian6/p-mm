@@ -5,7 +5,7 @@ import { setFormData } from "../pages/redux/formSlice";
 import { motion } from "framer-motion";
 
 // Import logo and state/district images without renaming
-import logo from "../assets/logo.png";
+import logo from "../assets/New folder/icon.png";
 
 // State images
 import chennai from "../assets/chennai.png";
@@ -337,8 +337,8 @@ function Branches() {
               />
 
               {/* Big Logo */}
-              <div className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md">
-                <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
+              <div className="absolute top-3 left-3 rounded-full bg-white shadow-md">
+                <img src={logo} alt="Logo" className="w-18 h-18 object-fit" />
               </div>
 
               <div className="p-4 text-center font-semibold text-lg text-gray-700">
@@ -391,7 +391,7 @@ function Branches() {
 
                   {/* Logo */}
                   <div className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md">
-                    <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
+                    <img src={logo} alt="Logo" className="w-18 h-18 object-contain" />
                   </div>
 
                   <div className="p-4 text-center font-semibold text-lg text-gray-700">
