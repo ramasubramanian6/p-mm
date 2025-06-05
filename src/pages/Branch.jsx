@@ -1,101 +1,224 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setFormData } from "../pages/redux/formSlice";
 import { motion } from "framer-motion";
-import ahmedabad from "../assets/ahmedabad.png";
-import aligarh from "../assets/aligarh.png";
-import amravati from "../assets/amravati.png";
-import andhraPradesh from "../assets/andhra pradesh.png";
-import aurangabad from "../assets/aurangabad.png";
-import bangalore from "../assets/bangalore.png";
-import bihar from "../assets/bihar.png";
-import chennai from "../assets/chennai.png";
-import coimbatore from "../assets/coimbatore.png";
-import delhiNcr from "../assets/delhi ncr.png";
-import erode from "../assets/erode.png";
-import firozabad from "../assets/firozabad.png";
-import gwalior from "../assets/gwalior.png";
-import haldwani from "../assets/haldwani.png";
-import himachalPradesh from "../assets/himachal pradesh.png";
-import hyderabad from "../assets/hyderabad.png";
-import jalgoan from "../assets/jalgoan.png";
-import kasganj from "../assets/kasganj.png";
-import kolhapur from "../assets/kolhapur.png";
-import kolkata from "../assets/kolkata.png";
+
+// Import logo and state/district images without renaming
 import logo from "../assets/logo.png";
-import madhyaPradesh from "../assets/madhya pradesh.png";
-import madurai from "../assets/madurai.png";
-import maharastra from "../assets/maharastra.png";
-import mathura from "../assets/mathura.png";
+
+// State images
+import chennai from "../assets/chennai.png";
 import mumbai from "../assets/mumbai.png";
-import nagpur from "../assets/nagpur.png";
-import nashik from "../assets/nashik.png";
-import odisha from "../assets/odisha.png";
-import pune from "../assets/pune.png";
-import rajasthan from "../assets/rajasthan.png";
+import kolkata from "../assets/kolkata.png";
+import delhi from "../assets/delhi ncr.png";
+import hyderabad from "../assets/hyderabad.png";
+import mathura from "../assets/mathura.png";
+
+// District images
+import coimbatore from "../assets/coimbatore.png";
+import madurai from "../assets/madurai.png";
+import trichy from "../assets/trichy.png";
 import salem from "../assets/salem.png";
-import solapur from "../assets/solapur.png";
-import telangana from "../assets/telungana.png";
 import thoothukudi from "../assets/thoothukudi.png";
 import tirunelveli from "../assets/tirunelveli.png";
-import trichy from "../assets/trichy.png";
-import uttarKhand from "../assets/uttar khand.png";
-import uttarPradesh from "../assets/uttar pradesh.png";
+import erode from "../assets/erode.png";
 import vellore from "../assets/vellore.png";
-import westBengal from "../assets/west bengal.png";
+import nagpur from "../assets/nagpur.png";
+import pune from "../assets/pune.png";
+import nashik from "../assets/nashik.png";
+import aurangabad from "../assets/aurangabad.png";
+import kolhapur from "../assets/kolhapur.png";
+import amravati from "../assets/amravati.png";
+import solapur from "../assets/solapur.png";
+import jalgoan from "../assets/jalgoan.png";
 
-const branches = [
-  { name: "Ahmedabad", image: ahmedabad },
-  { name: "Aligarh", image: aligarh },
-  { name: "Amravati", image: amravati },
-  { name: "Andhra Pradesh", image: andhraPradesh },
-  { name: "Aurangabad", image: aurangabad },
-  { name: "Bangalore", image: bangalore },
-  { name: "Bihar", image: bihar },
-  { name: "Chennai", image: chennai },
-  { name: "Coimbatore", image: coimbatore },
-  { name: "Delhi NCR", image: delhiNcr },
-  { name: "Erode", image: erode },
-  { name: "Firozabad", image: firozabad },
-  { name: "Gwalior", image: gwalior },
-  { name: "Haldwani", image: haldwani },
-  { name: "Himachal Pradesh", image: himachalPradesh },
-  { name: "Hyderabad", image: hyderabad },
-  { name: "Jalgoan", image: jalgoan },
-  { name: "Kasganj", image: kasganj },
-  { name: "Kolhapur", image: kolhapur },
-  { name: "Kolkata", image: kolkata },
-  { name: "Madhya Pradesh", image: madhyaPradesh },
-  { name: "Madurai", image: madurai },
-  { name: "Maharastra", image: maharastra },
-  { name: "Mathura", image: mathura },
-  { name: "Mumbai", image: mumbai },
-  { name: "Nagpur", image: nagpur },
-  { name: "Nashik", image: nashik },
-  { name: "Odisha", image: odisha },
-  { name: "Pune", image: pune },
-  { name: "Rajasthan", image: rajasthan },
-  { name: "Salem", image: salem },
-  { name: "Solapur", image: solapur },
-  { name: "Telangana", image: telangana },
-  { name: "Thoothukudi", image: thoothukudi },
-  { name: "Tirunelveli", image: tirunelveli },
-  { name: "Trichy", image: trichy },
-  { name: "Uttar Khand", image: uttarKhand },
-  { name: "Uttar Pradesh", image: uttarPradesh },
-  { name: "Vellore", image: vellore },
-  { name: "West Bengal", image: westBengal },
+// import gurgaon from "../assets/gurgaon.png";
+// import noida from "../assets/noida.png";
+// import faridabad from "../assets/faridabad.png";
+
+import aligarh from "../assets/aligarh.png";
+import kasganj from "../assets/kasganj.png";
+import firozabad from "../assets/firozabad.png";
+
+const stateDistrictMap = [
+  {
+    state: "Tamil Nadu",
+    image: coimbatore,
+    districts: [
+      { name: "Chennai", image: chennai },
+      { name: "Coimbatore", image: coimbatore },
+      { name: "Madurai", image: madurai },
+      { name: "Trichy", image: trichy },
+      { name: "Salem", image: salem },
+      { name: "Thoothukudi", image: thoothukudi },
+      { name: "Tirunelveli", image: tirunelveli },
+      { name: "Erode", image: erode },
+      { name: "Vellore", image: vellore },
+    ],
+  },
+  {
+    state: "Maharashtra",
+    image: mumbai,
+    districts: [
+      { name: "Mumbai", image: mumbai },
+      { name: "Pune", image: pune },
+      { name: "Nagpur", image: nagpur },
+      { name: "Nashik", image: nashik },
+      { name: "Aurangabad", image: aurangabad },
+      { name: "Solapur", image: solapur },
+      { name: "Amravati", image: amravati },
+      { name: "Jalgaon", image: 'jalgaon' },
+      { name: "Kolhapur", image: kolhapur },
+    ],
+  },
+  {
+    state: "Delhi NCR",
+    image: delhi,
+    districts: [
+      { name: "Delhi", image: delhi },
+      { name: "Noida", image: 'noida' },
+      { name: "Gurgaon", image: 'gurgaon' },
+      { name: "Faridabad", image: 'faridabad' },
+      { name: "Ghaziabad", image: 'ghaziabad' },
+    ],
+  },
+  {
+    state: "Telangana",
+    image: hyderabad,
+    districts: [
+      { name: "Hyderabad", image: hyderabad },
+      { name: "Warangal", image: warangal },
+      { name: "Karimnagar", image: karimnagar },
+      { name: "Nizamabad", image: nizamabad },
+      { name: "Khammam", image: khammam },
+    ],
+  },
+  {
+    state: "West Bengal",
+    image: kolkata,
+    districts: [
+      { name: "Kolkata", image: kolkata },
+      { name: "Howrah", image: howrah },
+      { name: "Durgapur", image: durgapur },
+      { name: "Asansol", image: asansol },
+      { name: "Siliguri", image: siliguri },
+      { name: "Kharagpur", image: kharagpur },
+    ],
+  },
+  {
+    state: "Gujarat",
+    image: ahmedabad,
+    districts: [{ name: "Ahmedabad", image: ahmedabad }],
+  },
+  {
+    state: "Madhya Pradesh",
+    image: bhopal,
+    districts: [
+      { name: "Indore", image: indore },
+      { name: "Bhopal", image: bhopal },
+      { name: "Gwalior", image: gwalior },
+      { name: "Jabalpur", image: jabalpur },
+      { name: "Ujjain", image: ujjain },
+      { name: "Sagar", image: sagar },
+    ],
+  },
+  {
+    state: "Rajasthan",
+    image: jaipur,
+    districts: [
+      { name: "Jaipur", image: jaipur },
+      { name: "Jodhpur", image: jodhpur },
+      { name: "Udaipur", image: udaipur },
+      { name: "Kota", image: kota },
+      { name: "Bikaner", image: bikaner },
+      { name: "Ajmer", image: ajmer },
+      { name: "Bharatpur", image: bharatpur },
+    ],
+  },
+  {
+    state: "Uttar Pradesh",
+    image: lucknow,
+    districts: [
+      { name: "Lucknow", image: lucknow },
+      { name: "Kanpur", image: kanpur },
+      { name: "Varanasi", image: varanasi },
+      { name: "Allahabad", image: allahabad },
+      { name: "Agra", image: agra },
+      { name: "Meerut", image: meerut },
+      { name: "Aligarh", image: aligarh },
+      { name: "Firozabad", image: firozabad },
+      { name: "Mathura", image: mathura },
+      { name: "Etah", image: etah },
+      { name: "Mainpuri", image: mainpuri },
+      { name: "Kasganj", image: kasganj },
+      { name: "Hathras", image: hathras },
+      { name: "Etawah", image: etawah },
+    ],
+  },
+  {
+    state: "Uttarakhand",
+    image: dehradun,
+    districts: [
+      { name: "Dehradun", image: dehradun },
+      { name: "Haridwar", image: haridwar },
+      { name: "Rudrapur", image: rudrapur },
+      { name: "Haldwani", image: haldwani },
+    ],
+  },
+  {
+    state: "Andhra Pradesh",
+    image: vijayawada,
+    districts: [
+      { name: "Vijayawada", image: vijayawada },
+      { name: "Visakhapatnam", image: visakhapatnam },
+      { name: "Guntur", image: guntur },
+      { name: "Tirupati", image: tirupati },
+      { name: "Rajahmundry", image: rajahmundry },
+      { name: "Kakinada", image: kakinada },
+    ],
+  },
+  {
+    state: "Odisha",
+    image: bhubaneswar,
+    districts: [
+      { name: "Bhubaneswar", image: bhubaneswar },
+      { name: "Cuttack", image: cuttack },
+      { name: "Rourkela", image: rourkela },
+      { name: "Sambalpur", image: sambalpur },
+      { name: "Balasore", image: balasore },
+    ],
+  },
+  {
+    state: "Bihar",
+    image: patna,
+    districts: [
+      { name: "Patna", image: patna },
+      { name: "Gaya", image: gaya },
+      { name: "Bhagalpur", image: bhagalpur },
+      { name: "Muzaffarpur", image: muzaffarpur },
+      { name: "Purnia", image: purnia },
+    ],
+  },
+  {
+    state: "Himachal Pradesh",
+    image: shimla,
+    districts: [
+      { name: "Shimla", image: shimla },
+      { name: "Manali", image: manali },
+      { name: "Dharamshala", image: dharamshala },
+      { name: "Mandi", image: mandi },
+    ],
+  },
 ];
+
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      duration: 0.3,
-    },
+    transition: { staggerChildren: 0.1, duration: 0.3 },
   },
 };
 
@@ -109,44 +232,117 @@ function Branches() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSelect = (branch) => {
-    dispatch(setFormData({ from: branch.name }));
+  const [selectedState, setSelectedState] = useState(null);
+
+  const handleStateClick = (state) => {
+    setSelectedState(state);
+  };
+
+  const handleBack = () => {
+    setSelectedState(null);
+  };
+
+  const handleSelect = (location) => {
+    dispatch(setFormData({ from: location }));
     navigate("/form");
   };
+
   return (
     <div className="py-10 px-4 sm:px-8 bg-gray-50 min-h-screen">
       <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-10">
         Branches We Serve
       </h2>
 
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        {branches.map((branch) => (
+      {!selectedState && (
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          {stateDistrictMap.map((item) => (
+            <motion.div
+              key={item.state}
+              className="relative cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 group"
+              variants={cardVariants}
+              whileHover="hover"
+              onClick={() => handleStateClick(item.state)}
+            >
+              <motion.img
+                src={item.image}
+                alt={item.state}
+                loading="lazy"
+                className="w-full h-48 object-cover"
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              />
+
+              {/* Big Logo */}
+              <div className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md">
+                <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
+              </div>
+
+              <div className="p-4 text-center font-semibold text-lg text-gray-700">
+                {item.state}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
+
+      {/* Show districts of selected state */}
+      {selectedState && (
+        <>
+          <div className="max-w-7xl mx-auto mb-6 flex items-center gap-4">
+            <button
+              onClick={handleBack}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              ← Back to States
+            </button>
+            <h3 className="text-2xl font-semibold text-gray-800">
+              Districts of {selectedState}
+            </h3>
+          </div>
+
           <motion.div
-            key={branch.name}
-            className="cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-xl overflow-hidden transition-all duration-300"
-            variants={cardVariants}
-            whileHover="hover"
-            onClick={() => handleSelect(branch)}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
           >
-            <motion.img
-              src={branch.image}
-              alt={branch.name}
-              loading="lazy"
-              className="w-full h-48 object-cover"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-            />
-            <div className="p-4 text-center font-semibold text-lg text-gray-700">
-              {branch.name}
-            </div>
+            {stateDistrictMap
+              .find((s) => s.state === selectedState)
+              ?.districts.map((district) => (
+                <motion.div
+                  key={district.name}
+                  className="relative cursor-pointer bg-white rounded-2xl shadow-md hover:shadow-xl overflow-hidden transition-all duration-300 group"
+                  variants={cardVariants}
+                  whileHover="hover"
+                  onClick={() => handleSelect(district.name)}
+                >
+                  <motion.img
+                    src={district.image}
+                    alt={district.name}
+                    loading="lazy"
+                    className="w-full h-48 object-cover"
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ duration: 0.3 }}
+                  />
+
+                  {/* Logo */}
+                  <div className="absolute top-3 left-3 bg-white p-2 rounded-full shadow-md">
+                    <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
+                  </div>
+
+                  <div className="p-4 text-center font-semibold text-lg text-gray-700">
+                    {district.name}
+                  </div>
+                </motion.div>
+              ))}
           </motion.div>
-        ))}
-      </motion.div>
+        </>
+      )}
     </div>
   );
 }
