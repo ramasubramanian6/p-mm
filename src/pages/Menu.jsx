@@ -78,7 +78,7 @@ function Menu() {
                 </p>
               </li>
               <li>
-                <p className="hover:text-red-600 cursor-pointer" onClick={() => navigateAndScroll("/whychoose")}>
+                <p className="hover:text-red-600 cursor-pointer" onClick={() => navigateAndScroll("/whychooseus")}>
                   Why Choose Us
                 </p>
               </li>

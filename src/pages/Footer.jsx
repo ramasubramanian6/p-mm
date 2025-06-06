@@ -136,9 +136,9 @@ function Footer() {
                 </li>
                 <li
                   className="text-[#C2FB09] hover:text-yellow-300 cursor-pointer"
-                  onClick={() => navigateAndScroll("/contactus")} // Added scroll-to-top
+                  onClick={() => navigateAndScroll("/whychooseus")} // Added scroll-to-top
                 >
-                  Submit a Complaint
+                 why Choose Us
                 </li>
               </ul>
             </div>
