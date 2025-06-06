@@ -4,9 +4,9 @@ import l from "../../src/assets/beware/l.png"
 
 const ArticlePage = () => {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-white flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
       {/* Top banner image */}
-      <div className="relative w-full max-w-6xl mb-12">
+      <div className="relative w-full  mb-12">
         <img
           src={banner}
           className="w-full h-auto object-cover rounded-lg shadow-lg"
@@ -15,7 +15,7 @@ const ArticlePage = () => {
       </div>
 
       {/* Main content area for the article */}
-      <div className="w-full max-w-4xl bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-200">
+      <div className="w-full  bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-200">
         {/* Article content directly in JSX */}
         <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-gray-900">How to Spot A Fraud Movers and Packers: Why Pick Move My Stuffs</h2>
         <p className="mb-6 text-gray-700 text-base sm:text-lg leading-relaxed">

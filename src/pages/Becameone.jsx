@@ -46,7 +46,7 @@ export default (props) => {
     return (
         <div className="min-h-screen w-full bg-white flex flex-col items-center py-10 px-4 sm:px-6 lg:px-8">
             {/* Main banner image at the top */}
-            <div className="relative w-full max-w-6xl mb-12">
+            <div className="relative w-full  mb-12">
                 <img
                     src={"https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/n1wb7cc7_expires_30_days.png"}
                     className="w-full h-auto object-cover rounded-lg shadow-lg"
@@ -55,7 +55,7 @@ export default (props) => {
             </div>
 
             {/* Title and description section */}
-            <div className="w-full max-w-4xl text-center mb-8">
+            <div className="w-full  text-center mb-8">
                 <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
                     Become our Partner
                 </h1>
@@ -63,7 +63,7 @@ export default (props) => {
 
             {/* Form and Image Side-by-Side Container */}
             {/* This flex container arranges the form and the illustration */}
-            <div className="w-full max-w-6xl flex flex-col md:flex-row items-start justify-center gap-8 lg:gap-12">
+            <div className="w-full flex flex-col md:flex-row items-start justify-center gap-8 lg:gap-12">
 
                 {/* The Form - now takes up more width on larger screens */}
                 <form onSubmit={handleSubmit} className="w-full md:w-2/3 bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-200">
