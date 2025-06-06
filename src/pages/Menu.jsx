@@ -92,11 +92,7 @@ function Menu() {
                   Beware of Frauds
                 </p>
               </li>
-              <li>
-                <p className="hover:text-red-600 cursor-pointer" onClick={() => navigateAndScroll("/workprocess")}>
-                  Work Process
-                </p>
-              </li>
+             
             </ul>
           </div>
 

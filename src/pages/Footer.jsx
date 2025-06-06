@@ -135,7 +135,7 @@ function Footer() {
                   Franchise Enquiry
                 </li>
                 <li
-                  className="text-[#C2FB09] hover:text-yellow-300 cursor-pointer"
+                  className=" hover:text-yellow-300 cursor-pointer"
                   onClick={() => navigateAndScroll("/whychooseus")} // Added scroll-to-top
                 >
                  why Choose Us
