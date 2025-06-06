@@ -14,6 +14,7 @@ import img2 from "../../src/assets/icon/img2.png"; // Placeholder for another im
 import iso from "../../src/assets/icon/iso.png"; // Placeholder for ISO certification image
 import logo1 from "../../src/assets/icon/logo1.png"; // Placeholder for logo image
 
+
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0); // State to manage the current slide index
   const navigate = useNavigate();

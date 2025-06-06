@@ -13,6 +13,8 @@ import AboutUs from "../pages/Aboutus"; // Add this import
 import Household from '../pages/Household';
 import OfficeServices from "../pages/OfficeService"
 import VehicleService from "../pages/VehicleService"
+import Becameone from "../pages/Becameone"
+import Beaware from "../pages/Beaware"
 
 
 
@@ -34,6 +36,8 @@ function Router() {
       <Route path="/household" element={<Household/>}/>
       <Route path="/office" element={<OfficeServices/>}/>
       <Route path="/vehicle" element={<VehicleService/>}/>
+      <Route path="/becameoneofus" element={<Becameone/>}/>
+      <Route path="/beaware" element={<Beaware/>}/>
     
     </Routes>
   );

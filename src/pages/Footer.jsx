@@ -27,11 +27,16 @@ function Footer() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
- const handleCityClick = (city) => {
-  dispatch(setFormData({ from: city }));
-  navigate("/form");
-  window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top after navigation
-};
+  const handleCityClick = (city) => {
+    dispatch(setFormData({ from: city }));
+    navigate("/form");
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top after navigation
+  };
+
+  const navigateAndScroll = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top on navigation
+  };
 
   return (
     <motion.footer
@@ -80,21 +85,61 @@ function Footer() {
             <div>
               <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">Services</h3>
               <ul className="space-y-2 text-base md:text-lg">
-                <li className="hover:text-white cursor-pointer">Home Shifting</li>
-                <li className="hover:text-white cursor-pointer">Office Shifting</li>
-                <li className="hover:text-white cursor-pointer">Vehicle Transportation</li>
-                <li className="hover:text-white cursor-pointer">Loading & Unloading</li>
+                <li
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => navigateAndScroll("/household")} // Added scroll-to-top
+                >
+                  Home Shifting
+                </li>
+                <li
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => navigateAndScroll("/office")} // Added scroll-to-top
+                >
+                  Office Shifting
+                </li>
+                <li
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => navigateAndScroll("/vehicle")} // Added scroll-to-top
+                >
+                  Vehicle Transportation
+                </li>
+                <li
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => navigateAndScroll("/ourservices")} // Added scroll-to-top
+                >
+                  Loading & Unloading
+                </li>
               </ul>
             </div>
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">Quick Links</h3>
+              <h3 className="text-xl md::text-2xl font-semibold text-white mb-3">Quick Links</h3>
               <ul className="space-y-2 text-base md:text-lg">
-                <li className="hover:text-white cursor-pointer">About Us</li>
-                <li className="hover:text-white cursor-pointer">Branches</li>
-                <li className="hover:text-white cursor-pointer">Franchise Enquiry</li>
-                <li className="text-[#C2FB09] hover:text-yellow-300 cursor-pointer">Submit a Complaint</li>
+                <li
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => navigateAndScroll("/about")} // Added scroll-to-top
+                >
+                  About Us
+                </li>
+                <li
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => navigateAndScroll("/branch")} // Added scroll-to-top
+                >
+                  Branches
+                </li>
+                <li
+                  className="hover:text-white cursor-pointer"
+                  onClick={() => navigateAndScroll("/becameoneofus")} // Added scroll-to-top
+                >
+                  Franchise Enquiry
+                </li>
+                <li
+                  className="text-[#C2FB09] hover:text-yellow-300 cursor-pointer"
+                  onClick={() => navigateAndScroll("/contactus")} // Added scroll-to-top
+                >
+                  Submit a Complaint
+                </li>
               </ul>
             </div>
 
