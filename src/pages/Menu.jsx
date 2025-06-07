@@ -6,28 +6,20 @@ import { motion } from "framer-motion";
 function Menu() {
   const [showMenu, setShowMenu] = useState(true); // Manages the menu's internal visibility/animation
   const navigate = useNavigate();
-
-  // REMOVED: The useEffect that was causing navigation conflicts.
-  // The responsibility for navigating to '/' when the menu closes (e.g., via 'X' button)
-  // should reside in the parent component that opens/closes this Menu.
-
-  // Helper function to handle navigation, scroll to top, and close the menu
+ 
   const navigateAndScroll = (path) => {
-    navigate(path); // Navigate to the specific link path
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Smoothly scroll to the top of the new page
-    setShowMenu(false); // Close the menu visually after navigation
-    // If this Menu component is rendered as a modal, the parent component
-    // needs to manage the state that causes this Menu to unmount (e.g., `setIsOpen(false)`).
-    // `setShowMenu(false)` here only makes the content disappear, `return null` handles unmounting.
+    navigate(path); 
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setShowMenu(false); 
+    
   };
 
-  // If showMenu is false, the component will not render its content, effectively hiding it.
   if (!showMenu) return null;
 
   return (
-    // Fixed overlay covering the entire viewport
+    
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      {/* Main menu content container with Framer Motion animations */}
+    
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
