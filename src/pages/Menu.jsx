@@ -30,7 +30,8 @@ function Menu() {
       >
         {/* Close Button */}
         <button
-          onClick={() => setShowMenu(false)} // This will simply hide the menu.
+
+         onClick={() => { setShowMenu(false); navigate("/"); }}
           className="absolute top-4 right-4 md:top-6 md:right-6 text-3xl md:text-4xl text-red-600 hover:text-red-800 transition-transform transform hover:scale-110 z-10"
           aria-label="Close menu"
         >
