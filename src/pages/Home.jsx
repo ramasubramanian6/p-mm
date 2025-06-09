@@ -14,12 +14,12 @@ import img2 from "../../src/assets/icon/img2.png";
 import iso from "../../src/assets/icon/iso.png";
 import logo1 from "../../src/assets/icon/logo1.png";
 import icon1 from "../../src/assets/New folder/icon2.png";
-import HomeAbout from "../pages/HomeAbout"
+import HomeAbout from "../pages/HomeAbout";
 import { motion } from "framer-motion";
-import WorkProcess from "../pages/WorkProcess"
-import warehouse from "../../src/assets/home/warehouse.jpg"
-import local from "../../src/assets/home/local.jpg"
-import outstation from "../../src/assets/office/2.jpg"
+import WorkProcess from "../pages/WorkProcess";
+import warehouse from "../../src/assets/home/warehouse.jpg";
+import local from "../../src/assets/home/local.jpg";
+import outstation from "../../src/assets/office/2.jpg";
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -363,7 +363,7 @@ function Home() {
           </div>
         </section>
 
-        <HomeAbout/>
+        <HomeAbout />
 
         {/* Certifications and Trust Section */}
         <section className="py-12 bg-white rounded-xl shadow-lg px-4 mt-12">
@@ -432,7 +432,7 @@ function Home() {
             </div>
           </div>
         </section>
-        <WorkProcess/>
+        <WorkProcess />
       </main>
     </div>
   );
