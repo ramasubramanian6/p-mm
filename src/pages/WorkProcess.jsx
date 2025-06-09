@@ -2,10 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // Step images — use your actual paths
-import img1 from "../assets/Workprocess/workprocess.jpg";
-import img2 from "../assets/home/home.png";
-import img4 from "../assets/Workprocess/workprocess.jpg";
-import img3 from "../assets/workprocess/transport.jpg";
+//import img1 from "../assets/Workprocess/workprocess.jpg";
+//import img2 from "../assets/home/home.png";
+//import img4 from "../assets/Workprocess/workprocess.jpg";
+//import img3 from "../assets/workprocess/transport.jpg";
 
 
 const steps = [
@@ -14,27 +14,27 @@ const steps = [
     title: "Assign us Service",
     description:
       "After you are satisfied with our quotation, you book our service",
-    image: img1,
+    image: 'img1',
   },
   {
     number: "02",
     title: "Packing and Loading",
     description:
       "We will pack all your goods and load it in our vehicle safely",
-    image: img2,
+    image: 'img2',
   },
   {
     number: "03",
     title: "Transportation Service",
     description: "Our vehicle will deliver your goods to your destination",
-    image: img3,
+    image: 'img3',
   },
   {
     number: "04",
     title: "Unloading and Unpacking",
     description:
       "We will unload the goods and safely relocate in your destination",
-    image: img4,
+    image: 'img4',
   },
 ];
 
