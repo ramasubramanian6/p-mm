@@ -4,6 +4,11 @@ import Modal from "react-modal";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import {
+  Facebook,
+  Instagram,
+  Youtube,
+} from "lucide-react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setFormData,
@@ -197,11 +202,11 @@ function Form() {
   }, [debouncedSelectedLocation, mapModal.open, mapModal.type, dispatch, previousFormData]);
 
 
-  
+
   // New effect for validating typed cities
   useEffect(() => {
     const validateCity = (city, fieldName) => {
-       window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: "smooth" });
       if (city && city.trim() !== "") {
         const isServed = SUPPORTED_CITIES.some(supportedCity => city.toLowerCase().includes(supportedCity.toLowerCase()));
         if (!isServed) {
@@ -240,8 +245,8 @@ function Form() {
     const toCityServed = SUPPORTED_CITIES.some(city => formData.to.toLowerCase().includes(city.toLowerCase()));
 
     if (!fromCityServed || !toCityServed) {
-        alert("Please ensure both 'Moving From' and 'Moving To' locations are in our service areas.");
-        return;
+      alert("Please ensure both 'Moving From' and 'Moving To' locations are in our service areas.");
+      return;
     }
 
     const msg = `Pickup: ${from}\nDrop: ${to}\nPhone: ${phone}\nTime: ${time}\nService: ${service}\nMessage: ${message}`;
@@ -411,39 +416,30 @@ function Form() {
               )}
             </p>
             <div className="flex items-center justify-center gap-4 mt-4">
-              <img
-                src={
-                  "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/posns175_expires_30_days.png"
-                }
-                className="w-16 h-16 object-contain"
-                alt="ISO Certified"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "https://placehold.co/64x64/cccccc/000000?text=ISO";
-                }}
-              />
-              <img
-                src={
-                  "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/jm00gd40_expires_30_days.png"
-                }
-                className="w-14 h-14 object-contain"
-                alt="Govt Authorized"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "https://placehold.co/56x56/cccccc/000000?text=Govt";
-                }}
-              />
-              <img
-                src={
-                  "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/oGkckgQyEn/1viehcnw_expires_30_days.png"
-                }
-                className="w-16 h-10 object-contain"
-                alt="10+ Years Trust"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "https://placehold.co/64x40/cccccc/000000?text=10+";
-                }}
-              />
+              <a
+                href="https://www.facebook.com/people/Move-My-Stuffs-Packers-Movers/100076636426701/"
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 rounded-full bg-zinc-800 text-white hover:bg-blue-600 transition hover:scale-110"
+              >
+                <Facebook size={30} />
+              </a>
+              <a
+                href="https://www.instagram.com/move_mystuffs/"
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 rounded-full bg-zinc-800 text-white hover:bg-pink-600 transition hover:scale-110"
+              >
+                <Instagram size={30} />
+              </a>
+              <a
+                href="https://www.youtube.com/@movemystuffs"
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 rounded-full bg-zinc-800 text-white hover:bg-red-600 transition hover:scale-110"
+              >
+                <Youtube size={30} />
+              </a>
             </div>
           </div>
         </div>

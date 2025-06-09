@@ -218,7 +218,7 @@ function Home() {
                 onClick={() => setCurrentSlide(index)}
                 className={`w-4 h-4 rounded-full transition-colors duration-300 ${
                   currentSlide === index
-                    ? "bg-violet-500"
+                    ? "bg-red-500"
                     : "bg-neutral-400 opacity-50"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

@@ -8,7 +8,7 @@ import { setFormData } from "../../src/pages/redux/formSlice"; // update path if
 
 // Coordinates object
 const coords = {
-  OurBranch: [20.5937, 78.9629], // India center approx
+  OurBranch: [13.0827, 80.2707], // India center approx
 
   // Add all cities here (you already have the full list from the original code)
   Mumbai: [19.076, 72.8777],
