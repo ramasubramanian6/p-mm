@@ -17,6 +17,9 @@ import icon1 from "../../src/assets/New folder/icon2.png";
 import HomeAbout from "../pages/HomeAbout"
 import { motion } from "framer-motion";
 import WorkProcess from "../pages/WorkProcess"
+import warehouse from "../../src/assets/home/warehouse.jpg"
+import local from "../../src/assets/home/local.jpg"
+import outstation from "../../src/assets/office/2.jpg"
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -92,22 +95,22 @@ function Home() {
       title: "Local Shifting",
       description:
         "Our team arrived on time, packed everything carefully & ensured a smooth & safe move within the city.",
-      image: homeimage,
+      image: local,
       link: "/household",
     },
     {
       title: "Outstation Shifting",
       description:
         "Our team handled belongings with care. Everything was packed and delivered on time without damage.",
-      image: office,
+      image: outstation,
       link: "/office",
     },
     {
       title: "Warehouse & Storage",
       description:
         "Safe and secure short- and long-term storage options for all your belongings.",
-      image: 'warehouse',
-      link: "/workprocess", // You can replace this with a specific path like `/warehouse` if you have it
+      image: warehouse,
+      link: "/warehouse", // You can replace this with a specific path like `/warehouse` if you have it
     },
   ];
 
@@ -347,7 +350,7 @@ function Home() {
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-16 h-16 object-cover mb-4 rounded-full"
+                  className="w-16 h-16 object-contains mb-4 rounded-2xl "
                 />
                 <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
                   {service.title}

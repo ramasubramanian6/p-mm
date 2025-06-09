@@ -145,7 +145,7 @@ function Menu() {
               <li>
                 <p
                   className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
-                  onClick={() => navigateAndScroll("/ourservices")}
+                  onClick={() => navigateAndScroll("/warehouse")}
                 >
                   Warehouse Services
                 </p>

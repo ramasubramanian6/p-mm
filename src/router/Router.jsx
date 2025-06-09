@@ -16,6 +16,7 @@ import VehicleService from "../pages/VehicleService"
 import Becameone from "../pages/Becameone"
 import Beaware from "../pages/Beaware"
 import HomeAbout from "../pages/HomeAbout"
+import WarehouseService from "../pages/WarehouseService";
 
 
 
@@ -40,6 +41,7 @@ function Router() {
       <Route path="/vehicle" element={<VehicleService/>}/>
       <Route path="/becameoneofus" element={<Becameone/>}/>
       <Route path="/beaware" element={<Beaware/>}/>
+      <Route path="/warehouse" element={<WarehouseService/>}/>
     
     </Routes>
   );
