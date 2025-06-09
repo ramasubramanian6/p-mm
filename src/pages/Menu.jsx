@@ -6,32 +6,31 @@ import { motion } from "framer-motion";
 function Menu() {
   const [showMenu, setShowMenu] = useState(true); // Manages the menu's internal visibility/animation
   const navigate = useNavigate();
- 
+
   const navigateAndScroll = (path) => {
-    navigate(path); 
+    navigate(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setShowMenu(false); 
-    
+    setShowMenu(false);
   };
 
   if (!showMenu) return null;
 
   return (
-    
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
         transition={{ duration: 0.3 }}
         className="w-full max-w-6xl h-auto bg-white/80 rounded-3xl border border-white/30 p-6 md:p-10 relative shadow-xl flex flex-col justify-center overflow-auto custom-scrollbar"
-        style={{ maxHeight: '90vh' }}
+        style={{ maxHeight: "90vh" }}
       >
         {/* Close Button */}
         <button
-
-         onClick={() => { setShowMenu(false); navigate("/"); }}
+          onClick={() => {
+            setShowMenu(false);
+            navigate("/");
+          }}
           className="absolute top-4 right-4 md:top-6 md:right-6 text-3xl md:text-4xl text-red-600 hover:text-red-800 transition-transform transform hover:scale-110 z-10"
           aria-label="Close menu"
         >
@@ -71,28 +70,43 @@ function Menu() {
             </h3>
             <ul className="space-y-2 text-xl md:text-2xl font-normal font-['Poppins']">
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/about")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/about")}
+                >
                   About Us
                 </p>
               </li>
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/whychoose")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/branch")}
+                >
+                  Our Branches
+                </p>
+              </li>
+              <li>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/whychoose")}
+                >
                   Why Choose Us
                 </p>
               </li>
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/becameoneofus")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/becameoneofus")}
+                >
                   Become a Partner
                 </p>
               </li>
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/beaware")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/beaware")}
+                >
                   Beware of Frauds
-                </p>
-              </li>
-              <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/workprocess")}>
-                  Work Process
                 </p>
               </li>
             </ul>
@@ -105,22 +119,34 @@ function Menu() {
             </h3>
             <ul className="space-y-2 text-xl md:text-2xl font-normal font-['Poppins']">
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/household")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/household")}
+                >
                   House Shifting
                 </p>
               </li>
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/office")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/office")}
+                >
                   Office Shifting
                 </p>
               </li>
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/vehicle")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/vehicle")}
+                >
                   Vehicle Transportation
                 </p>
               </li>
               <li>
-                <p className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105" onClick={() => navigateAndScroll("/ourservices")}>
+                <p
+                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/ourservices")}
+                >
                   Warehouse Services
                 </p>
               </li>

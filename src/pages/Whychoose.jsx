@@ -1,10 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
-import Whychooseus from '../../src/assets/whychooseus/whychooseus.png'
+import Whychooseus from "../../src/assets/whychooseus/whychooseus.png";
 
 function Whychoose() {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -17,7 +18,7 @@ function Whychoose() {
   const points = [
     "Government Approved & IBA Certified",
     "GST Registered Company",
-    "Happy Customers",
+    "Happy Customers Across India",
     "Trusted & Experienced – 10+ years in the moving industry.",
     "Fast & Secure Delivery – On-time and damage-free shifting.",
     "Affordable & Transparent Pricing – No hidden charges.",
@@ -25,6 +26,7 @@ function Whychoose() {
 
   return (
     <div className="w-full bg-white py-16 px-4 md:px-12 lg:px-20">
+      {/* Title */}
       <motion.h2
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -33,10 +35,10 @@ function Whychoose() {
         Why Choose Us?
       </motion.h2>
 
-      {/* Side-by-side section */}
+      {/* Main Section */}
       <div className="flex flex-col md:flex-row items-center gap-10 mb-16">
-        {/* Text content */}
-        <div className="flex-1 space-y-8 text-lg md:text-xl font-fira_sans">
+        {/* Left Text */}
+        <div className="flex-1 space-y-6 text-lg md:text-xl font-fira_sans">
           <motion.div
             custom={0}
             initial="hidden"
@@ -44,9 +46,8 @@ function Whychoose() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="font-bold">Experience You Can Trust:</span> With a
-            decade of experience in the moving industry, we understand the
-            unique challenges that come with every move.
+            <span className="font-bold">Trusted Experts With 10+ Years of Experience:</span>{" "}
+            Our trained professionals understand the logistical challenges of moving, offering meticulous planning, packing, and execution.
           </motion.div>
 
           <motion.div
@@ -56,11 +57,8 @@ function Whychoose() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="font-bold">Certified and Approved:</span> We are a
-            GST-registered company and hold certifications including{" "}
-            <span className="font-semibold">IBA Approved</span>,{" "}
-            <span className="font-semibold">Government Approved</span> and{" "}
-            <span className="font-semibold">GST Approved</span>.
+            <span className="font-bold">Certified & Transparent:</span>{" "}
+            We’re GST‑registered, IBA‑approved, and Government certified—delivering clear, no hidden cost pricing that builds trust.
           </motion.div>
 
           <motion.div
@@ -70,15 +68,36 @@ function Whychoose() {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <span className="font-bold">Comprehensive Services:</span> From
-            packing and loading to transportation and unpacking, we offer a full
-            range of services tailored to meet your needs.
+            <span className="font-bold">Comprehensive Moving Solutions:</span>{" "}
+            From secure packing, safe loading/unloading, vehicle transportation to storage, we manage every step of your relocation.
+          </motion.div>
+
+          <motion.div
+            custom={3}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <span className="font-bold">Customer-First Approach:</span>{" "}
+            We tailor each move to your needs—residential or commercial—ensuring minimal disruption and maximum satisfaction.
+          </motion.div>
+
+          <motion.div
+            custom={4}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <span className="font-bold">Premium Packing Quality:</span>{" "}
+            We use high-grade materials and expert techniques—bubble wrap, corrugated boxes, stretch films—to protect your items safely.
           </motion.div>
         </div>
 
-        {/* Image */}
+        {/* Right Image */}
         <motion.img
-          custom={3}
+          custom={5}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -89,7 +108,7 @@ function Whychoose() {
         />
       </div>
 
-      {/* Highlight Points Section */}
+      {/* Highlighted Points */}
       <div className="bg-red-700 text-white px-6 py-10 rounded-xl shadow-md mb-12">
         <div className="grid gap-6 md:grid-cols-2">
           {points.map((point, i) => (
@@ -108,7 +127,24 @@ function Whychoose() {
         </div>
       </div>
 
-      {/* Call to Action */}
+      {/* Process Section */}
+      <div className="mb-16 space-y-4 font-fira_sans">
+        <h3 className="text-2xl font-bold text-gray-800 mb-4">How It Works – Simple & Stress-Free</h3>
+        <motion.ol
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="list-decimal list-inside space-y-3 text-lg"
+        >
+          <li>Get a free, no-obligation quote with detailed cost breakdown.</li>
+          <li>Customize your move plan and confirm the moving date.</li>
+          <li>We handle packing, loading, transportation, unloading, and unpacking.</li>
+          <li>Enjoy a smooth and worry-free shifting experience with post-move support.</li>
+        </motion.ol>
+      </div>
+
+      {/* CTA Button */}
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}

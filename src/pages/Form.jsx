@@ -196,9 +196,12 @@ function Form() {
     fetchCity();
   }, [debouncedSelectedLocation, mapModal.open, mapModal.type, dispatch, previousFormData]);
 
+
+  
   // New effect for validating typed cities
   useEffect(() => {
     const validateCity = (city, fieldName) => {
+       window.scrollTo({ top: 0, behavior: "smooth" });
       if (city && city.trim() !== "") {
         const isServed = SUPPORTED_CITIES.some(supportedCity => city.toLowerCase().includes(supportedCity.toLowerCase()));
         if (!isServed) {

@@ -14,6 +14,7 @@ import img2 from "../../src/assets/icon/img2.png";
 import iso from "../../src/assets/icon/iso.png";
 import logo1 from "../../src/assets/icon/logo1.png";
 import icon1 from "../../src/assets/New folder/icon2.png";
+import HomeAbout from "../pages/HomeAbout"
 import { motion } from "framer-motion";
 
 function Home() {
@@ -52,6 +53,60 @@ function Home() {
       subtitle: "10+ Branches Across India",
       description:
         "From Chennai to Delhi, we move your stuff safely anywhere in India.",
+    },
+  ];
+
+  const cardVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, type: "spring", stiffness: 100 },
+    }),
+  };
+
+  const services = [
+    {
+      title: "Household Shifting",
+      description:
+        "We pack and move your household items safely, ensuring zero damage and timely delivery.",
+      image: homeimage,
+      link: "/household",
+    },
+    {
+      title: "Office Goods Shifting",
+      description:
+        "We ensure smooth relocation of office equipment, documents, and furniture with minimal disruption.",
+      image: office,
+      link: "/office",
+    },
+    {
+      title: "Car & Bike Relocation",
+      description:
+        "We transport your vehicle safely using specialized carriers and ensure timely delivery.",
+      image: vehicle,
+      link: "/vehicle",
+    },
+    {
+      title: "Local Shifting",
+      description:
+        "Our team arrived on time, packed everything carefully & ensured a smooth & safe move within the city.",
+      image: homeimage,
+      link: "/household",
+    },
+    {
+      title: "Outstation Shifting",
+      description:
+        "Our team handled belongings with care. Everything was packed and delivered on time without damage.",
+      image: office,
+      link: "/office",
+    },
+    {
+      title: "Warehouse & Storage",
+      description:
+        "Safe and secure short- and long-term storage options for all your belongings.",
+      image: 'warehouse',
+      link: "/workprocess", // You can replace this with a specific path like `/warehouse` if you have it
     },
   ];
 
@@ -143,7 +198,7 @@ function Home() {
                     {slideContent[index].description}
                   </p>
                   <button
-                    onClick={() => navigate("/get-free-quote")}
+                    onClick={() => navigate("/form")}
                     className="mt-6 px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-lg rounded-full shadow-lg"
                   >
                     Get Free Quote
@@ -277,55 +332,34 @@ function Home() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Service Card 1: Local Shifting */}
-            <div className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center">
-              <img
-                src={homeimage}
-                alt="Local Shifting"
-                className="w-16 h-16 object-cover mb-4 rounded-full"
-              />
-              <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
-                Local Shifting
-              </h3>
-              <p className="text-zinc-800 text-base md:text-xl font-normal font-['Fira_Sans']">
-                Our team arrived on time packed everything carefully & ensured a
-                smooth & safe move within the city.
-              </p>
-            </div>
-            {/* Service Card 2: OutStation Shifting */}
-            <div className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center">
-              <img
-                src={office}
-                alt="OutStation Shifting"
-                className="w-16 h-16 object-cover mb-4 rounded-full"
-              />
-              <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
-                OutStation Shifting
-              </h3>
-              <p className="text-zinc-800 text-base md:text-xl font-normal font-['Fira_Sans']">
-                Our team was professional & handled our belongings with great
-                care. Everything was packed and delivered on time without any
-                damage.
-              </p>
-            </div>
-            {/* Service Card 3: Transport Service */}
-            <div className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center">
-              <img
-                src={vehicle}
-                alt="Transport Service"
-                className="w-16 h-16 object-cover mb-4 rounded-full"
-              />
-              <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
-                Transport Service
-              </h3>
-              <p className="text-zinc-800 text-base md:text-xl font-normal font-['Fira_Sans']">
-                Our expert team ensures your vehicles are handled with care and
-                delivered without any scratch.
-              </p>
-            </div>
+            {services.map((service, i) => (
+              <motion.div
+                key={service.title}
+                className="bg-white/75 rounded-xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer hover:scale-105 transition-transform duration-300"
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={cardVariant}
+                onClick={() => navigate(service.link)}
+              >
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-16 h-16 object-cover mb-4 rounded-full"
+                />
+                <h3 className="text-zinc-800 text-2xl md:text-3xl font-normal font-['Fira_Sans'] mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-zinc-800 text-base md:text-xl font-normal font-['Fira_Sans']">
+                  {service.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </section>
-        <Branch />
+
+        <HomeAbout/>
 
         {/* Certifications and Trust Section */}
         <section className="py-12 bg-white rounded-xl shadow-lg px-4 mt-12">

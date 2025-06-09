@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import v1 from "../assets/vehicle/v1.jpg";
@@ -60,8 +60,11 @@ const galleryContainerVariants = {
 };
 
 const VehicleService = () => {
-  const vehicles = [v6, v2, v3, v4,v5, v1];
+  const vehicles = [v6, v2, v3, v4, v5, v1];
   const companyName = "Your Trusted Transporters"; // Replace with your actual name
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <motion.div
@@ -79,26 +82,33 @@ const VehicleService = () => {
           className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto"
           variants={textVariants}
         >
-          Safe, secure, and timely transport for your car, bike, or other vehicles.
+          Safe, secure, and timely transport for your car, bike, or other
+          vehicles.
         </motion.p>
       </motion.header>
 
       {/* Description */}
       <motion.section className="mb-12" variants={textVariants}>
         <p className="text-lg text-gray-800 leading-relaxed">
-          At <span className="font-semibold text-teal-700">{companyName}</span>, we
-          offer expert vehicle transport services. Whether it’s a bike, car, or
-          specialty vehicle, our team ensures damage-free, reliable, and timely
-          relocation.
+          At <span className="font-semibold text-teal-700">{companyName}</span>,
+          we offer expert vehicle transport services. Whether it’s a bike, car,
+          or specialty vehicle, our team ensures damage-free, reliable, and
+          timely relocation.
         </p>
         <motion.ul
           className="list-disc list-inside mt-6 text-gray-700 space-y-2"
           variants={containerVariants}
         >
-          <motion.li variants={listItemVariants}>Secure loading & handling</motion.li>
-          <motion.li variants={listItemVariants}>Open/enclosed transport options</motion.li>
+          <motion.li variants={listItemVariants}>
+            Secure loading & handling
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Open/enclosed transport options
+          </motion.li>
           <motion.li variants={listItemVariants}>Real-time tracking</motion.li>
-          <motion.li variants={listItemVariants}>Comprehensive inspection</motion.li>
+          <motion.li variants={listItemVariants}>
+            Comprehensive inspection
+          </motion.li>
           <motion.li variants={listItemVariants}>Flexible schedules</motion.li>
           <motion.li variants={listItemVariants}>Transparent pricing</motion.li>
         </motion.ul>
@@ -128,7 +138,11 @@ const VehicleService = () => {
               className="aspect-video rounded-lg overflow-hidden shadow-xl border border-gray-200"
               variants={galleryItemVariants}
             >
-              <img src={img} alt={`vehicle-${index + 1}`} className="w-full h-full object-cover" />
+              <img
+                src={img}
+                alt={`vehicle-${index + 1}`}
+                className="w-full h-full object-cover"
+              />
             </motion.div>
           ))}
         </motion.div>

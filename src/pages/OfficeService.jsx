@@ -1,12 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import o1 from '../assets/office/1.jpg';
-import o2 from '../assets/office/2.jpg';
-import o3 from '../assets/office/3.jpg';
-import o4 from '../assets/office/4.jpg';
-import o6 from '../assets/office/6.jpg';
-import o5 from '../assets/office/5.jpg';
+import o1 from "../assets/office/1.jpg";
+import o2 from "../assets/office/2.jpg";
+import o3 from "../assets/office/3.jpg";
+import o4 from "../assets/office/4.jpg";
+import o6 from "../assets/office/6.jpg";
+import o5 from "../assets/office/5.jpg";
 
 // Animation variants
 const sectionVariants = {
@@ -26,7 +26,7 @@ const containerVariants = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: 'easeOut',
+      ease: "easeOut",
       delayChildren: 0.4,
       staggerChildren: 0.15,
     },
@@ -40,7 +40,7 @@ const headingVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -52,7 +52,7 @@ const textVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: 'easeOut',
+      ease: "easeOut",
       delay: 0.2,
     },
   },
@@ -65,7 +65,7 @@ const listItemVariants = {
     x: 0,
     transition: {
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -77,7 +77,7 @@ const galleryItemVariants = {
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
 };
@@ -87,8 +87,12 @@ const galleryContainerVariants = {
 };
 
 const OfficeService = () => {
-  const off = [o1,o2,o3, o4, o5, o6];
-  const companyName = 'Your Corporate Movers';
+  const off = [o1, o2, o3, o4, o5, o6];
+  const companyName = "Your Corporate Movers";
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <motion.div
@@ -97,35 +101,66 @@ const OfficeService = () => {
       initial="initial"
       animate="animate"
     >
-      <motion.header className="text-center mb-10 md:mb-14" variants={headingVariants}>
+      <motion.header
+        className="text-center mb-10 md:mb-14"
+        variants={headingVariants}
+      >
         <h1 className="text-4xl md:text-5xl font-bold text-blue-800 tracking-tight mb-4">
           Expert Commercial & Office Relocation
         </h1>
-        <motion.p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto" variants={textVariants}>
-          Minimize disruption and maximize efficiency with our specialized office moving services. We plan and execute every detail for a smooth transition.
+        <motion.p
+          className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto"
+          variants={textVariants}
+        >
+          Minimize disruption and maximize efficiency with our specialized
+          office moving services. We plan and execute every detail for a smooth
+          transition.
         </motion.p>
       </motion.header>
 
       <motion.section className="mb-12 md:mb-16" variants={textVariants}>
         <p className="text-lg text-gray-800 leading-relaxed">
-          Relocating your office is a critical process that demands meticulous planning and execution to ensure business continuity. At <span className="font-semibold text-blue-700">{companyName}</span>, we specialize in providing comprehensive office relocation services designed to minimize downtime and stress for your employees.
+          Relocating your office is a critical process that demands meticulous
+          planning and execution to ensure business continuity. At{" "}
+          <span className="font-semibold text-blue-700">{companyName}</span>, we
+          specialize in providing comprehensive office relocation services
+          designed to minimize downtime and stress for your employees.
         </p>
-        <motion.ul className="list-disc list-inside mt-6 text-gray-700 leading-relaxed space-y-2" variants={containerVariants}>
-          <motion.li variants={listItemVariants}>Detailed pre-move planning and consultation.</motion.li>
-          <motion.li variants={listItemVariants}>Specialized packing for electronics and fragile office equipment.</motion.li>
-          <motion.li variants={listItemVariants}>Efficient labeling and inventory management.</motion.li>
-          <motion.li variants={listItemVariants}>Safe transportation with a modern, secure fleet.</motion.li>
-          <motion.li variants={listItemVariants}>Systematic unpacking and setup at your new location.</motion.li>
-          <motion.li variants={listItemVariants}>Coordination with building management teams.</motion.li>
+        <motion.ul
+          className="list-disc list-inside mt-6 text-gray-700 leading-relaxed space-y-2"
+          variants={containerVariants}
+        >
+          <motion.li variants={listItemVariants}>
+            Detailed pre-move planning and consultation.
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Specialized packing for electronics and fragile office equipment.
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Efficient labeling and inventory management.
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Safe transportation with a modern, secure fleet.
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Systematic unpacking and setup at your new location.
+          </motion.li>
+          <motion.li variants={listItemVariants}>
+            Coordination with building management teams.
+          </motion.li>
         </motion.ul>
       </motion.section>
 
       <section className="mb-12 md:mb-16">
-        <motion.h2 className="text-3xl font-semibold mb-6 text-gray-900" variants={headingVariants}>
+        <motion.h2
+          className="text-3xl font-semibold mb-6 text-gray-900"
+          variants={headingVariants}
+        >
           Our Work in Action
         </motion.h2>
         <motion.p className="text-gray-600 mb-8 italic" variants={textVariants}>
-          (A selection of images showcasing our professional office moving services will be available soon.)
+          (A selection of images showcasing our professional office moving
+          services will be available soon.)
         </motion.p>
 
         <motion.div
@@ -140,66 +175,177 @@ const OfficeService = () => {
               className="bg-gray-100 aspect-video rounded-lg shadow-xl overflow-hidden relative border border-gray-200 flex items-center justify-center text-gray-400 text-sm"
               variants={galleryItemVariants}
             >
-              <img src={off[index]} alt={`Office ${index + 1}`} className="object-cover w-full h-full" />
+              <img
+                src={off[index]}
+                alt={`Office ${index + 1}`}
+                className="object-cover w-full h-full"
+              />
             </motion.div>
           ))}
         </motion.div>
       </section>
 
       <section className="mt-12 md:mt-16">
-        <motion.h3 className="text-3xl font-semibold text-blue-800 mb-6" variants={headingVariants}>
+        <motion.h3
+          className="text-3xl font-semibold text-blue-800 mb-6"
+          variants={headingVariants}
+        >
           Why Partner with <span className="font-bold">{companyName}</span>?
         </motion.h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <motion.ul className="list-none space-y-5" variants={containerVariants}>
+          <motion.ul
+            className="list-none space-y-5"
+            variants={containerVariants}
+          >
             <motion.li className="flex items-start" variants={listItemVariants}>
-              <svg className="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="w-6 h-6 text-green-500 mr-3 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
-              <span><strong className="font-semibold text-gray-900">Proven Experience:</strong> Decades of successful commercial relocations.</span>
+              <span>
+                <strong className="font-semibold text-gray-900">
+                  Proven Experience:
+                </strong>{" "}
+                Decades of successful commercial relocations.
+              </span>
             </motion.li>
             <motion.li className="flex items-start" variants={listItemVariants}>
-              <svg className="w-6 h-6 text-orange-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              <svg
+                className="w-6 h-6 text-orange-500 mr-3 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
               </svg>
-              <span><strong className="font-semibold text-gray-900">Strategic Planning:</strong> Tailored plans to minimize business interruption.</span>
+              <span>
+                <strong className="font-semibold text-gray-900">
+                  Strategic Planning:
+                </strong>{" "}
+                Tailored plans to minimize business interruption.
+              </span>
             </motion.li>
             <motion.li className="flex items-start" variants={listItemVariants}>
-              <svg className="w-6 h-6 text-indigo-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              <svg
+                className="w-6 h-6 text-indigo-500 mr-3 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
               </svg>
-              <span><strong className="font-semibold text-gray-900">Secure Handling:</strong> Utmost care for your valuable assets and data.</span>
+              <span>
+                <strong className="font-semibold text-gray-900">
+                  Secure Handling:
+                </strong>{" "}
+                Utmost care for your valuable assets and data.
+              </span>
             </motion.li>
           </motion.ul>
-          <motion.ul className="list-none space-y-5" variants={containerVariants}>
+          <motion.ul
+            className="list-none space-y-5"
+            variants={containerVariants}
+          >
             <motion.li className="flex items-start" variants={listItemVariants}>
-              <svg className="w-6 h-6 text-red-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              <svg
+                className="w-6 h-6 text-red-500 mr-3 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                />
               </svg>
-              <span><strong className="font-semibold text-gray-900">Efficiency & Speed:</strong> Executing your move quickly and effectively.</span>
+              <span>
+                <strong className="font-semibold text-gray-900">
+                  Efficiency & Speed:
+                </strong>{" "}
+                Executing your move quickly and effectively.
+              </span>
             </motion.li>
             <motion.li className="flex items-start" variants={listItemVariants}>
-              <svg className="w-6 h-6 text-teal-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <svg
+                className="w-6 h-6 text-teal-500 mr-3 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
               </svg>
-              <span><strong className="font-semibold text-gray-900">End-to-End Service:</strong> From packing and IT disconnect to setup and reconnect.</span>
+              <span>
+                <strong className="font-semibold text-gray-900">
+                  End-to-End Service:
+                </strong>{" "}
+                From packing and IT disconnect to setup and reconnect.
+              </span>
             </motion.li>
             <motion.li className="flex items-start" variants={listItemVariants}>
-              <svg className="w-6 h-6 text-purple-500 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 0A9.95 9.95 0 0112 5.013C7.452 5.013 3.646 8.123 2.457 12c1.189 3.877 4.995 6.987 9.543 6.987 1.962 0 3.83-.604 5.395-1.65l3.536 3.536" />
+              <svg
+                className="w-6 h-6 text-purple-500 mr-3 flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M18.364 5.636l-3.536 3.536m0 0A9.95 9.95 0 0112 5.013C7.452 5.013 3.646 8.123 2.457 12c1.189 3.877 4.995 6.987 9.543 6.987 1.962 0 3.83-.604 5.395-1.65l3.536 3.536"
+                />
               </svg>
-              <span><strong className="font-semibold text-gray-900">Dedicated Support:</strong> Responsive and helpful service throughout your move.</span>
+              <span>
+                <strong className="font-semibold text-gray-900">
+                  Dedicated Support:
+                </strong>{" "}
+                Responsive and helpful service throughout your move.
+              </span>
             </motion.li>
           </motion.ul>
         </div>
       </section>
 
-      <motion.section className="mt-16 text-center bg-blue-50 py-10 px-6 rounded-lg shadow-inner border border-blue-100" variants={textVariants}>
+      <motion.section
+        className="mt-16 text-center bg-blue-50 py-10 px-6 rounded-lg shadow-inner border border-blue-100"
+        variants={textVariants}
+      >
         <h2 className="text-2xl md:text-3xl font-semibold text-blue-800 mb-4">
           Plan Your Office Move Today
         </h2>
-        <motion.p className="text-lg text-gray-700 leading-relaxed mb-8" variants={textVariants}>
-          Ready for a seamless and efficient office relocation? Contact <span className="font-semibold text-blue-700">{companyName}</span> to discuss your specific requirements and get a customized quote.
+        <motion.p
+          className="text-lg text-gray-700 leading-relaxed mb-8"
+          variants={textVariants}
+        >
+          Ready for a seamless and efficient office relocation? Contact{" "}
+          <span className="font-semibold text-blue-700">{companyName}</span> to
+          discuss your specific requirements and get a customized quote.
         </motion.p>
         <motion.div variants={listItemVariants}>
           <Link

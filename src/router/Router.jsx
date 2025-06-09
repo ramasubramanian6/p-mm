@@ -15,6 +15,7 @@ import OfficeServices from "../pages/OfficeService"
 import VehicleService from "../pages/VehicleService"
 import Becameone from "../pages/Becameone"
 import Beaware from "../pages/Beaware"
+import HomeAbout from "../pages/HomeAbout"
 
 
 
@@ -26,6 +27,7 @@ function Router() {
       <Route path="/" element={<Home />} />
       <Route path="/contactus" element={<Contactus />} />
       <Route path="/form" element={<Form />} />
+      <Route path="/mainbranches" element={<HomeAbout/>}/>
       <Route path="/whychoose" element={<Whychoose />} />
       <Route path="/about" element={<AboutUs />} />
       <Route path="/menu" element={<Menu />} />
