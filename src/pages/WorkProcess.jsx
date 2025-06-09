@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // Step images — use your actual paths
-import img1 from "../assets/workprocess/booking.jpg";
+import img1 from "../assets/Workprocess/workprocess.jpg";
 import img2 from "../assets/home/home.png";
 import img4 from "../assets/workprocess/workprocess.jpg";
 import img3 from "../assets/workprocess/transport.jpg";
