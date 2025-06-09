@@ -16,6 +16,7 @@ import logo1 from "../../src/assets/icon/logo1.png";
 import icon1 from "../../src/assets/New folder/icon2.png";
 import HomeAbout from "../pages/HomeAbout"
 import { motion } from "framer-motion";
+import WorkProcess from "../pages/WorkProcess"
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -428,6 +429,7 @@ function Home() {
             </div>
           </div>
         </section>
+        <WorkProcess/>
       </main>
     </div>
   );

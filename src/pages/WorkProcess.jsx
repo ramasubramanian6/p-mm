@@ -1,63 +1,98 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+// Step images — use your actual paths
+import img1 from "../assets/workprocess/booking.jpg";
+import img2 from "../assets/home/home.png";
+import img4 from "../assets/workprocess/workprocess.jpg";
+import img3 from "../assets/workprocess/transport.jpg";
+
+
 const steps = [
   {
     number: "01",
-    title: "Contact Office",
-    description: "",
+    title: "Assign us Service",
+    description:
+      "After you are satisfied with our quotation, you book our service",
+    image: img1,
   },
   {
     number: "02",
-    title: "Book Our Services",
-    description: "",
+    title: "Packing and Loading",
+    description:
+      "We will pack all your goods and load it in our vehicle safely",
+    image: img2,
   },
   {
     number: "03",
-    title: "Packing Day",
-    description: "",
+    title: "Transportation Service",
+    description: "Our vehicle will deliver your goods to your destination",
+    image: img3,
   },
   {
     number: "04",
-    title: "Safe Delivery",
-    description: "",
+    title: "Unloading and Unpacking",
+    description:
+      "We will unload the goods and safely relocate in your destination",
+    image: img4,
   },
 ];
 
-function WorkProcess() {
+const WorkProcess = () => {
   return (
-    <div className="bg-white py-16 px-6 sm:px-12 lg:px-24 max-w-screen-xl mx-auto">
-      {/* Title */}
-      <h2 className="text-center text-4xl sm:text-5xl font-bold font-mono underline decoration-red-700 decoration-4 mb-12">
-        <span className="text-red-700">Our </span>
-        <span className="text-zinc-800">Work Process</span>
-      </h2>
+    <section className="bg-white py-16 px-4 mt-10 sm:px-10 md:px-20 shadow-2xl">
+      {/* Header */}
+      <div className="text-center mb-12">
+        <h4 className="text-sm text-yellow-500 font-bold tracking-wide uppercase mb-2">
+          How We Work
+        </h4>
+        <h2 className="text-3xl md:text-5xl font-bold">
+          Check Out Our <span className="text-red-600">Shifting Process</span>
+        </h2>
+        <div className="w-16 h-1 bg-red-600 mx-auto mt-4 rounded-full" />
+      </div>
 
-      {/* Steps container */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {steps.map(({ number, title }, idx) => (
+      {/* Steps Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
+        {steps.map((step, index) => (
           <motion.div
-            key={number}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.2, duration: 0.6, ease: "easeOut" }}
-            className="bg-white shadow-lg border-l-8 border-b-8 border-stone-300 rounded-md p-6 relative"
+            key={step.number}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.6, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative flex flex-col items-center text-center group"
           >
-            {/* Step number badge */}
-            <div className="absolute -top-6 left-6 bg-red-700 rounded shadow-lg w-12 h-12 flex items-center justify-center text-white font-mulish font-semibold text-xl">
-              {number}
+            {/* Number badge - OUTSIDE left */}
+            <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-10">
+              <div className="w-12 h-12 bg-red-600 text-white font-bold rounded-full flex items-center justify-center shadow-md border-4 border-white text-lg">
+                {step.number}
+              </div>
             </div>
 
-            {/* Icon bar (green line block) */}
-            <div className="w-8 h-8 bg-green-950 mb-4 rounded"></div>
+            {/* Circle Image */}
+            <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-xl group-hover:scale-105 transition">
+              <img
+                src={step.image}
+                alt={step.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
             {/* Title */}
-            <h3 className="text-zinc-800 font-mulish text-xl font-semibold">{title}</h3>
+            <h3 className="text-xl md:text-2xl font-semibold mt-6 text-zinc-800">
+              {step.title}
+            </h3>
+
+            {/* Description */}
+            <p className="mt-2 text-base md:text-lg text-gray-600 px-4">
+              {step.description}
+            </p>
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default WorkProcess;
