@@ -43,7 +43,7 @@ const WorkProcess = () => {
     <section className="bg-white py-16 px-4 mt-10 sm:px-10 md:px-20 shadow-2xl">
       {/* Header */}
       <div className="text-center mb-12">
-        <h4 className="text-sm text-yellow-500 font-bold tracking-wide uppercase mb-2">
+        <h4 className="text-5xl text-yellow-500 font-bold tracking-wide uppercase mb-2">
           How We Work
         </h4>
         <h2 className="text-3xl md:text-5xl font-bold">

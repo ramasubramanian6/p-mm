@@ -42,6 +42,7 @@ function Router() {
       <Route path="/becameoneofus" element={<Becameone/>}/>
       <Route path="/beaware" element={<Beaware/>}/>
       <Route path="/warehouse" element={<WarehouseService/>}/>
+      <Route path="*" element={<Home />} />
     
     </Routes>
   );

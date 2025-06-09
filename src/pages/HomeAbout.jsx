@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setFormData } from "./redux/formSlice";
-import logo from "../assets/New folder/icon.png";
+import logo from "../assets/New folder/i.png";
 
 // Branch Images
 import chennai from "../assets/chennai.png";
@@ -77,8 +77,8 @@ const HomeAbout = () => {
             />
 
             {/* Logo at bottom-right */}
-            <div className="absolute bottom-10 right-3 bg-white p-1.5 rounded-full shadow">
-              <img src={logo} alt="Logo" className="w-10 h-10 object-contain" />
+            <div className="absolute bottom-10 right-3 bg-white p-1.5  rounded-full shadow">
+              <img src={logo} alt="Logo" className="w-14 h-14  object-cover" />
             </div>
 
             <div className="p-4 text-center text-lg font-semibold text-zinc-700">
