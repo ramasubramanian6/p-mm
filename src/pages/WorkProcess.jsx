@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // Step images — use your actual paths
-import img1 from "../assets/Workprocess/workprocess.jpg";
+import img1 from "../assets/Workprocess/1.jpg";
 import img2 from "../assets/home/home.png";
 import img4 from "../assets/Workprocess/workprocess.jpg";
 import img3 from "../assets/Workprocess/transport.jpg";
@@ -14,7 +14,7 @@ const steps = [
     title: "Assign us Service",
     description:
       "After you are satisfied with our quotation, you book our service",
-    image: 'img1',
+    image: img1,
   },
   {
     number: "02",
