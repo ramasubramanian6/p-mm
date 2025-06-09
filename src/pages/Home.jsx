@@ -431,8 +431,10 @@ function Home() {
               </p>
             </div>
           </div>
+         
         </section>
-        <WorkProcess />
+         <WorkProcess />
+       
       </main>
     </div>
   );

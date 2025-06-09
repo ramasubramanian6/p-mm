@@ -1,10 +1,26 @@
-import React, { useState, useEffect } from "react"; // useEffect is no longer needed for navigation here
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTimes, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import { motion } from "framer-motion";
+import {
+  Home,
+  PhoneCall,
+  ClipboardList,
+  Cog,
+  Building,
+  MapPin,
+  Info,
+  UserPlus,
+  ShieldAlert,
+  Truck,
+  Warehouse,
+  LayoutGrid,
+  Facebook,
+  Instagram,
+  Youtube,
+} from "lucide-react";
 
 function Menu() {
-  const [showMenu, setShowMenu] = useState(true); // Manages the menu's internal visibility/animation
+  const [showMenu, setShowMenu] = useState(true);
   const navigate = useNavigate();
 
   const navigateAndScroll = (path) => {
@@ -31,10 +47,9 @@ function Menu() {
             setShowMenu(false);
             navigate("/");
           }}
-          className="absolute top-4 right-4 md:top-6 md:right-6 text-3xl md:text-4xl text-red-600 hover:text-red-800 transition-transform transform hover:scale-110 z-10"
-          aria-label="Close menu"
+          className="absolute top-4 right-4 md:top-6 md:right-6 text-3xl text-red-600 hover:text-red-800 transition-transform transform hover:scale-110 z-10"
         >
-          <FaTimes />
+          ×
         </button>
 
         {/* Logo & Title */}
@@ -56,86 +71,41 @@ function Menu() {
               Quick Access
             </h3>
             <ul className="space-y-3 text-lg md:text-xl font-medium">
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/")}
-                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
-                >
-                  🏠 Home
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/")}>
+                <Home size={20} /> Home
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/contactus")}
-                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
-                >
-                  📞 Contact Us
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/contactus")}>
+                <PhoneCall size={20} /> Contact Us
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/form")}
-                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
-                >
-                  📋 Free Quote
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/form")}>
+                <ClipboardList size={20} /> Free Quote
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/workprocess")}
-                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
-                >
-                  ⚙️ Work Process
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/workprocess")}>
+                <Cog size={20} /> Work Process
               </li>
             </ul>
           </div>
 
-          {/* Company Info */}
+          {/* About Company */}
           <div>
             <h3 className="text-xl md:text-2xl font-bold text-zinc-800 mb-4 underline underline-offset-4">
               About Company
             </h3>
             <ul className="space-y-3 text-lg md:text-xl font-medium">
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/about")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🏢 About Us
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/about")}>
+                <Info size={20} /> About Us
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/branch")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  📍 Branches
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/branch")}>
+                <MapPin size={20} /> Branches
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/whychoose")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🔍 Why Choose Us
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/whychoose")}>
+                <ShieldAlert size={20} /> Why Choose Us
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/becameoneofus")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🤝 Become a Partner
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/becameoneofus")}>
+                <UserPlus size={20} /> Become a Partner
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/beaware")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🚫 Beware of Frauds
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/beaware")}>
+                <ShieldAlert size={20} /> Beware of Frauds
               </li>
             </ul>
           </div>
@@ -146,52 +116,27 @@ function Menu() {
               Our Services
             </h3>
             <ul className="space-y-3 text-lg md:text-xl font-medium">
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/household")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🏠 House Shifting
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/household")}>
+                <Home size={20} /> House Shifting
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/office")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🏢 Office Shifting
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/office")}>
+                <Building size={20} /> Office Shifting
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/vehicle")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🚗 Vehicle Transport
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/vehicle")}>
+                <Truck size={20} /> Vehicle Transport
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/warehouse")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  📦 Warehouse Storage
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/warehouse")}>
+                <Warehouse size={20} /> Warehouse Storage
               </li>
-              <li>
-                <p
-                  onClick={() => navigateAndScroll("/ourservices")}
-                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
-                >
-                  🛠️ All Services
-                </p>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/ourservices")}>
+                <LayoutGrid size={20} /> All Services
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Footer: Socials & CTA */}
-        <div className="flex flex-col md:flex-row justify-between items-center mt-6 gap-6">
+        {/* Footer */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-8">
           {/* Socials */}
           <div className="text-center md:text-left">
             <h4 className="text-lg font-semibold mb-2">Follow Us</h4>
@@ -202,7 +147,7 @@ function Menu() {
                 rel="noreferrer"
                 className="p-2 rounded-full bg-zinc-800 text-white hover:bg-blue-600 transition hover:scale-110"
               >
-                <FaFacebookF />
+                <Facebook size={20} />
               </a>
               <a
                 href="https://www.instagram.com/move_mystuffs/"
@@ -210,7 +155,7 @@ function Menu() {
                 rel="noreferrer"
                 className="p-2 rounded-full bg-zinc-800 text-white hover:bg-pink-600 transition hover:scale-110"
               >
-                <FaInstagram />
+                <Instagram size={20} />
               </a>
               <a
                 href="https://www.youtube.com/@movemystuffs"
@@ -218,18 +163,20 @@ function Menu() {
                 rel="noreferrer"
                 className="p-2 rounded-full bg-zinc-800 text-white hover:bg-red-600 transition hover:scale-110"
               >
-                <FaYoutube />
+                <Youtube size={20} />
               </a>
             </div>
           </div>
 
           {/* CTA */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => navigateAndScroll("/form")}
-            className="bg-red-700 text-white text-lg md:text-xl px-6 py-3 rounded-full hover:bg-red-800 transition hover:scale-105"
+            className="bg-red-700 text-white text-lg md:text-xl px-6 py-3 rounded-full hover:bg-red-800 transition"
           >
             📩 Request a Free Quote
-          </button>
+          </motion.button>
         </div>
       </motion.div>
     </div>
