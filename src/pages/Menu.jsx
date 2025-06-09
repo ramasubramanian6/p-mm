@@ -18,12 +18,12 @@ function Menu() {
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
+        exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.3 }}
-        className="w-full max-w-6xl h-auto bg-white/80 rounded-3xl border border-white/30 p-6 md:p-10 relative shadow-xl flex flex-col justify-center overflow-auto custom-scrollbar"
-        style={{ maxHeight: "90vh" }}
+        className="w-full max-w-[1400px] h-auto bg-white/90 backdrop-blur-md rounded-3xl border border-gray-200 p-6 md:p-12 relative shadow-2xl overflow-auto"
+        style={{ maxHeight: "92vh" }}
       >
         {/* Close Button */}
         <button
@@ -37,164 +37,198 @@ function Menu() {
           <FaTimes />
         </button>
 
-        {/* Logo */}
-        <div className="text-center mb-8 md:mb-10 mt-4">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-['Poppins']">
+        {/* Logo & Title */}
+        <div className="text-center mb-10 mt-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-['Poppins'] tracking-tight leading-tight">
             <span className="text-red-700 underline">Move</span>{" "}
             <span className="text-zinc-800 underline">My Stuffs</span>
           </h1>
+          <p className="mt-2 text-sm text-gray-600 tracking-wide">
+            Your Trusted Packers & Movers in India
+          </p>
         </div>
 
-        {/* Navigation Sections */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 text-black text-center lg:text-left mb-10 flex-grow">
-          {/* Home & Contact Us */}
-          <div className="space-y-3 md:space-y-4">
-            <p
-              className="text-3xl md:text-4xl font-semibold font-['Poppins'] hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
-              onClick={() => navigateAndScroll("/")}
-            >
-              Home
-            </p>
-            <p
-              className="text-3xl md:text-4xl font-semibold font-['Poppins'] hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
-              onClick={() => navigateAndScroll("/contactus")}
-            >
-              Contact Us
-            </p>
-          </div>
-
-          {/* Company Links */}
-          <div className="space-y-3 md:space-y-4">
-            <h3 className="text-2xl md:text-3xl font-bold font-['Poppins'] underline mb-3 md:mb-4">
-              Company
+        {/* Grid Navigation */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center lg:text-left mb-10 text-black">
+          {/* Quick Access */}
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-zinc-800 mb-4 underline underline-offset-4">
+              Quick Access
             </h3>
-            <ul className="space-y-2 text-xl md:text-2xl font-normal font-['Poppins']">
+            <ul className="space-y-3 text-lg md:text-xl font-medium">
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
+                  onClick={() => navigateAndScroll("/")}
+                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
+                >
+                  🏠 Home
+                </p>
+              </li>
+              <li>
+                <p
+                  onClick={() => navigateAndScroll("/contactus")}
+                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
+                >
+                  📞 Contact Us
+                </p>
+              </li>
+              <li>
+                <p
+                  onClick={() => navigateAndScroll("/form")}
+                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
+                >
+                  📋 Free Quote
+                </p>
+              </li>
+              <li>
+                <p
+                  onClick={() => navigateAndScroll("/workprocess")}
+                  className="hover:text-red-600 cursor-pointer transition hover:scale-105"
+                >
+                  ⚙️ Work Process
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company Info */}
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-zinc-800 mb-4 underline underline-offset-4">
+              About Company
+            </h3>
+            <ul className="space-y-3 text-lg md:text-xl font-medium">
+              <li>
+                <p
                   onClick={() => navigateAndScroll("/about")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  About Us
+                  🏢 About Us
                 </p>
               </li>
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/branch")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  Our Branches
+                  📍 Branches
                 </p>
               </li>
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/whychoose")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  Why Choose Us
+                  🔍 Why Choose Us
                 </p>
               </li>
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/becameoneofus")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  Become a Partner
+                  🤝 Become a Partner
                 </p>
               </li>
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/beaware")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  Beware of Frauds
+                  🚫 Beware of Frauds
                 </p>
               </li>
             </ul>
           </div>
 
-          {/* Services Links */}
-          <div className="space-y-3 md:space-y-4">
-            <h3 className="text-2xl md:text-3xl font-bold font-['Poppins'] underline mb-3 md:mb-4">
-              Services
+          {/* Services */}
+          <div>
+            <h3 className="text-xl md:text-2xl font-bold text-zinc-800 mb-4 underline underline-offset-4">
+              Our Services
             </h3>
-            <ul className="space-y-2 text-xl md:text-2xl font-normal font-['Poppins']">
+            <ul className="space-y-3 text-lg md:text-xl font-medium">
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/household")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  House Shifting
+                  🏠 House Shifting
                 </p>
               </li>
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/office")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  Office Shifting
+                  🏢 Office Shifting
                 </p>
               </li>
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/vehicle")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  Vehicle Transportation
+                  🚗 Vehicle Transport
                 </p>
               </li>
               <li>
                 <p
-                  className="hover:text-red-600 cursor-pointer transition duration-200 hover:scale-105"
                   onClick={() => navigateAndScroll("/warehouse")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
                 >
-                  Warehouse Services
+                  📦 Warehouse Storage
+                </p>
+              </li>
+              <li>
+                <p
+                  onClick={() => navigateAndScroll("/ourservices")}
+                  className="hover:text-red-600 cursor-pointer hover:scale-105 transition"
+                >
+                  🛠️ All Services
                 </p>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Section: Follow Us and Request a Quote */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mt-8 md:mt-12 gap-4 md:gap-6">
-          {/* Follow Us */}
-          <div className="text-center sm:text-left">
-            <h2 className="text-2xl md:text-3xl font-medium font-['Fira_Sans'] mb-3">
-              Follow Us:
-            </h2>
-            <div className="flex justify-center sm:justify-start gap-3">
+        {/* Footer: Socials & CTA */}
+        <div className="flex flex-col md:flex-row justify-between items-center mt-6 gap-6">
+          {/* Socials */}
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-2">Follow Us</h4>
+            <div className="flex justify-center md:justify-start gap-4">
               <a
                 href="https://www.facebook.com/people/Move-My-Stuffs-Packers-Movers/100076636426701/"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 md:p-3 rounded-full bg-gray-800 text-white hover:bg-blue-600 transition duration-300 hover:scale-110"
+                className="p-2 rounded-full bg-zinc-800 text-white hover:bg-blue-600 transition hover:scale-110"
               >
-                <FaFacebookF size={22} />
+                <FaFacebookF />
               </a>
               <a
                 href="https://www.instagram.com/move_mystuffs/"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 md:p-3 rounded-full bg-gray-800 text-white hover:bg-pink-500 transition duration-300 hover:scale-110"
+                className="p-2 rounded-full bg-zinc-800 text-white hover:bg-pink-600 transition hover:scale-110"
               >
-                <FaInstagram size={22} />
+                <FaInstagram />
               </a>
               <a
                 href="https://www.youtube.com/@movemystuffs"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2 md:p-3 rounded-full bg-gray-800 text-white hover:bg-red-600 transition duration-300 hover:scale-110"
+                className="p-2 rounded-full bg-zinc-800 text-white hover:bg-red-600 transition hover:scale-110"
               >
-                <FaYoutube size={22} />
+                <FaYoutube />
               </a>
             </div>
           </div>
 
-          {/* Request a Quote Button */}
+          {/* CTA */}
           <button
             onClick={() => navigateAndScroll("/form")}
-            className="w-full sm:w-auto md:w-80 bg-red-700 text-white text-xl md:text-2xl font-medium font-['Poppins'] py-3 px-6 rounded-full shadow-[inset_4px_4px_4px_0px_rgba(0,0,0,0.25)] hover:bg-red-800 transition duration-300 transform hover:scale-105 active:scale-100"
+            className="bg-red-700 text-white text-lg md:text-xl px-6 py-3 rounded-full hover:bg-red-800 transition hover:scale-105"
           >
-            Request a Quote
+            📩 Request a Free Quote
           </button>
         </div>
       </motion.div>
