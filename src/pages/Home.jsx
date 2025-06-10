@@ -4,8 +4,10 @@ import logo from "../../src/assets/logo.png";
 import Footer from "../../src/pages/Footer";
 import { useNavigate } from "react-router";
 import Branch from "../pages/Branch";
+import ve from "../../src/assets/home/ve.jpg"
 import vehicle from "../../src/assets/home/vehicle.png";
 import homeimage from "../../src/assets/home/home.png";
+import homeimage2 from "../../src/assets/home/2.jpg"
 import office from "../../src/assets/home/office.png";
 import vehicle2 from "../../src/assets/home/vehicle2.png";
 import office2shifting from "../../src/assets/home/office-shifting.jpg";
@@ -25,21 +27,9 @@ function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
 
-  const slides = [vehicle, vehicle2, homeimage, office, office2shifting];
+  const slides = [ homeimage2, office, office2shifting,ve, vehicle2,];
 
   const slideContent = [
-    {
-      title: "Move My Stuffs",
-      subtitle: "Trusted Packers and Movers Since 2014",
-      description:
-        "Reliable local and national relocation with 10+ years of excellence.",
-    },
-    {
-      title: "Professional Packing",
-      subtitle: "We Handle With Care",
-      description:
-        "From bubble wrap to moving blankets — your items are protected every step of the way.",
-    },
     {
       title: "Home Relocation Services",
       subtitle: "Safe & Secure Moving",
@@ -58,6 +48,19 @@ function Home() {
       description:
         "From Chennai to Delhi, we move your stuff safely anywhere in India.",
     },
+    {
+      title: "Move My Stuffs",
+      subtitle: "Trusted Packers and Movers Since 2014",
+      description:
+        "Reliable local and national relocation with 10+ years of excellence.",
+    },
+    {
+      title: "Professional Packing",
+      subtitle: "We Handle With Care",
+      description:
+        "From bubble wrap to moving blankets — your items are protected every step of the way.",
+    }
+    
   ];
 
   const cardVariant = {
