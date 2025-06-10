@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFormData } from "../pages/redux/formSlice"; // adjust path if needed
-import { Star } from "lucide-react"; // Importing Star icon from lucide-react
+import { Star, Images } from "lucide-react"; // Importing Star icon from lucide-react
 
 const allCities = [
   "Chennai", "Coimbatore", "Madurai", "Trichy", "Salem", "Tirunelveli", "Erode", "Vellore", "Thoothukudi",
@@ -143,6 +143,9 @@ function Footer() {
                 </li>
                 <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/review")}>
                  Reviews
+              </li>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/gallery")}>
+                < Images size={20} /> Images
               </li>
               </ul>
             </div>
