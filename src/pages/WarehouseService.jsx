@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 // Replace with your actual warehouse images
-// import w1 from "../assets/warehouse/w1.jpg";
-// import w2 from "../assets/warehouse/w2.jpg";
-// import w3 from "../assets/warehouse/w3.jpg";
-// import w4 from "../assets/warehouse/w4.jpg";
-// import w5 from "../assets/warehouse/w5.jpg";
-// import w6 from "../assets/warehouse/w6.jpg";
+import w1 from "../assets/warehouse/w1.jpg";
+import w2 from "../assets/warehouse/w2.jpg";
+import w3 from "../assets/warehouse/w3.jpg";
+import w4 from "../assets/warehouse/w4.jpg";
+import w5 from "../assets/warehouse/w5.jpg";
+import w6 from "../assets/warehouse/w6.jpg";
 
 // Animation variants
 const containerVariants = {
@@ -67,7 +67,7 @@ const galleryVariants = {
 };
 
 const WarehouseService = () => {
-  const images = ['w1', 'w2', 'w3', 'w4', 'w5', 'w6'];
+  const images = [w1, w2, w3, w4, w5, w6];
   const companyName = "SafeShifting Packers & Movers";
 
   useEffect(() => {
