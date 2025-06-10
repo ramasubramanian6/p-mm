@@ -64,16 +64,18 @@ export default (props) => {
             {/* Form and Image Side-by-Side Container */}
             {/* This flex container arranges the form and the illustration */}
             <div className="w-full flex flex-col md:flex-row items-start justify-center gap-8 lg:gap-12">
-
-                {/* The Form - now takes up more width on larger screens */}
-                <form onSubmit={handleSubmit} className="w-full md:w-2/3 bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-200">
+                {/* The Form */}
+                <form
+                    onSubmit={handleSubmit}
+                    className="w-full md:w-2/3 bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-lg border border-gray-200"
+                >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
                         <input
                             type="text"
                             placeholder="Full Name"
                             value={fullName}
                             onChange={(e) => setFullName(e.target.value)}
-                            className="p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
+                            className="w-full p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
                             required
                         />
                         <input
@@ -81,7 +83,7 @@ export default (props) => {
                             placeholder="Email Address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
+                            className="w-full p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
                             required
                         />
                         <input
@@ -89,7 +91,7 @@ export default (props) => {
                             placeholder="Phone Number"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
-                            className="p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
+                            className="w-full p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
                             required
                         />
                         <input
@@ -97,7 +99,7 @@ export default (props) => {
                             placeholder="City"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
-                            className="p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
+                            className="w-full p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg"
                             required
                         />
                     </div>
@@ -106,23 +108,22 @@ export default (props) => {
                             placeholder="Your Message"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
-                            rows="1" // Reduced rows slightly for better balance with image
+                            rows="2"
                             className="w-full p-3 sm:p-4 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-base sm:text-lg resize-y"
                             required
                         ></textarea>
                     </div>
-
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
+                    <div className="flex flex-col sm:flex-row gap-4">
                         <button
                             type="submit"
-                            className="flex-1 sm:flex-none bg-[#B02C1A] text-white text-lg sm:text-xl font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md"
+                            className="w-full sm:w-auto bg-[#B02C1A] text-white text-lg sm:text-xl font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg hover:bg-red-700 transition duration-300 ease-in-out shadow-md"
                         >
                             Submit
                         </button>
                         <button
                             type="button"
                             onClick={handleClear}
-                            className="flex-1 sm:flex-none bg-white text-[#B02C1A] text-lg sm:text-xl font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg border-2 border-[#B02C1A] hover:bg-red-50 transition duration-300 ease-in-out shadow-md"
+                            className="w-full sm:w-auto bg-white text-[#B02C1A] text-lg sm:text-xl font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg border-2 border-[#B02C1A] hover:bg-red-50 transition duration-300 ease-in-out shadow-md"
                         >
                             Clear
                         </button>
@@ -130,10 +131,10 @@ export default (props) => {
                 </form>
 
                 {/* The "icon" (image) on the right side of the form */}
-                <div className="w-full md:w-1/3 flex justify-center items-start pt-8"> {/* Added pt-8 for small screens to prevent overlap if form is taller */}
+                <div className="w-full md:w-1/3 flex justify-center items-start mt-8 md:mt-0">
                     <img
                         src={icon}
-                        className="w-full max-w-sm h-auto object-contain rounded-lg shadow-lg md:max-w-full"
+                        className="w-3/4 sm:w-full max-w-xs md:max-w-full h-[20rem] object-contain rounded-lg shadow-lg"
                         alt="Partner benefits illustration"
                     />
                 </div>
