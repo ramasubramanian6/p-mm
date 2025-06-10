@@ -144,7 +144,7 @@ function Home() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="w-16 h-16 md:w-full md:h-20 object-cover "
+            className="w-16 h-16 md:w-full md:h-20 object-contains md:object-cover "
             src={icon1}
             alt="Logo"
           />
