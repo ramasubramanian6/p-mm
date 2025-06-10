@@ -17,6 +17,7 @@ import Becameone from "../pages/Becameone"
 import Beaware from "../pages/Beaware"
 import HomeAbout from "../pages/HomeAbout"
 import WarehouseService from "../pages/WarehouseService";
+import Review from "../pages/Review";
 
 
 
@@ -42,6 +43,7 @@ function Router() {
       <Route path="/becameoneofus" element={<Becameone/>}/>
       <Route path="/beaware" element={<Beaware/>}/>
       <Route path="/warehouse" element={<WarehouseService/>}/>
+      <Route path="/review" element={<Review/>} />
       <Route path="*" element={<Home />} />
     
     </Routes>

@@ -91,7 +91,7 @@ const ArticlePage = () => {
         <p className="mb-6 text-gray-700 text-base sm:text-lg leading-relaxed">
           Like us, we advise clients to compare services, obtain quotes from several businesses, and make sure all fees are disclosed in detail.
         </p>
-        <a className="flex justify-end text-white " href="https://youtu.be/gESHWPbFrvk?si=6lJY4840fLxQTvgz&t=60" target="_blank" rel="noopener noreferrer">.</a>
+        
       </div>
     </div>
   );

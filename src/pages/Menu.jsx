@@ -17,6 +17,7 @@ import {
   Facebook,
   Instagram,
   Youtube,
+   Star
 } from "lucide-react";
 
 function Menu() {
@@ -82,6 +83,9 @@ function Menu() {
               </li>
               <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/workprocess")}>
                 <Cog size={20} /> Work Process
+              </li>
+              <li className="flex items-center gap-2 cursor-pointer hover:text-red-600 transition" onClick={() => navigateAndScroll("/review")}>
+                < Star size={20} /> Reviews
               </li>
             </ul>
           </div>
