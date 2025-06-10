@@ -10,7 +10,7 @@ const Header = () => { // Accept logoSrc as a prop
   const navigate = useNavigate();
 
   return (
-    <header className="w-full bg-neutral-50 shadow-md font-[Poppins]">
+    <header className="w-full bg-neutral-50 shadow-md font-[Poppins] fixed top-0 z-50">
       {/* Top Bar: Email, Our Service Locations, Phone, Request a Quote, Menu */}
       <div className="w-screen mx-auto py-1 px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
 

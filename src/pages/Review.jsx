@@ -15,7 +15,7 @@ const Review = () => {
       {/* Header Section */}
       <header className="relative py-24 text-center overflow-hidden bg-white">
         <div className="container mx-auto px-4">
-          <p className="text-black text-xl md:text-2xl font-medium leading-normal mb-4">Home &gt; Testimonial</p>
+          <p className="text-black text-xl md:text-2xl font-medium leading-normal mb-4"><a href="/" className="hover:underline hover:text-blue-500">Home</a> &gt;<a href="/review "className="hover:underline hover:text-blue-500">Testimonial</a> </p>
           <h1 className="text-black text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-widest opacity-90 mb-8">Testimonials</h1>
           <h2 className="text-gray-900 text-5xl md:text-6xl lg:text-8xl font-bold underline leading-tight">Customer Reviews</h2>
         </div>

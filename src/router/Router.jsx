@@ -18,6 +18,7 @@ import Beaware from "../pages/Beaware"
 import HomeAbout from "../pages/HomeAbout"
 import WarehouseService from "../pages/WarehouseService";
 import Review from "../pages/Review";
+import Gallery from "../pages/Gallery";
 
 
 
@@ -44,6 +45,7 @@ function Router() {
       <Route path="/beaware" element={<Beaware/>}/>
       <Route path="/warehouse" element={<WarehouseService/>}/>
       <Route path="/review" element={<Review/>} />
+      <Route path="/gallery" element={<Gallery/>}/>
       <Route path="*" element={<Home />} />
     
     </Routes>
