@@ -4,8 +4,8 @@ import emailjs from "emailjs-com";
 
 function Contactus() {
   const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
+    from_name: "",
+    phone_number: "",
     email: "",
     message: "",
   });
@@ -18,15 +18,25 @@ function Contactus() {
 
     emailjs
       .send(
-        "your_service_id", // Replace with your service ID
-        "your_template_id", // Replace with your template ID
-        formData,
-        "your_user_id" // Replace with your public key
+        import.meta.env.VITE_SERVICEID,
+        import.meta.env.VITE_TEMPLATE,
+        {
+          from_name: formData.from_name,
+          phone_number: formData.phone_number,
+          message: formData.message,
+          email: formData.email,
+        },
+        import.meta.env.VITE_USERID
       )
       .then(
         () => {
           alert("Message sent successfully!");
-          setFormData({ name: "", phone: "", email: "", message: "" });
+          setFormData({
+            from_name: "",
+            phone_number: "",
+            email: "",
+            message: "",
+          });
         },
         (error) => {
           alert("Failed to send message. Please try again.");
@@ -60,10 +70,10 @@ function Contactus() {
           transition={{ delay: 0.4 }}
           className="text-gray-700 text-center text-lg mb-10 leading-relaxed"
         >
-          At <strong>Move My Stuffs Packers & Movers</strong>, our mission is to deliver
-          seamless, trustworthy, and efficient moving services that give you peace of mind.
-          We envision a world where every relocation is smooth and stress-free —
-          with care at the heart of everything we do.
+          At <strong>Move My Stuffs Packers & Movers</strong>, our mission is to
+          deliver seamless, trustworthy, and efficient moving services that give
+          you peace of mind. We envision a world where every relocation is
+          smooth and stress-free — with care at the heart of everything we do.
         </motion.p>
 
         {/* Form */}
@@ -81,23 +91,27 @@ function Contactus() {
           }}
           className="space-y-6"
         >
-          {["name", "phone", "email"].map((field) => (
+          {[
+            { name: "from_name", label: "Name", type: "text" },
+            { name: "phone_number", label: "Phone", type: "tel" },
+            { name: "email", label: "Email", type: "email" },
+          ].map(({ name, label, type }) => (
             <motion.div
-              key={field}
+              key={name}
               variants={{
                 hidden: { opacity: 0, y: 10 },
                 visible: { opacity: 1, y: 0 },
               }}
             >
-              <label className="block text-gray-800 font-medium mb-1 capitalize">
-                {field}
+              <label className="block text-gray-800 font-medium mb-1">
+                {label}
               </label>
               <input
-                type={field === "email" ? "email" : field === "phone" ? "tel" : "text"}
-                name={field}
-                value={formData[field]}
+                type={type}
+                name={name}
+                value={formData[name]}
                 onChange={handleChange}
-                placeholder={`Your ${field}`}
+                placeholder={`Your ${label}`}
                 required
                 className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-red-400 focus:outline-none bg-white"
               />
@@ -106,9 +120,14 @@ function Contactus() {
 
           {/* Message */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }}
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0 },
+            }}
           >
-            <label className="block text-gray-800 font-medium mb-1">Message</label>
+            <label className="block text-gray-800 font-medium mb-1">
+              Message
+            </label>
             <textarea
               name="message"
               rows="2"
@@ -146,7 +165,8 @@ function Contactus() {
             {[
               {
                 title: "Head Office – Chennai",
-                address: "No 3 A, Mettu Kalazni Street, Adambakkam, Chennai – 600088",
+                address:
+                  "No 3 A, Mettu Kalazni Street, Adambakkam, Chennai – 600088",
               },
               {
                 title: "Bangalore",
@@ -191,7 +211,8 @@ function Contactus() {
             💼 Ready for a Hassle-Free Move?
           </h2>
           <p className="text-gray-700 mb-4">
-            Get your free quote and let our team handle everything professionally!
+            Get your free quote and let our team handle everything
+            professionally!
           </p>
           <p className="font-semibold text-gray-800 mb-1">
             📞 Sales & Marketing: +91 90878 93000
