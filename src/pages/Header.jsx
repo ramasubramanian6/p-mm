@@ -12,7 +12,7 @@ const Header = () => { // Accept logoSrc as a prop
   return (
     <header className="w-full bg-neutral-50 shadow-md font-[Poppins] ">
       {/* Top Bar: Email, Our Service Locations, Phone, Request a Quote, Menu */}
-      <div className="w-screen mx-auto py-1 px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
+      <div className="w-full mx-auto py-1 px-2 sm:px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
 
         {/* Left Group: Email & Our Service Locations */}
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 ">
@@ -69,34 +69,33 @@ const Header = () => { // Accept logoSrc as a prop
       </div>
 
       {/* Bottom Bar: Logo & Taglines - Hidden on small screens, shown from md and up */}
-      <div className="hidden md:flex max-w-screen-xl mx-auto py-1 px-4 md:px-8 items-center justify-between border-t border-gray-200">
+      <div className="hidden md:flex max-w-screen-xl mx-auto py-1 px-2 sm:px-4 md:px-8 items-center justify-between border-t border-gray-200">
         {/* Logo */}
-        <div className="flex-shrink-0 mb-1 sm:mb-0">
+        <div className="flex-shrink-0 mb-1 sm:mb-0 cursor-pointer" onClick={()=>{navigate("/")}}>
           <img
-            className="sm:h-10 w-[10rem] object-cover"
-            src={logoSrc} // Use the logoSrc prop here
+            className="h-8 sm:h-10 w-auto max-w-[10rem] object-contain"
+            src={logoSrc}
             alt="Move My Stuffs Logo"
-            onClick={()=>{navigate("/")}}
           />
         </div>
 
         {/* Taglines */}
-        <div className="flex flex-wrap justify-center sm:justify-end gap-x-2 gap-y-0.5 text-zinc-800 text-xxs sm:text-xs font-normal text-center sm:text-left">
+        <div className="flex flex-wrap justify-center sm:justify-end gap-x-2 gap-y-0.5 text-zinc-800 text-xs sm:text-xs font-normal text-center sm:text-left">
           <span
-            className="cursor-pointer hover:text-red-700 text-sm transition-colors whitespace-nowrap text-sm "
+            className="cursor-pointer hover:text-red-700 transition-colors whitespace-nowrap text-sm"
             onClick={() => navigate("/beaware")}
           >
             Beware of Online Frauds
           </span>
-          <span className="font-bold hidden sm:inline text-sm ">/</span>
+          <span className="font-bold hidden sm:inline text-sm">/</span>
           <span
-            className="cursor-pointer hover:text-red-700 transition-colors whitespace-nowrap text-sm "
+            className="cursor-pointer hover:text-red-700 transition-colors whitespace-nowrap text-sm"
             onClick={() => navigate("/becameoneofus")}
           >
             Become a Branch Partner
           </span>
-          <span className="font-bold hidden sm:inline text-sm ">/</span>
-          <span className="whitespace-nowrap text-red-600 text-sm ">Since 2014 at your service</span>
+          <span className="font-bold hidden sm:inline text-sm">/</span>
+          <span className="whitespace-nowrap text-red-600 text-sm">Since 2014 at your service</span>
         </div>
       </div>
     </header>
